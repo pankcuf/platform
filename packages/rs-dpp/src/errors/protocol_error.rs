@@ -33,20 +33,19 @@ use crate::state_transition::errors::{
     InvalidSignaturePublicKeyError, PublicKeyMismatchError, PublicKeySecurityLevelNotMetError,
     StateTransitionIsNotSignedError,
 };
+use crate::{
+    CompatibleProtocolVersionIsNotDefinedError, DashPlatformProtocolInitError,
+    InvalidVectorSizeError, NonConsensusError, SerdeParsingError,
+};
 
-use crate::errors::compatible_protocol_version_is_not_defined_error::CompatibleProtocolVersionIsNotDefinedError;
-use crate::errors::consensus::ConsensusError;
-use crate::errors::dpp_init_error::DashPlatformProtocolInitError;
-use crate::errors::invalid_vector_size_error::InvalidVectorSizeError;
-use crate::errors::non_consensus_error::NonConsensusError;
-use crate::errors::serde_parsing_error::SerdeParsingError;
+use dashcore::consensus::encode::Error as DashCoreError;
+
 use crate::tokens::errors::TokenError;
-
-use platform_value::{Error, Value};
+use crate::version::FeatureVersion;
+use platform_value::{Error as ValueError, Value};
 use platform_version::error::PlatformVersionError;
-use versioned_feature_core::FeatureVersion;
 
-#[derive(ThisError, Debug)]
+#[derive(Error, Debug)]
 #[cfg_attr(feature = "apple", ferment_macro::export)]
 pub enum ProtocolError {
     #[error("Identifier Error: {0}")]
@@ -215,7 +214,7 @@ pub enum ProtocolError {
 
     /// Value error
     #[error("value error: {0}")]
-    ValueError(#[from] Error),
+    ValueError(#[from] ValueError),
 
     /// Value error
     #[error("platform serialization error: {0}")]
@@ -227,7 +226,7 @@ pub enum ProtocolError {
 
     /// Dash core error
     #[error("dash core error: {0}")]
-    DashCoreError(#[from] dashcore::consensus::encode::Error),
+    DashCoreError(#[from] DashCoreError),
 
     #[error("Invalid Identity: {errors:?}")]
     InvalidIdentityError {

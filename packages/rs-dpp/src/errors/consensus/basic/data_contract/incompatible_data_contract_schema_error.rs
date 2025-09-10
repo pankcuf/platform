@@ -1,12 +1,12 @@
-use crate::errors::consensus::basic::BasicError;
+use crate::consensus::basic::BasicError;
 use crate::errors::ProtocolError;
 use platform_serialization_derive::{PlatformDeserialize, PlatformSerialize};
 use thiserror::Error;
 
-use crate::errors::consensus::ConsensusError;
+use crate::consensus::ConsensusError;
+use crate::prelude::Identifier;
 
 use bincode::{Decode, Encode};
-use platform_value::Identifier;
 
 #[derive(
     Error, Debug, Clone, PartialEq, Encode, Decode, PlatformSerialize, PlatformDeserialize,

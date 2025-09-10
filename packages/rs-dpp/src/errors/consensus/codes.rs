@@ -1,5 +1,5 @@
-use crate::errors::consensus::signature::SignatureError;
-use crate::errors::consensus::state::data_trigger::DataTriggerError;
+use crate::consensus::signature::SignatureError;
+use crate::consensus::state::data_trigger::DataTriggerError;
 use crate::data_contract::errors::DataContractError;
 
 use crate::errors::consensus::{

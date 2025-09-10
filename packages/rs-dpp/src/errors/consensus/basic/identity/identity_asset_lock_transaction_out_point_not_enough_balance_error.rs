@@ -1,7 +1,7 @@
-use crate::balances::credits::Credits;
-use crate::errors::consensus::basic::BasicError;
-use crate::errors::consensus::ConsensusError;
+use crate::consensus::basic::BasicError;
+use crate::consensus::ConsensusError;
 use crate::errors::ProtocolError;
+use crate::fee::Credits;
 use bincode::{Decode, Encode};
 use dashcore::Txid;
 use platform_serialization_derive::{PlatformDeserialize, PlatformSerialize};
