@@ -19,7 +19,7 @@ use wasm_bindgen::prelude::*;
 
 use crate::utils::WithJsError;
 use crate::{
-    data_contract::state_transition::state_transitions::contract::data_contract_update_transition::DataContractUpdateTransitionParameters,
+    data_contract::state_transition::data_contract_update_transition::DataContractUpdateTransitionParameters,
     errors::protocol_error::from_protocol_error,
     state_repository::{ExternalStateRepositoryLike, ExternalStateRepositoryLikeWrapper},
     validation::ValidationResultWasm,
