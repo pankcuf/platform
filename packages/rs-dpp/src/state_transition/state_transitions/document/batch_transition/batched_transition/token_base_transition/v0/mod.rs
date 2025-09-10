@@ -18,10 +18,10 @@ use crate::data_contract::accessors::v0::DataContractV0Getters;
 #[cfg(feature = "state-transition-value-conversion")]
 use crate::data_contract::accessors::v1::DataContractV1Getters;
 use crate::group::GroupStateTransitionInfo;
-use platform_value::Identifier;
+use crate::identifier::Identifier;
 use crate::prelude::IdentityNonce;
 #[cfg(feature = "state-transition-value-conversion")]
-use crate::state_transition::state_transitions::document::batch_transition::token_base_transition::property_names;
+use crate::state_transition::batch_transition::token_base_transition::property_names;
 #[cfg(feature = "state-transition-value-conversion")]
 use crate::tokens::errors::TokenError;
 #[cfg(any(

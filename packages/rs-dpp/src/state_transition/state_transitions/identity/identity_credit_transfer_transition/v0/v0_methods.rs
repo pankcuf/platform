@@ -2,6 +2,7 @@
 use crate::{
     identity::{
         accessors::IdentityGettersV0, signer::Signer, Identity, IdentityPublicKey, KeyType,
+        Purpose, SecurityLevel,
     },
     prelude::{IdentityNonce, UserFeeIncrease},
     state_transition::StateTransition,
@@ -10,17 +11,12 @@ use crate::{
 #[cfg(feature = "state-transition-signing")]
 use platform_value::Identifier;
 
-use crate::state_transition::state_transitions::identity::identity_credit_transfer_transition::methods::IdentityCreditTransferTransitionMethodsV0;
-use crate::state_transition::state_transitions::identity::identity_credit_transfer_transition::v0::IdentityCreditTransferTransitionV0;
+use crate::state_transition::identity_credit_transfer_transition::methods::IdentityCreditTransferTransitionMethodsV0;
+use crate::state_transition::identity_credit_transfer_transition::v0::IdentityCreditTransferTransitionV0;
 #[cfg(feature = "state-transition-signing")]
 use crate::state_transition::GetDataContractSecurityLevelRequirementFn;
 #[cfg(feature = "state-transition-signing")]
-use platform_version::version::PlatformVersion;
-#[cfg(feature = "state-transition-signing")]
-use versioned_feature_core::FeatureVersion;
-
-#[cfg(feature = "state-transition-signing")]
-use crate::identity::identity_public_key::{Purpose, SecurityLevel};
+use platform_version::version::{FeatureVersion, PlatformVersion};
 
 impl IdentityCreditTransferTransitionMethodsV0 for IdentityCreditTransferTransitionV0 {
     #[cfg(feature = "state-transition-signing")]

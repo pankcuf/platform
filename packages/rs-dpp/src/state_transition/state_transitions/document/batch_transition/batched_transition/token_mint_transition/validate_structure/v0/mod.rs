@@ -1,14 +1,14 @@
-use crate::errors::consensus::basic::token::{InvalidTokenAmountError, InvalidTokenNoteTooBigError, TokenNoteOnlyAllowedWhenProposerError};
-use crate::errors::consensus::basic::BasicError;
-use crate::errors::consensus::ConsensusError;
+use crate::consensus::basic::token::{InvalidTokenAmountError, InvalidTokenNoteTooBigError, TokenNoteOnlyAllowedWhenProposerError};
+use crate::consensus::basic::BasicError;
+use crate::consensus::ConsensusError;
 use crate::data_contract::associated_token::token_perpetual_distribution::distribution_function::MAX_DISTRIBUTION_PARAM;
-use crate::state_transition::state_transitions::document::batch_transition::batched_transition::token_mint_transition::v0::v0_methods::TokenMintTransitionV0Methods;
-use crate::state_transition::state_transitions::document::batch_transition::batched_transition::token_mint_transition::TokenMintTransition;
+use crate::state_transition::batch_transition::token_mint_transition::v0::v0_methods::TokenMintTransitionV0Methods;
+use crate::state_transition::batch_transition::TokenMintTransition;
 use crate::tokens::MAX_TOKEN_NOTE_LEN;
 use crate::validation::SimpleConsensusValidationResult;
 use crate::ProtocolError;
-use crate::state_transition::state_transitions::document::batch_transition::token_base_transition::token_base_transition_accessors::TokenBaseTransitionAccessors;
-use crate::state_transition::state_transitions::document::batch_transition::token_base_transition::v0::v0_methods::TokenBaseTransitionV0Methods;
+use crate::state_transition::batch_transition::token_base_transition::token_base_transition_accessors::TokenBaseTransitionAccessors;
+use crate::state_transition::batch_transition::token_base_transition::v0::v0_methods::TokenBaseTransitionV0Methods;
 
 pub(super) trait TokenMintTransitionActionStructureValidationV0 {
     fn validate_structure_v0(&self) -> Result<SimpleConsensusValidationResult, ProtocolError>;

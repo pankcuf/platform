@@ -1,4 +1,4 @@
-use crate::state_transition::state_transitions::identity::identity_credit_withdrawal_transition::v0::IdentityCreditWithdrawalTransitionV0;
+use crate::state_transition::identity_credit_withdrawal_transition::v0::IdentityCreditWithdrawalTransitionV0;
 
 pub mod accessors;
 pub mod fields;
@@ -13,12 +13,12 @@ pub mod v1;
 mod value_conversion;
 mod version;
 
-use crate::state_transition::state_transitions::identity::identity_credit_withdrawal_transition::v0::IdentityCreditWithdrawalTransitionV0Signable;
+use crate::state_transition::identity_credit_withdrawal_transition::v0::IdentityCreditWithdrawalTransitionV0Signable;
 use crate::state_transition::StateTransitionFieldTypes;
 
 use crate::balances::credits::CREDITS_PER_DUFF;
 use crate::identity::state_transition::OptionallyAssetLockProved;
-use crate::state_transition::state_transitions::identity::identity_credit_withdrawal_transition::v1::{
+use crate::state_transition::identity_credit_withdrawal_transition::v1::{
     IdentityCreditWithdrawalTransitionV1, IdentityCreditWithdrawalTransitionV1Signable,
 };
 use crate::ProtocolError;

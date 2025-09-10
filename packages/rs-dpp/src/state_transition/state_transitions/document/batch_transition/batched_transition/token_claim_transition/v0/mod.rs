@@ -3,7 +3,7 @@ pub mod v0_methods;
 /// The Identifier fields in [`TokenClaimTransition`]
 pub use super::super::document_base_transition::IDENTIFIER_FIELDS;
 use crate::data_contract::associated_token::token_distribution_key::TokenDistributionType;
-use crate::state_transition::state_transitions::document::batch_transition::batched_transition::token_base_transition::TokenBaseTransition;
+use crate::state_transition::batch_transition::token_base_transition::TokenBaseTransition;
 use bincode::{Decode, Encode};
 #[cfg(feature = "state-transition-serde-conversion")]
 use serde::{Deserialize, Serialize};

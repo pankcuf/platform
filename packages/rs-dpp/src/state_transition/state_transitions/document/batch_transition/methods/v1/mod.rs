@@ -5,7 +5,7 @@ use crate::data_contract::associated_token::token_configuration_item::TokenConfi
 #[cfg(feature = "state-transition-signing")]
 use crate::data_contract::associated_token::token_distribution_key::TokenDistributionType;
 #[cfg(feature = "state-transition-signing")]
-use crate::balances::credits::Credits;
+use crate::fee::Credits;
 #[cfg(feature = "state-transition-signing")]
 use crate::group::GroupStateTransitionInfoStatus;
 #[cfg(feature = "state-transition-signing")]
@@ -14,9 +14,9 @@ use crate::identity::signer::Signer;
 use crate::identity::IdentityPublicKey;
 #[cfg(feature = "state-transition-signing")]
 use crate::prelude::{IdentityNonce, UserFeeIncrease};
-use crate::state_transition::state_transitions::document::batch_transition::accessors::DocumentsBatchTransitionAccessorsV0;
+use crate::state_transition::batch_transition::accessors::DocumentsBatchTransitionAccessorsV0;
 #[cfg(feature = "state-transition-signing")]
-use crate::state_transition::state_transitions::document::batch_transition::methods::StateTransitionCreationOptions;
+use crate::state_transition::batch_transition::methods::StateTransitionCreationOptions;
 #[cfg(feature = "state-transition-signing")]
 use crate::state_transition::StateTransition;
 #[cfg(feature = "state-transition-signing")]

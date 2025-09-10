@@ -10,9 +10,9 @@ pub mod v0;
 mod value_conversion;
 mod version;
 
-use crate::state_transition::state_transitions::identity::identity_credit_transfer_transition::fields::property_names::RECIPIENT_ID;
-use crate::state_transition::state_transitions::identity::identity_credit_transfer_transition::v0::IdentityCreditTransferTransitionV0;
-use crate::state_transition::state_transitions::identity::identity_credit_transfer_transition::v0::IdentityCreditTransferTransitionV0Signable;
+use crate::state_transition::identity_credit_transfer_transition::fields::property_names::RECIPIENT_ID;
+use crate::state_transition::identity_credit_transfer_transition::v0::IdentityCreditTransferTransitionV0;
+use crate::state_transition::identity_credit_transfer_transition::v0::IdentityCreditTransferTransitionV0Signable;
 use crate::state_transition::StateTransitionFieldTypes;
 
 use crate::identity::state_transition::OptionallyAssetLockProved;

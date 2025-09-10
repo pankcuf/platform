@@ -1,14 +1,13 @@
 use crate::data_contract::document_type::DocumentTypeRef;
 use crate::document::errors::DocumentError;
 use crate::document::{Document, DocumentV0Getters};
-use crate::balances::credits::Credits;
+use crate::fee::Credits;
 use crate::prelude::IdentityNonce;
-use crate::state_transition::state_transitions::document::batch_transition::batched_transition::document_purchase_transition::DocumentPurchaseTransitionV0;
-use crate::state_transition::state_transitions::document::batch_transition::document_base_transition::DocumentBaseTransition;
+use crate::state_transition::batch_transition::batched_transition::document_purchase_transition::DocumentPurchaseTransitionV0;
+use crate::state_transition::batch_transition::document_base_transition::DocumentBaseTransition;
 use crate::tokens::token_payment_info::TokenPaymentInfo;
 use crate::ProtocolError;
-use platform_version::version::PlatformVersion;
-use versioned_feature_core::FeatureVersion;
+use platform_version::version::{FeatureVersion, PlatformVersion};
 
 impl DocumentPurchaseTransitionV0 {
     pub(crate) fn from_document(

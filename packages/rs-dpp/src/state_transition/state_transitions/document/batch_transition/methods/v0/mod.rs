@@ -2,17 +2,17 @@
 use crate::data_contract::document_type::DocumentTypeRef;
 #[cfg(feature = "state-transition-signing")]
 use crate::document::Document;
-use crate::balances::credits::Credits;
+use crate::fee::Credits;
 #[cfg(feature = "state-transition-signing")]
 use crate::identity::signer::Signer;
 #[cfg(feature = "state-transition-signing")]
-use crate::identity::identity_public_key::IdentityPublicKey;
-use crate::identity::identity_public_key::SecurityLevel;
+use crate::identity::IdentityPublicKey;
+use crate::identity::SecurityLevel;
 use crate::prelude::IdentityNonce;
 #[cfg(feature = "state-transition-signing")]
 use crate::prelude::UserFeeIncrease;
-use crate::state_transition::state_transitions::document::batch_transition::accessors::DocumentsBatchTransitionAccessorsV0;
-use crate::state_transition::state_transitions::document::batch_transition::document_base_transition::v0::v0_methods::DocumentBaseTransitionV0Methods;
+use crate::state_transition::batch_transition::accessors::DocumentsBatchTransitionAccessorsV0;
+use crate::state_transition::batch_transition::document_base_transition::v0::v0_methods::DocumentBaseTransitionV0Methods;
 #[cfg(feature = "state-transition-signing")]
 use crate::state_transition::StateTransition;
 use crate::ProtocolError;
@@ -20,9 +20,9 @@ use platform_value::Identifier;
 #[cfg(feature = "state-transition-signing")]
 use platform_version::version::PlatformVersion;
 use std::convert::TryFrom;
-use crate::state_transition::state_transitions::document::batch_transition::batched_transition::{BatchedTransition, BatchedTransitionRef};
+use crate::state_transition::batch_transition::batched_transition::{BatchedTransition, BatchedTransitionRef};
 #[cfg(feature = "state-transition-signing")]
-use crate::state_transition::state_transitions::document::batch_transition::methods::StateTransitionCreationOptions;
+use crate::state_transition::batch_transition::methods::StateTransitionCreationOptions;
 use crate::state_transition::state_transitions::document::batch_transition::batched_transition::document_transition::DocumentTransitionV0Methods;
 #[cfg(feature = "state-transition-signing")]
 use crate::tokens::token_payment_info::TokenPaymentInfo;

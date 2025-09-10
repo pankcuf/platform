@@ -1,9 +1,9 @@
-use crate::state_transition::state_transitions::document::batch_transition::batched_transition::token_unfreeze_transition::TokenUnfreezeTransition;
-use crate::state_transition::state_transitions::document::batch_transition::batched_transition::{
+use crate::state_transition::batch_transition::batched_transition::token_unfreeze_transition::TokenUnfreezeTransition;
+use crate::state_transition::batch_transition::batched_transition::{
     DocumentPurchaseTransition, DocumentTransferTransition,
 };
-use crate::state_transition::state_transitions::document::batch_transition::token_direct_purchase_transition::TokenDirectPurchaseTransition;
-use crate::state_transition::state_transitions::document::batch_transition::{
+use crate::state_transition::batch_transition::token_direct_purchase_transition::TokenDirectPurchaseTransition;
+use crate::state_transition::batch_transition::{
     DocumentCreateTransition, DocumentDeleteTransition, DocumentReplaceTransition,
     TokenBurnTransition, TokenClaimTransition, TokenConfigUpdateTransition,
     TokenDestroyFrozenFundsTransition, TokenEmergencyActionTransition, TokenFreezeTransition,

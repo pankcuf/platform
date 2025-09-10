@@ -1,7 +1,8 @@
 pub mod v0_methods;
 
-use crate::balances::credits::{Credits, TokenAmount};
-use crate::state_transition::state_transitions::document::batch_transition::batched_transition::token_base_transition::TokenBaseTransition;
+use crate::balances::credits::TokenAmount;
+use crate::fee::Credits;
+use crate::state_transition::batch_transition::token_base_transition::TokenBaseTransition;
 use bincode::{Decode, Encode};
 #[cfg(feature = "state-transition-serde-conversion")]
 use serde::{Deserialize, Serialize};

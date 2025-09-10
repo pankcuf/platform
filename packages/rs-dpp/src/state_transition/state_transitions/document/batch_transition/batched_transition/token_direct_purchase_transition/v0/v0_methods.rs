@@ -1,8 +1,8 @@
 use crate::balances::credits::TokenAmount;
 use crate::fee::Credits;
-use crate::state_transition::state_transitions::document::batch_transition::token_base_transition::token_base_transition_accessors::TokenBaseTransitionAccessors;
-use crate::state_transition::state_transitions::document::batch_transition::token_base_transition::TokenBaseTransition;
-use crate::state_transition::state_transitions::document::batch_transition::token_direct_purchase_transition::TokenDirectPurchaseTransitionV0;
+use crate::state_transition::batch_transition::token_base_transition::token_base_transition_accessors::TokenBaseTransitionAccessors;
+use crate::state_transition::batch_transition::token_base_transition::TokenBaseTransition;
+use crate::state_transition::batch_transition::token_direct_purchase_transition::TokenDirectPurchaseTransitionV0;
 
 impl TokenBaseTransitionAccessors for TokenDirectPurchaseTransitionV0 {
     fn base(&self) -> &TokenBaseTransition {

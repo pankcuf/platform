@@ -1,4 +1,4 @@
-use crate::state_transition::StateTransitionType;
+use crate::{prelude::Identifier, state_transition::StateTransitionType};
 #[cfg(feature = "state-transition-signing")]
 use crate::{BlsModule, ProtocolError};
 
@@ -7,31 +7,30 @@ use crate::identity::accessors::IdentityGettersV0;
 #[cfg(feature = "state-transition-signing")]
 use crate::identity::identity_public_key::accessors::v0::IdentityPublicKeyGettersV0;
 #[cfg(feature = "state-transition-signing")]
-use crate::identity::identity_public_key::KeyType::ECDSA_HASH160;
-#[cfg(feature = "state-transition-signing")]
 use crate::identity::signer::Signer;
-#[cfg(feature = "state-transition-signing")]
-use crate::identity::state_transition::asset_lock_proof::AssetLockProof;
 #[cfg(feature = "state-transition-signing")]
 use crate::identity::state_transition::AssetLockProved;
 #[cfg(feature = "state-transition-signing")]
 use crate::identity::Identity;
 #[cfg(feature = "state-transition-signing")]
+use crate::identity::KeyType::ECDSA_HASH160;
+#[cfg(feature = "state-transition-signing")]
+use crate::prelude::AssetLockProof;
+#[cfg(feature = "state-transition-signing")]
 use crate::prelude::UserFeeIncrease;
 #[cfg(feature = "state-transition-signing")]
 use crate::serialization::Signable;
-use crate::state_transition::state_transitions::identity::identity_create_transition::accessors::IdentityCreateTransitionAccessorsV0;
-use crate::state_transition::state_transitions::identity::identity_create_transition::methods::IdentityCreateTransitionMethodsV0;
+use crate::state_transition::identity_create_transition::accessors::IdentityCreateTransitionAccessorsV0;
+use crate::state_transition::identity_create_transition::methods::IdentityCreateTransitionMethodsV0;
 #[cfg(feature = "state-transition-signing")]
-use crate::state_transition::state_transitions::identity::public_key_in_creation::accessors::IdentityPublicKeyInCreationV0Setters;
+use crate::state_transition::public_key_in_creation::accessors::IdentityPublicKeyInCreationV0Setters;
 
-use crate::state_transition::state_transitions::identity::identity_create_transition::v0::IdentityCreateTransitionV0;
-use crate::state_transition::state_transitions::identity::public_key_in_creation::IdentityPublicKeyInCreation;
+use crate::state_transition::identity_create_transition::v0::IdentityCreateTransitionV0;
+use crate::state_transition::public_key_in_creation::IdentityPublicKeyInCreation;
 #[cfg(feature = "state-transition-signing")]
 use crate::state_transition::StateTransition;
-use platform_value::Identifier;
 #[cfg(feature = "state-transition-signing")]
-use platform_version::version::PlatformVersion;
+use crate::version::PlatformVersion;
 
 impl IdentityCreateTransitionMethodsV0 for IdentityCreateTransitionV0 {
     #[cfg(feature = "state-transition-signing")]
@@ -44,7 +43,6 @@ impl IdentityCreateTransitionMethodsV0 for IdentityCreateTransitionV0 {
         user_fee_increase: UserFeeIncrease,
         _platform_version: &PlatformVersion,
     ) -> Result<StateTransition, ProtocolError> {
-        println!("IdentityCreateTransitionV0::try_from_identity_with_signer.1: {:p} {:p} {:p}", identity, &asset_lock_proof, asset_lock_proof_private_key);
         let mut identity_create_transition = IdentityCreateTransitionV0 {
             user_fee_increase,
             ..Default::default()
@@ -62,7 +60,7 @@ impl IdentityCreateTransitionMethodsV0 for IdentityCreateTransitionV0 {
         let state_transition: StateTransition = identity_create_transition.clone().into();
 
         let key_signable_bytes = state_transition.signable_bytes()?;
-        println!("IdentityCreateTransitionV0::try_from_identity_with_signer.2: {:p}", &key_signable_bytes);
+
         identity_create_transition
             .public_keys
             .iter_mut()
@@ -76,10 +74,8 @@ impl IdentityCreateTransitionMethodsV0 for IdentityCreateTransitionV0 {
             })?;
 
         let mut state_transition: StateTransition = identity_create_transition.into();
-        println!("IdentityCreateTransitionV0::try_from_identity_with_signer.3: {:p}", &asset_lock_proof_private_key);
 
         state_transition.sign_by_private_key(asset_lock_proof_private_key, ECDSA_HASH160, bls)?;
-        println!("IdentityCreateTransitionV0::try_from_identity_with_signer.4: {:p}", &state_transition);
 
         Ok(state_transition)
     }

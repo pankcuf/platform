@@ -1,13 +1,13 @@
-use crate::errors::consensus::basic::token::{InvalidTokenNoteTooBigError, TokenNoteOnlyAllowedWhenProposerError};
-use crate::errors::consensus::basic::BasicError;
-use crate::errors::consensus::ConsensusError;
-use crate::state_transition::state_transitions::document::batch_transition::batched_transition::token_unfreeze_transition::v0::v0_methods::TokenUnfreezeTransitionV0Methods;
-use crate::state_transition::state_transitions::document::batch_transition::batched_transition::token_unfreeze_transition::TokenUnfreezeTransition;
+use crate::consensus::basic::token::{InvalidTokenNoteTooBigError, TokenNoteOnlyAllowedWhenProposerError};
+use crate::consensus::basic::BasicError;
+use crate::consensus::ConsensusError;
+use crate::state_transition::batch_transition::token_unfreeze_transition::v0::v0_methods::TokenUnfreezeTransitionV0Methods;
+use crate::state_transition::batch_transition::TokenUnfreezeTransition;
 use crate::tokens::MAX_TOKEN_NOTE_LEN;
 use crate::validation::SimpleConsensusValidationResult;
 use crate::ProtocolError;
-use crate::state_transition::state_transitions::document::batch_transition::token_base_transition::token_base_transition_accessors::TokenBaseTransitionAccessors;
-use crate::state_transition::state_transitions::document::batch_transition::token_base_transition::v0::v0_methods::TokenBaseTransitionV0Methods;
+use crate::state_transition::batch_transition::token_base_transition::token_base_transition_accessors::TokenBaseTransitionAccessors;
+use crate::state_transition::batch_transition::token_base_transition::v0::v0_methods::TokenBaseTransitionV0Methods;
 
 pub(super) trait TokenUnfreezeTransitionStructureValidationV0 {
     fn validate_structure_v0(&self) -> Result<SimpleConsensusValidationResult, ProtocolError>;

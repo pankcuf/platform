@@ -3,26 +3,26 @@ use std::slice::Iter;
 use crate::data_contract::document_type::DocumentTypeRef;
 #[cfg(feature = "state-transition-signing")]
 use crate::document::{Document, DocumentV0Getters};
-use crate::balances::credits::Credits;
+use crate::fee::Credits;
 #[cfg(feature = "state-transition-signing")]
 use crate::identity::signer::Signer;
 use crate::prelude::IdentityNonce;
 #[cfg(feature = "state-transition-signing")]
-use crate::identity::identity_public_key::IdentityPublicKey;
+use crate::prelude::IdentityPublicKey;
 #[cfg(feature = "state-transition-signing")]
 use crate::prelude::UserFeeIncrease;
-use crate::state_transition::state_transitions::document::batch_transition::accessors::{DocumentsBatchTransitionAccessorsV0};
+use crate::state_transition::batch_transition::accessors::{DocumentsBatchTransitionAccessorsV0};
 #[cfg(feature = "state-transition-signing")]
-use crate::state_transition::state_transitions::document::batch_transition::document_create_transition::DocumentCreateTransition;
-use crate::state_transition::state_transitions::document::batch_transition::batched_transition::{BatchedTransition, BatchedTransitionMutRef, BatchedTransitionRef};
+use crate::state_transition::batch_transition::document_create_transition::DocumentCreateTransition;
+use crate::state_transition::batch_transition::batched_transition::{BatchedTransition, BatchedTransitionMutRef, BatchedTransitionRef};
 #[cfg(feature = "state-transition-signing")]
-use crate::state_transition::state_transitions::document::batch_transition::batched_transition::{
+use crate::state_transition::batch_transition::batched_transition::{
     DocumentPurchaseTransition, DocumentReplaceTransition, DocumentTransferTransition, DocumentUpdatePriceTransition,
 };
-use crate::state_transition::state_transitions::document::batch_transition::methods::v0::DocumentsBatchTransitionMethodsV0;
-use crate::state_transition::state_transitions::document::batch_transition::BatchTransitionV0;
+use crate::state_transition::batch_transition::methods::v0::DocumentsBatchTransitionMethodsV0;
+use crate::state_transition::batch_transition::BatchTransitionV0;
 #[cfg(feature = "state-transition-signing")]
-use crate::state_transition::state_transitions::document::batch_transition::{
+use crate::state_transition::batch_transition::{
     BatchTransition, DocumentDeleteTransition,
 };
 #[cfg(feature = "state-transition-signing")]
@@ -34,12 +34,12 @@ use platform_value::Identifier;
 use platform_version::version::PlatformVersion;
 #[cfg(feature = "state-transition-signing")]
 use crate::data_contract::document_type::accessors::DocumentTypeV0Getters;
-use crate::state_transition::state_transitions::document::batch_transition::document_create_transition::v0::v0_methods::DocumentCreateTransitionV0Methods;
-use crate::state_transition::state_transitions::document::batch_transition::batched_transition::document_purchase_transition::v0::v0_methods::DocumentPurchaseTransitionV0Methods;
-use crate::state_transition::state_transitions::document::batch_transition::batched_transition::document_transition::DocumentTransition;
+use crate::state_transition::batch_transition::document_create_transition::v0::v0_methods::DocumentCreateTransitionV0Methods;
+use crate::state_transition::batch_transition::batched_transition::document_purchase_transition::v0::v0_methods::DocumentPurchaseTransitionV0Methods;
+use crate::state_transition::batch_transition::batched_transition::document_transition::DocumentTransition;
 #[cfg(feature = "state-transition-signing")]
-use crate::state_transition::state_transitions::document::batch_transition::methods::StateTransitionCreationOptions;
-use crate::state_transition::state_transitions::document::batch_transition::resolvers::v0::BatchTransitionResolversV0;
+use crate::state_transition::batch_transition::methods::StateTransitionCreationOptions;
+use crate::state_transition::batch_transition::resolvers::v0::BatchTransitionResolversV0;
 use crate::state_transition::state_transitions::document::batch_transition::batched_transition::document_transition::DocumentTransitionV0Methods;
 #[cfg(feature = "state-transition-signing")]
 use crate::tokens::token_payment_info::TokenPaymentInfo;

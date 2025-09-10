@@ -8,9 +8,7 @@ use crate::{
 #[cfg(feature = "state-transition-signing")]
 use platform_value::Identifier;
 #[cfg(feature = "state-transition-signing")]
-use platform_version::version::PlatformVersion;
-#[cfg(feature = "state-transition-signing")]
-use versioned_feature_core::FeatureVersion;
+use platform_version::version::{FeatureVersion, PlatformVersion};
 
 use crate::state_transition::StateTransitionType;
 

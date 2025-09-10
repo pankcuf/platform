@@ -1,15 +1,15 @@
 use platform_version::version::PlatformVersion;
-use crate::errors::consensus::basic::token::{InvalidTokenConfigUpdateNoChangeError, InvalidTokenNoteTooBigError, TokenNoteOnlyAllowedWhenProposerError};
-use crate::errors::consensus::basic::{BasicError, UnsupportedFeatureError};
-use crate::errors::consensus::ConsensusError;
+use crate::consensus::basic::token::{InvalidTokenConfigUpdateNoChangeError, InvalidTokenNoteTooBigError, TokenNoteOnlyAllowedWhenProposerError};
+use crate::consensus::basic::{BasicError, UnsupportedFeatureError};
+use crate::consensus::ConsensusError;
 use crate::data_contract::associated_token::token_configuration_item::TokenConfigurationChangeItem;
-use crate::state_transition::state_transitions::document::batch_transition::batched_transition::token_config_update_transition::v0::v0_methods::TokenConfigUpdateTransitionV0Methods;
-use crate::state_transition::state_transitions::document::batch_transition::batched_transition::token_config_update_transition::TokenConfigUpdateTransition;
+use crate::state_transition::batch_transition::token_config_update_transition::v0::v0_methods::TokenConfigUpdateTransitionV0Methods;
+use crate::state_transition::batch_transition::TokenConfigUpdateTransition;
 use crate::tokens::MAX_TOKEN_NOTE_LEN;
 use crate::validation::SimpleConsensusValidationResult;
 use crate::ProtocolError;
-use crate::state_transition::state_transitions::document::batch_transition::token_base_transition::token_base_transition_accessors::TokenBaseTransitionAccessors;
-use crate::state_transition::state_transitions::document::batch_transition::token_base_transition::v0::v0_methods::TokenBaseTransitionV0Methods;
+use crate::state_transition::batch_transition::token_base_transition::token_base_transition_accessors::TokenBaseTransitionAccessors;
+use crate::state_transition::batch_transition::token_base_transition::v0::v0_methods::TokenBaseTransitionV0Methods;
 
 pub(super) trait TokenConfigUpdateTransitionStructureValidationV0 {
     fn validate_structure_v0(

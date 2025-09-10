@@ -1,10 +1,10 @@
 use platform_value::Identifier;
 use crate::prelude::IdentityNonce;
-use crate::state_transition::state_transitions::document::batch_transition::batched_transition::multi_party_action::AllowedAsMultiPartyAction;
-use crate::state_transition::state_transitions::document::batch_transition::token_base_transition::token_base_transition_accessors::TokenBaseTransitionAccessors;
-use crate::state_transition::state_transitions::document::batch_transition::token_base_transition::TokenBaseTransition;
-use crate::state_transition::state_transitions::document::batch_transition::token_set_price_for_direct_purchase_transition::TokenSetPriceForDirectPurchaseTransition;
-use crate::state_transition::state_transitions::document::batch_transition::token_set_price_for_direct_purchase_transition::v0::v0_methods::TokenSetPriceForDirectPurchaseTransitionV0Methods;
+use crate::state_transition::batch_transition::batched_transition::multi_party_action::AllowedAsMultiPartyAction;
+use crate::state_transition::batch_transition::token_base_transition::token_base_transition_accessors::TokenBaseTransitionAccessors;
+use crate::state_transition::batch_transition::token_base_transition::TokenBaseTransition;
+use crate::state_transition::batch_transition::token_set_price_for_direct_purchase_transition::TokenSetPriceForDirectPurchaseTransition;
+use crate::state_transition::batch_transition::token_set_price_for_direct_purchase_transition::v0::v0_methods::TokenSetPriceForDirectPurchaseTransitionV0Methods;
 use crate::tokens::token_pricing_schedule::TokenPricingSchedule;
 use crate::util::hash::hash_double;
 

@@ -13,21 +13,21 @@ use std::convert::TryFrom;
 use bincode::{Decode, Encode};
 use platform_serialization_derive::PlatformSignable;
 
-use platform_value::{BinaryData, Identifier};
+use platform_value::BinaryData;
 #[cfg(feature = "state-transition-serde-conversion")]
 use serde::{Deserialize, Serialize};
 
 use crate::identity::state_transition::asset_lock_proof::AssetLockProof;
 use crate::identity::Identity;
-use crate::prelude::UserFeeIncrease;
+use crate::prelude::{Identifier, UserFeeIncrease};
 
 use crate::identity::accessors::IdentityGettersV0;
 use crate::identity::state_transition::AssetLockProved;
-use crate::state_transition::state_transitions::identity::identity_create_transition::accessors::IdentityCreateTransitionAccessorsV0;
-use crate::state_transition::state_transitions::identity::public_key_in_creation::IdentityPublicKeyInCreation;
-use crate::state_transition::state_transitions::identity::public_key_in_creation::IdentityPublicKeyInCreationSignable;
+use crate::state_transition::identity_create_transition::accessors::IdentityCreateTransitionAccessorsV0;
+use crate::state_transition::public_key_in_creation::IdentityPublicKeyInCreation;
+use crate::state_transition::public_key_in_creation::IdentityPublicKeyInCreationSignable;
+use crate::version::PlatformVersion;
 use crate::ProtocolError;
-use platform_version::version::PlatformVersion;
 
 #[derive(Debug, Clone, PartialEq, Encode, Decode, PlatformSignable)]
 #[cfg_attr(

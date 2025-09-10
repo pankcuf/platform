@@ -10,7 +10,7 @@ use crate::data_contract::document_type::DocumentTypeRef;
 use crate::data_contract::TokenContractPosition;
 #[cfg(feature = "state-transition-signing")]
 use crate::document::Document;
-use crate::balances::credits::Credits;
+use crate::fee::Credits;
 #[cfg(feature = "state-transition-signing")]
 use crate::group::GroupStateTransitionInfoStatus;
 #[cfg(feature = "state-transition-signing")]
@@ -20,14 +20,12 @@ use crate::identity::IdentityPublicKey;
 use crate::prelude::IdentityNonce;
 #[cfg(feature = "state-transition-signing")]
 use crate::prelude::UserFeeIncrease;
-use crate::state_transition::state_transitions::document::batch_transition::batched_transition::BatchedTransition;
-use crate::state_transition::state_transitions::document::batch_transition::methods::v0::DocumentsBatchTransitionMethodsV0;
-use crate::state_transition::state_transitions::document::batch_transition::methods::v1::DocumentsBatchTransitionMethodsV1;
-use crate::state_transition::state_transitions::document::batch_transition::BatchTransition;
+use crate::state_transition::batch_transition::batched_transition::BatchedTransition;
+use crate::state_transition::batch_transition::methods::v0::DocumentsBatchTransitionMethodsV0;
+use crate::state_transition::batch_transition::methods::v1::DocumentsBatchTransitionMethodsV1;
+use crate::state_transition::batch_transition::BatchTransition;
 #[cfg(feature = "state-transition-signing")]
-use crate::state_transition::state_transitions::document::batch_transition::{
-    BatchTransitionV0, BatchTransitionV1,
-};
+use crate::state_transition::batch_transition::{BatchTransitionV0, BatchTransitionV1};
 #[cfg(feature = "state-transition-signing")]
 use crate::state_transition::StateTransition;
 use crate::state_transition::StateTransitionSigningOptions;
@@ -42,9 +40,9 @@ use crate::tokens::{PrivateEncryptedNote, SharedEncryptedNote};
 use crate::ProtocolError;
 #[cfg(feature = "state-transition-signing")]
 use platform_value::Identifier;
+use platform_version::version::FeatureVersion;
 #[cfg(feature = "state-transition-signing")]
 use platform_version::version::PlatformVersion;
-use versioned_feature_core::FeatureVersion;
 
 pub mod v0;
 pub mod v1;

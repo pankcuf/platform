@@ -1,5 +1,5 @@
-use crate::state_transition::state_transitions::document::batch_transition::token_set_price_for_direct_purchase_transition::validate_structure::v0::TokenSetPriceForDirectPurchaseTransitionActionStructureValidationV0;
-use crate::state_transition::state_transitions::document::batch_transition::TokenSetPriceForDirectPurchaseTransition;
+use crate::state_transition::batch_transition::token_set_price_for_direct_purchase_transition::validate_structure::v0::TokenSetPriceForDirectPurchaseTransitionActionStructureValidationV0;
+use crate::state_transition::batch_transition::TokenSetPriceForDirectPurchaseTransition;
 use crate::validation::SimpleConsensusValidationResult;
 use crate::ProtocolError;
 use platform_version::version::PlatformVersion;

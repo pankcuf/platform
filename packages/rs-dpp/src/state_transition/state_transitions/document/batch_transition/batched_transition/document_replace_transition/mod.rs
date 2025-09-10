@@ -13,7 +13,7 @@ use platform_value::Identifier;
 use platform_version::version::PlatformVersion;
 #[cfg(feature = "state-transition-serde-conversion")]
 use serde::{Deserialize, Serialize};
-pub use v0::{DocumentFromReplaceTransitionV0, DocumentReplaceTransitionV0};
+pub use v0::*;
 
 #[derive(Debug, Clone, Encode, Decode, PartialEq, Display, From)]
 #[cfg_attr(
