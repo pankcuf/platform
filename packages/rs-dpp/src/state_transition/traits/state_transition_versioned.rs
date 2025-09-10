@@ -1,4 +1,4 @@
-use versioned_feature_core::FeatureVersion;
+use crate::version::FeatureVersion;
 
 pub trait FeatureVersioned {
     fn feature_version(&self) -> FeatureVersion;

@@ -5,10 +5,11 @@ use crate::data_contract::associated_token::token_configuration_item::TokenConfi
 use crate::data_contract::associated_token::token_distribution_key::TokenDistributionTypeWithResolvedRecipient;
 use crate::data_contract::associated_token::token_perpetual_distribution::distribution_recipient::TokenDistributionResolvedRecipient;
 use crate::data_contract::document_type::DocumentTypeRef;
-use crate::data_contract::DataContract;
 use crate::document::{Document, DocumentV0};
 use crate::fee::Credits;
-use crate::prelude::{DerivationEncryptionKeyIndex, IdentityNonce, RootEncryptionKeyIndex};
+use crate::prelude::{
+    DataContract, DerivationEncryptionKeyIndex, IdentityNonce, RootEncryptionKeyIndex,
+};
 use bincode::{Decode, Encode};
 use platform_serialization_derive::{PlatformDeserialize, PlatformSerialize};
 use platform_value::Identifier;

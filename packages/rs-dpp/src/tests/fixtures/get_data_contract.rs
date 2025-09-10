@@ -1,8 +1,10 @@
-use platform_value::{platform_value, Identifier};
+use platform_value::platform_value;
 
 use crate::data_contract::created_data_contract::CreatedDataContract;
-use crate::prelude::IdentityNonce;
-use crate::{data_contract::DataContractFactory, tests::utils::generate_random_identifier_struct};
+use crate::prelude::*;
+use crate::{
+    data_contract::DataContractFactory, identifier, tests::utils::generate_random_identifier_struct,
+};
 
 pub fn get_data_contract_fixture(
     owner_id: Option<Identifier>,
@@ -202,7 +204,7 @@ pub fn get_data_contract_fixture(
                 "identifierField": {
                     "type": "array",
                     "byteArray": true,
-                    "contentMediaType": platform_value::IDENTIFIER_MEDIA_TYPE,
+                    "contentMediaType": identifier::MEDIA_TYPE,
                     "minItems": 32u32,
                     "maxItems": 32u32,
                     "position": 1

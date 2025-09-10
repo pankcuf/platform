@@ -2,7 +2,7 @@
     feature = "state-transition-signing",
     feature = "state-transition-validation"
 ))]
-use crate::errors::consensus::signature::{
+use crate::consensus::signature::{
     InvalidSignaturePublicKeySecurityLevelError, PublicKeyIsDisabledError,
 };
 use anyhow::anyhow;
@@ -23,14 +23,16 @@ use crate::state_transition::StateTransitionLike;
 ))]
 use crate::state_transition::StateTransitionSigningOptions;
 
-use crate::errors::ProtocolError;
 #[cfg(any(
     feature = "state-transition-signing",
     feature = "state-transition-validation"
 ))]
-use crate::identity::identity_public_key::IdentityPublicKey;
-use crate::identity::identity_public_key::Purpose;
-use crate::identity::identity_public_key::{KeyID, SecurityLevel};
+use crate::identity::IdentityPublicKey;
+use crate::identity::Purpose;
+use crate::{
+    identity::{KeyID, SecurityLevel},
+    prelude::*,
+};
 
 pub trait StateTransitionIdentitySigned: StateTransitionLike {
     fn signature_public_key_id(&self) -> KeyID;

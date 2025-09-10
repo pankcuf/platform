@@ -1,13 +1,12 @@
 use crate::serialization::ValueConvertible;
-use crate::state_transition::state_transitions::document::batch_transition::fields::property_names::STATE_TRANSITION_PROTOCOL_VERSION;
-use crate::state_transition::state_transitions::identity::public_key_in_creation::v0::IdentityPublicKeyInCreationV0;
-use crate::state_transition::state_transitions::identity::public_key_in_creation::IdentityPublicKeyInCreation;
+use crate::state_transition::batch_transition::fields::property_names::STATE_TRANSITION_PROTOCOL_VERSION;
+use crate::state_transition::public_key_in_creation::v0::IdentityPublicKeyInCreationV0;
+use crate::state_transition::public_key_in_creation::IdentityPublicKeyInCreation;
 use crate::state_transition::StateTransitionValueConvert;
 use crate::ProtocolError;
 use platform_value::btreemap_extensions::BTreeValueRemoveFromMapHelper;
 use platform_value::Value;
-use platform_version::version::PlatformVersion;
-use versioned_feature_core::FeatureVersion;
+use platform_version::version::{FeatureVersion, PlatformVersion};
 use std::collections::BTreeMap;
 
 impl ValueConvertible<'_> for IdentityPublicKeyInCreation {}

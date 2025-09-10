@@ -1,5 +1,5 @@
 #[cfg(feature = "validation")]
-pub use json_schema_validator::JsonSchemaValidator;
+pub(crate) use json_schema_validator::JsonSchemaValidator;
 
 pub use validation_result::{
     ConsensusValidationResult, SimpleConsensusValidationResult, SimpleValidationResult,
@@ -7,9 +7,9 @@ pub use validation_result::{
 };
 
 #[cfg(feature = "validation")]
-use crate::errors::ProtocolError;
+use crate::version::PlatformVersion;
 #[cfg(feature = "validation")]
-use platform_version::version::PlatformVersion;
+use crate::ProtocolError;
 #[cfg(feature = "validation")]
 pub(crate) mod byte_array_keyword;
 #[cfg(feature = "validation")]

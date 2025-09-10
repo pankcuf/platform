@@ -1,10 +1,10 @@
 use crate::balances::credits::TokenAmount;
-use crate::errors::consensus::basic::data_contract::UnknownDocumentActionTokenEffectError;
-use crate::errors::consensus::basic::BasicError;
-use crate::errors::consensus::ConsensusError;
+use crate::consensus::basic::data_contract::UnknownDocumentActionTokenEffectError;
+use crate::consensus::basic::BasicError;
+use crate::consensus::ConsensusError;
 use crate::data_contract::TokenContractPosition;
 use crate::tokens::gas_fees_paid_by::GasFeesPaidBy;
-use crate::errors::ProtocolError;
+use crate::ProtocolError;
 use platform_value::Identifier;
 
 #[derive(Debug, PartialEq, Clone, Copy, Default)]

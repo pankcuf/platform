@@ -1,9 +1,8 @@
 mod v0;
 
-// use crate::data_contract::JsonValue;
+use crate::data_contract::JsonValue;
 use crate::validation::JsonSchemaValidator;
 use crate::ProtocolError;
-use jsonschema::JSONSchema;
 use platform_version::version::PlatformVersion;
 use std::sync::RwLock;
 
@@ -19,12 +18,9 @@ impl JsonSchemaValidator {
             validator: RwLock::new(None),
         }
     }
-    pub fn new_private(validator: RwLock<Option<JSONSchema>>) -> Self {
-        Self { validator }
-    }
 
     pub fn new_compiled(
-        json_schema: &serde_json::Value,
+        json_schema: &JsonValue,
         platform_version: &PlatformVersion,
     ) -> Result<Self, ProtocolError> {
         match platform_version.dpp.validation.json_schema_validator.new {

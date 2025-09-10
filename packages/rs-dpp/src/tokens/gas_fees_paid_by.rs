@@ -1,7 +1,7 @@
-use crate::errors::consensus::basic::data_contract::UnknownGasFeesPaidByError;
-use crate::errors::consensus::basic::BasicError;
-use crate::errors::consensus::ConsensusError;
-use crate::errors::ProtocolError;
+use crate::consensus::basic::data_contract::UnknownGasFeesPaidByError;
+use crate::consensus::basic::BasicError;
+use crate::consensus::ConsensusError;
+use crate::ProtocolError;
 use bincode_derive::{Decode, Encode};
 use derive_more::Display;
 #[cfg(any(

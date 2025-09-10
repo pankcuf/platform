@@ -8,13 +8,15 @@ pub(super) mod v0_methods;
 mod value_conversion;
 mod version;
 
-use crate::errors::ProtocolError;
 use crate::identity::KeyID;
-use crate::prelude::IdentityNonce;
+
+use crate::prelude::{Identifier, IdentityNonce};
+
+use crate::protocol_error::ProtocolError;
 use crate::voting::votes::Vote;
 use bincode::{Decode, Encode};
 use platform_serialization_derive::{PlatformDeserialize, PlatformSerialize, PlatformSignable};
-use platform_value::{BinaryData, Identifier};
+use platform_value::BinaryData;
 #[cfg(feature = "state-transition-serde-conversion")]
 use serde::{Deserialize, Serialize};
 
@@ -53,7 +55,7 @@ mod test {
 
     use crate::serialization::{PlatformDeserializable, PlatformSerializable};
 
-    use crate::state_transition::state_transitions::identity::masternode_vote_transition::v0::MasternodeVoteTransitionV0;
+    use crate::state_transition::masternode_vote_transition::v0::MasternodeVoteTransitionV0;
     use crate::voting::vote_choices::resource_vote_choice::ResourceVoteChoice;
     use crate::voting::vote_polls::contested_document_resource_vote_poll::ContestedDocumentResourceVotePoll;
     use crate::voting::vote_polls::VotePoll;
