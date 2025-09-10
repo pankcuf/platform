@@ -30,7 +30,6 @@ hex = "0.4.3"
 indexmap = { version = "2.2.6", features = ["serde"] }
 dashcore-rpc = { git = "https://github.com/pankcuf/rust-dashcore", branch = "feat/ferment" }
 dpp = { path = "../rs-dpp", default-features = false, features = ["abci"] }
-platform-version = { path = "../rs-platform-version" }
 simple-signer = { path = "../simple-signer", features = ["state-transitions"] }
 rust_decimal = "1.2.5"
 rust_decimal_macros = "1.25.0"
@@ -80,7 +79,6 @@ async-trait = "0.1.77"
 console-subscriber = { version = "0.4", optional = true }
 bls-signatures = { git = "https://github.com/dashpay/bls-signatures", rev = "b840e447227dbe6e9a302c97acdf45b95c4d3b21", optional = true }
 
-versioned-feature-core = "1.0.0"
 
 [dev-dependencies]
 bs58 = { version = "0.5.0" }
@@ -117,7 +115,6 @@ mocks = ["mockall", "drive/fixtures-and-mocks", "bls-signatures"]
 console = ["console-subscriber", "tokio/tracing"]
 testing-config = []
 grovedbg = ["drive/grovedbg"]
-apple = ["bls-signatures/apple", "bls-signatures/bip32", "bls-signatures/use_serde", "bls-signatures/legacy"]
 
 [[bin]]
 name = "drive-abci"

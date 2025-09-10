@@ -2,8 +2,7 @@ use crate::error::execution::ExecutionError;
 use crate::error::Error;
 use crate::rpc::core::CoreRPCLike;
 use dpp::dashcore::TxOut;
-use dpp::identity::state_transition::asset_lock_proof::AssetLockProof;
-use dpp::prelude::ConsensusValidationResult;
+use dpp::prelude::{AssetLockProof, ConsensusValidationResult};
 use dpp::version::PlatformVersion;
 
 mod v0;

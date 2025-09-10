@@ -14,7 +14,7 @@ use dpp::block::block_info::BlockInfo;
 use dpp::dashcore::Network;
 use dpp::identity::PartialIdentity;
 use dpp::prelude::*;
-use dpp::state_transition::state_transitions::document::batch_transition::BatchTransition;
+use dpp::state_transition::batch_transition::BatchTransition;
 use dpp::validation::SimpleConsensusValidationResult;
 use dpp::version::PlatformVersion;
 use drive::state_transition_action::StateTransitionAction;

@@ -4,14 +4,14 @@ use crate::rpc::core::CoreRPCLike;
 use dpp::block::block_info::BlockInfo;
 use std::collections::BTreeSet;
 
-use dpp::errors::consensus::state::data_contract::data_contract_already_present_error::DataContractAlreadyPresentError;
-use dpp::errors::consensus::state::data_contract::data_contract_not_found_error::DataContractNotFoundError;
-use dpp::errors::consensus::state::group::IdentityMemberOfGroupNotFoundError;
-use dpp::errors::consensus::state::identity::identity_for_token_configuration_not_found_error::{
+use dpp::consensus::state::data_contract::data_contract_already_present_error::DataContractAlreadyPresentError;
+use dpp::consensus::state::data_contract::data_contract_not_found_error::DataContractNotFoundError;
+use dpp::consensus::state::group::IdentityMemberOfGroupNotFoundError;
+use dpp::consensus::state::identity::identity_for_token_configuration_not_found_error::{
     IdentityInTokenConfigurationNotFoundError, TokenConfigurationIdentityContext,
 };
-use dpp::errors::consensus::state::state_error::StateError;
-use dpp::errors::consensus::state::token::{
+use dpp::consensus::state::state_error::StateError;
+use dpp::consensus::state::token::{
     InvalidTokenPositionStateError, PreProgrammedDistributionTimestampInPastError,
 };
 use dpp::data_contract::accessors::v0::DataContractV0Getters;
@@ -25,8 +25,8 @@ use dpp::data_contract::change_control_rules::authorized_action_takers::Authoriz
 use dpp::data_contract::document_type::accessors::DocumentTypeV1Getters;
 use dpp::data_contract::group::accessors::v0::GroupV0Getters;
 use dpp::prelude::ConsensusValidationResult;
-use dpp::state_transition::state_transitions::contract::data_contract_create_transition::accessors::DataContractCreateTransitionAccessorsV0;
-use dpp::state_transition::state_transitions::contract::data_contract_create_transition::DataContractCreateTransition;
+use dpp::state_transition::data_contract_create_transition::accessors::DataContractCreateTransitionAccessorsV0;
+use dpp::state_transition::data_contract_create_transition::DataContractCreateTransition;
 use dpp::ProtocolError;
 
 use crate::error::execution::ExecutionError;
@@ -438,14 +438,14 @@ mod tests {
     use crate::test::helpers::setup::TestPlatformBuilder;
     use assert_matches::assert_matches;
     use dpp::block::block_info::BlockInfo;
+    use dpp::consensus::basic::BasicError;
+    use dpp::consensus::ConsensusError;
     use dpp::data_contract::accessors::v0::DataContractV0Getters;
-    use dpp::data_contract::errors::contract::DataContractError;
+    use dpp::data_contract::errors::DataContractError;
     use dpp::data_contract::serialized_version::DataContractInSerializationFormat;
-    use dpp::errors::consensus::basic::BasicError;
-    use dpp::errors::consensus::ConsensusError;
     use dpp::platform_value::Value;
     use dpp::prelude::IdentityNonce;
-    use dpp::state_transition::state_transitions::contract::data_contract_create_transition::DataContractCreateTransitionV0;
+    use dpp::state_transition::data_contract_create_transition::DataContractCreateTransitionV0;
     use dpp::tests::fixtures::get_data_contract_fixture;
     use drive::state_transition_action::system::bump_identity_nonce_action::BumpIdentityNonceActionAccessorsV0;
     use platform_version::{DefaultForPlatformVersion, TryIntoPlatformVersioned};

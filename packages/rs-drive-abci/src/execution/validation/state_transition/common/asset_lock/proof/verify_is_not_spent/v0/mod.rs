@@ -2,9 +2,7 @@ use crate::error::Error;
 use crate::platform_types::platform::PlatformRef;
 use dpp::asset_lock::reduced_asset_lock_value::{AssetLockValue, AssetLockValueGettersV0};
 use dpp::asset_lock::StoredAssetLockInfo;
-use dpp::balances::credits::Credits;
-use dpp::dashcore::OutPoint;
-use dpp::errors::consensus::basic::identity::{
+use dpp::consensus::basic::identity::{
     IdentityAssetLockStateTransitionReplayError,
     IdentityAssetLockTransactionOutPointAlreadyConsumedError,
     IdentityAssetLockTransactionOutPointNotEnoughBalanceError,

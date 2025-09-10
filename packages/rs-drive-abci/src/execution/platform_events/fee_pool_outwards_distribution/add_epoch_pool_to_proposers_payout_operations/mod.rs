@@ -5,12 +5,11 @@ use crate::platform_types::platform::Platform;
 use dpp::block::pool_credits::StorageAndProcessingPoolCredits;
 use std::collections::BTreeMap;
 
-use dpp::credits::Credits;
-
+use dpp::fee::Credits;
+use dpp::identifier::Identifier;
+use dpp::version::PlatformVersion;
 use drive::grovedb::Transaction;
 use drive::util::batch::DriveOperation;
-use platform_value::Identifier;
-use platform_version::version::PlatformVersion;
 
 mod v0;
 

@@ -1733,7 +1733,6 @@ dependencies = [
  "nohash-hasher",
  "once_cell",
  "parking_lot",
- "platform-value",
  "platform-version",
  "rand 0.8.5",
  "serde",
@@ -1742,7 +1741,6 @@ dependencies = [
  "tempfile",
  "thiserror 2.0.12",
  "tracing",
- "versioned-feature-core 1.0.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -1798,7 +1796,6 @@ dependencies = [
  "tracing",
  "tracing-subscriber",
  "url",
- "versioned-feature-core 1.0.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]

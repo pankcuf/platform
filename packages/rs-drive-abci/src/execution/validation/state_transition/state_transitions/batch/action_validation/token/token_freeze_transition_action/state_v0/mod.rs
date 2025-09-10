@@ -1,6 +1,6 @@
 use dpp::block::block_info::BlockInfo;
-use dpp::errors::consensus::state::state_error::StateError;
-use dpp::errors::consensus::state::token::IdentityTokenAccountAlreadyFrozenError;
+use dpp::consensus::state::state_error::StateError;
+use dpp::consensus::state::token::IdentityTokenAccountAlreadyFrozenError;
 use dpp::data_contract::accessors::v0::DataContractV0Getters;
 use dpp::data_contract::accessors::v1::DataContractV1Getters;
 use dpp::data_contract::associated_token::token_configuration::accessors::v0::TokenConfigurationV0Getters;
@@ -16,9 +16,9 @@ use crate::platform_types::platform::PlatformStateRef;
 
 use crate::execution::types::execution_operation::ValidationOperation;
 use crate::execution::types::state_transition_execution_context::StateTransitionExecutionContextMethodsV0;
-use dpp::errors::consensus::ConsensusError;
-use dpp::errors::consensus::state::group::ModificationOfGroupActionMainParametersNotPermittedError;
-use dpp::errors::consensus::state::identity::identity_to_freeze_does_not_exist_error::IdentityToFreezeDoesNotExistError;
+use dpp::consensus::ConsensusError;
+use dpp::consensus::state::group::ModificationOfGroupActionMainParametersNotPermittedError;
+use dpp::consensus::state::identity::identity_to_freeze_does_not_exist_error::IdentityToFreezeDoesNotExistError;
 use dpp::group::action_event::GroupActionEvent;
 use dpp::group::group_action::GroupActionAccessors;
 use dpp::tokens::info::v0::IdentityTokenInfoV0Accessors;

@@ -1,8 +1,8 @@
 use dpp::block::block_info::BlockInfo;
-use dpp::errors::consensus::ConsensusError;
-use dpp::errors::consensus::state::group::ModificationOfGroupActionMainParametersNotPermittedError;
-use dpp::errors::consensus::state::state_error::StateError;
-use dpp::errors::consensus::state::token::IdentityDoesNotHaveEnoughTokenBalanceError;
+use dpp::consensus::ConsensusError;
+use dpp::consensus::state::group::ModificationOfGroupActionMainParametersNotPermittedError;
+use dpp::consensus::state::state_error::StateError;
+use dpp::consensus::state::token::IdentityDoesNotHaveEnoughTokenBalanceError;
 use dpp::data_contract::accessors::v0::DataContractV0Getters;
 use dpp::data_contract::accessors::v1::DataContractV1Getters;
 use dpp::data_contract::associated_token::token_configuration::accessors::v0::TokenConfigurationV0Getters;

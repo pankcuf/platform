@@ -1,10 +1,10 @@
 use crate::error::Error;
 use crate::execution::types::state_transition_execution_context::StateTransitionExecutionContext;
 use crate::execution::validation::state_transition::data_contract_create::advanced_structure::v1::DataContractCreatedStateTransitionAdvancedStructureValidationV1;
-use dpp::errors::consensus::basic::data_contract::InvalidDataContractVersionError;
+use dpp::consensus::basic::data_contract::InvalidDataContractVersionError;
 use dpp::data_contract::INITIAL_DATA_CONTRACT_VERSION;
-use dpp::state_transition::state_transitions::contract::data_contract_create_transition::accessors::DataContractCreateTransitionAccessorsV0;
-use dpp::state_transition::state_transitions::contract::data_contract_create_transition::DataContractCreateTransition;
+use dpp::state_transition::data_contract_create_transition::accessors::DataContractCreateTransitionAccessorsV0;
+use dpp::state_transition::data_contract_create_transition::DataContractCreateTransition;
 use dpp::validation::ConsensusValidationResult;
 use drive::state_transition_action::system::bump_identity_nonce_action::BumpIdentityNonceAction;
 use drive::state_transition_action::StateTransitionAction;
