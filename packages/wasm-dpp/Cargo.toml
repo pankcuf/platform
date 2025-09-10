@@ -45,7 +45,6 @@ dpp = { path = "../rs-dpp", default-features = false, features = [
     "document-json-conversion",
     "data-contracts",
 ] }
-platform-version = { path = "../rs-platform-version" }
 itertools = { version = "0.13" }
 log = { version = "0.4.6" }
 wasm-logger = { version = "0.2.0" }

@@ -3,7 +3,7 @@ use crate::errors::consensus::basic::{
     InvalidSignaturePublicKeyPurposeErrorWasm, JsonSchemaErrorWasm,
     UnsupportedProtocolVersionErrorWasm, UnsupportedVersionErrorWasm,
 };
-use dpp::errors::consensus::ConsensusError as DPPConsensusError;
+use dpp::consensus::ConsensusError as DPPConsensusError;
 
 use crate::errors::consensus::basic::identity::{
     DuplicatedIdentityPublicKeyErrorWasm, DuplicatedIdentityPublicKeyIdErrorWasm,
@@ -32,8 +32,8 @@ use crate::errors::consensus::state::identity::{
     DuplicatedIdentityPublicKeyIdStateErrorWasm, DuplicatedIdentityPublicKeyStateErrorWasm,
     InvalidIdentityNonceErrorWasm, MissingIdentityPublicKeyIdsErrorWasm,
 };
-use dpp::errors::consensus::basic::decode::VersionError;
-use dpp::errors::consensus::basic::BasicError::{
+use dpp::consensus::basic::decode::VersionError;
+use dpp::consensus::basic::BasicError::{
     DuplicatedIdentityPublicKeyBasicError, DuplicatedIdentityPublicKeyIdBasicError,
     IdentityAssetLockProofLockedTransactionMismatchError,
     IdentityAssetLockStateTransitionReplayError, IdentityAssetLockTransactionIsNotFoundError,
@@ -52,12 +52,12 @@ use dpp::errors::consensus::basic::BasicError::{
     NotImplementedIdentityCreditWithdrawalTransitionPoolingError, ProtocolVersionParsingError,
     UnsupportedProtocolVersionError, UnsupportedVersionError,
 };
-use dpp::errors::consensus::basic::{BasicError, UnsupportedFeatureError};
-use dpp::errors::consensus::fee::fee_error::FeeError;
-use dpp::errors::consensus::signature::SignatureError;
-use dpp::errors::consensus::state::state_error::StateError;
+use dpp::consensus::basic::{BasicError, UnsupportedFeatureError};
+use dpp::consensus::fee::fee_error::FeeError;
+use dpp::consensus::signature::SignatureError;
+use dpp::consensus::state::state_error::StateError;
 
-use dpp::errors::consensus::state::data_trigger::DataTriggerError::{
+use dpp::consensus::state::data_trigger::DataTriggerError::{
   DataTriggerConditionError, DataTriggerExecutionError, DataTriggerInvalidResultError,
 };
 use wasm_bindgen::{JsError, JsValue};

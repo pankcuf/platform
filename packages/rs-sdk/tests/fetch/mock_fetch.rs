@@ -11,11 +11,10 @@ use dpp::{
         document_type::{
             accessors::DocumentTypeV0Getters, random_document::CreateRandomDocument, DocumentType,
         },
-        DataContract,
     },
     document::Document,
-    identity::{accessors::IdentityGettersV0, v0::IdentityV0, Identity},
-    platform_value::Identifier,
+    identity::{accessors::IdentityGettersV0, IdentityV0},
+    prelude::{DataContract, Identifier, Identity},
     version::PlatformVersion,
 };
 

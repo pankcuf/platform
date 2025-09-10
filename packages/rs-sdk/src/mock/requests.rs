@@ -12,11 +12,11 @@ use dpp::{
     bincode,
     block::{extended_epoch_info::ExtendedEpochInfo, finalized_epoch_info::FinalizedEpochInfo},
     dashcore::{hashes::Hash as CoreHash, ProTxHash},
-    data_contract::DataContract,
     document::{serialization_traits::DocumentCborMethodsV0, Document},
     identifier::Identifier,
-    identity::{Identity, IdentityPublicKey},
+    identity::IdentityPublicKey,
     platform_serialization::{platform_encode_to_vec, platform_versioned_decode_from_slice},
+    prelude::{DataContract, Identity},
     serialization::{
         PlatformDeserializableWithPotentialValidationFromVersionedStructure,
         PlatformSerializableWithPlatformVersion,

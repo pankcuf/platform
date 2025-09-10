@@ -27,8 +27,9 @@ pub use dash_context_provider::ContextProvider;
 pub use dash_context_provider::MockContextProvider;
 pub use documents::document_query::DocumentQuery;
 pub use dpp::{
-    self as dpp, data_contract::DataContract, document::Document,
-    identity::identity_public_key::IdentityPublicKey, identity::Identity, prelude::Revision,
+    self as dpp,
+    document::Document,
+    prelude::{DataContract, Identifier, Identity, IdentityPublicKey, Revision},
 };
 pub use drive::query::DriveDocumentQuery;
 pub use rs_dapi_client as dapi;

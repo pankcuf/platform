@@ -2,17 +2,17 @@ use super::broadcast::BroadcastStateTransition;
 use super::waitable::Waitable;
 use crate::platform::transition::put_settings::PutSettings;
 use crate::{Error, Sdk};
-use dpp::balances::credits::Credits;
 use dpp::data_contract::document_type::accessors::DocumentTypeV0Getters;
 use dpp::data_contract::document_type::DocumentType;
 use dpp::document::Document;
+use dpp::fee::Credits;
 use dpp::identity::signer::Signer;
 use dpp::identity::IdentityPublicKey;
-use dpp::state_transition::state_transitions::document::batch_transition::methods::v0::DocumentsBatchTransitionMethodsV0;
-use dpp::state_transition::state_transitions::document::batch_transition::BatchTransition;
+use dpp::prelude::Identifier;
+use dpp::state_transition::batch_transition::methods::v0::DocumentsBatchTransitionMethodsV0;
+use dpp::state_transition::batch_transition::BatchTransition;
 use dpp::state_transition::StateTransition;
 use dpp::tokens::token_payment_info::TokenPaymentInfo;
-use platform_value::Identifier;
 
 #[async_trait::async_trait]
 /// A trait for purchasing a document on Platform

@@ -1,4 +1,4 @@
-use dpp::identifier::Identifier;
+use dpp::prelude::Identifier;
 use itertools::Itertools;
 use serde_json::Value;
 use wasm_bindgen::prelude::*;

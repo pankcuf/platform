@@ -1,6 +1,6 @@
-use dpp::errors::consensus::basic::data_contract::DuplicateIndexError;
-use dpp::errors::consensus::codes::ErrorWithCode;
-use dpp::errors::consensus::ConsensusError;
+use dpp::consensus::basic::data_contract::DuplicateIndexError;
+use dpp::consensus::codes::ErrorWithCode;
+use dpp::consensus::ConsensusError;
 
 use wasm_bindgen::prelude::*;
 

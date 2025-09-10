@@ -3,7 +3,7 @@ macro_rules! generic_consensus_error {
     ($error_type:ident, $error_instance:expr) => {{
         use {
             dpp::{
-                errors::consensus::{codes::ErrorWithCode, ConsensusError},
+                consensus::{codes::ErrorWithCode, ConsensusError},
                 serialization::PlatformSerializableWithPlatformVersion,
                 version::PlatformVersion,
             },

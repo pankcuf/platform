@@ -1,7 +1,7 @@
 use crate::buffer::Buffer;
-use dpp::errors::consensus::codes::ErrorWithCode;
-use dpp::errors::consensus::state::document::document_already_present_error::DocumentAlreadyPresentError;
-use dpp::errors::consensus::ConsensusError;
+use dpp::consensus::codes::ErrorWithCode;
+use dpp::consensus::state::document::document_already_present_error::DocumentAlreadyPresentError;
+use dpp::consensus::ConsensusError;
 
 use wasm_bindgen::prelude::*;
 

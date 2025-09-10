@@ -4,8 +4,10 @@
 //! It's mainly used for testing.
 
 use crate::fetch::generated_data::*;
-use dpp::dashcore::{hashes::Hash, ProTxHash};
-use platform_value::Identifier;
+use dpp::{
+    dashcore::{hashes::Hash, ProTxHash},
+    prelude::Identifier,
+};
 use rs_dapi_client::{Address, AddressList};
 use serde::Deserialize;
 use std::path::PathBuf;

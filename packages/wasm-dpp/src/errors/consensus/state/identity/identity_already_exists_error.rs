@@ -1,7 +1,7 @@
 use crate::buffer::Buffer;
-use dpp::errors::consensus::codes::ErrorWithCode;
-use dpp::errors::consensus::state::identity::IdentityAlreadyExistsError;
-use dpp::errors::consensus::ConsensusError;
+use dpp::consensus::codes::ErrorWithCode;
+use dpp::consensus::state::identity::IdentityAlreadyExistsError;
+use dpp::consensus::ConsensusError;
 
 use wasm_bindgen::prelude::*;
 

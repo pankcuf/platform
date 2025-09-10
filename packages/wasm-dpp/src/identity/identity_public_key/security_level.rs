@@ -1,4 +1,4 @@
-use dpp::identity::identity_public_key::SecurityLevel;
+use dpp::identity::SecurityLevel;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen(js_name = "KeySecurityLevel")]

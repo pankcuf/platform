@@ -1,6 +1,6 @@
-use dpp::errors::consensus::codes::ErrorWithCode;
-use dpp::errors::consensus::signature::WrongPublicKeyPurposeError;
-use dpp::errors::consensus::ConsensusError;
+use dpp::consensus::codes::ErrorWithCode;
+use dpp::consensus::signature::WrongPublicKeyPurposeError;
+use dpp::consensus::ConsensusError;
 
 use wasm_bindgen::prelude::*;
 

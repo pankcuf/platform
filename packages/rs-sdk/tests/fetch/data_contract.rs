@@ -1,7 +1,8 @@
 use super::config::Config;
-use dash_sdk::platform::{Fetch, FetchMany, Identifier, LimitQuery};
-use dpp::data_contract::{accessors::v0::DataContractV0Getters, DataContract};
+use dash_sdk::platform::{Fetch, FetchMany, LimitQuery};
+use dpp::data_contract::accessors::v0::DataContractV0Getters;
 use dpp::platform_value::string_encoding::Encoding;
+use dpp::prelude::{DataContract, Identifier};
 use drive_proof_verifier::types::DataContractHistory;
 
 /// Given some dummy data contract ID, when I fetch data contract, I get None because it doesn't exist.
