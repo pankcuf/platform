@@ -9,13 +9,14 @@ mod version;
 
 use bincode::{Decode, Encode};
 use platform_serialization_derive::PlatformSignable;
-use platform_value::{BinaryData, Identifier};
+use platform_value::BinaryData;
 #[cfg(feature = "state-transition-serde-conversion")]
 use serde::{Deserialize, Serialize};
 
 use crate::prelude::{IdentityNonce, UserFeeIncrease};
 use crate::{
-    identity::{core_script::CoreScript, identity_public_key::KeyID},
+    identity::{core_script::CoreScript, KeyID},
+    prelude::Identifier,
     withdrawal::Pooling,
     ProtocolError,
 };
@@ -48,7 +49,7 @@ mod test {
     use crate::identity::KeyID;
     use crate::prelude::Revision;
     use crate::serialization::{PlatformDeserializable, PlatformSerializable};
-    use crate::state_transition::state_transitions::identity::identity_credit_withdrawal_transition::v0::Pooling;
+    use crate::state_transition::identity_credit_withdrawal_transition::v0::Pooling;
     use crate::state_transition::StateTransitionType;
     use crate::ProtocolError;
     use bincode::{Decode, Encode};

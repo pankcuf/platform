@@ -1,8 +1,5 @@
-use crate::identity::{
-    identity_public_key::{Purpose, SecurityLevel},
-    KeyID,
-};
-use crate::state_transition::state_transitions::identity::masternode_vote_transition::MasternodeVoteTransition;
+use crate::identity::{KeyID, Purpose, SecurityLevel};
+use crate::state_transition::masternode_vote_transition::MasternodeVoteTransition;
 use crate::state_transition::StateTransitionIdentitySigned;
 
 impl StateTransitionIdentitySigned for MasternodeVoteTransition {

@@ -12,8 +12,8 @@ mod version;
 
 use fields::*;
 
-use crate::state_transition::state_transitions::identity::identity_topup_transition::v0::IdentityTopUpTransitionV0;
-use crate::state_transition::state_transitions::identity::identity_topup_transition::v0::IdentityTopUpTransitionV0Signable;
+use crate::state_transition::identity_topup_transition::v0::IdentityTopUpTransitionV0;
+use crate::state_transition::identity_topup_transition::v0::IdentityTopUpTransitionV0Signable;
 use crate::state_transition::StateTransitionFieldTypes;
 
 use crate::ProtocolError;

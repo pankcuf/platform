@@ -1,7 +1,10 @@
 use crate::prelude::IdentityNonce;
-use crate::state_transition::state_transitions::identity::public_key_in_creation::IdentityPublicKeyInCreation;
-use crate::{identity::identity_public_key::KeyID, prelude::Revision};
-use platform_value::Identifier;
+use crate::state_transition::public_key_in_creation::IdentityPublicKeyInCreation;
+use crate::{
+    identity::KeyID,
+    prelude::{Identifier, Revision},
+};
+
 pub trait IdentityUpdateTransitionAccessorsV0 {
     fn set_identity_id(&mut self, id: Identifier);
     fn identity_id(&self) -> Identifier;

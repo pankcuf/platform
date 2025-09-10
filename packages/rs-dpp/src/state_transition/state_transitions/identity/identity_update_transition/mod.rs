@@ -11,9 +11,9 @@ mod v0_methods;
 mod value_conversion;
 mod version;
 
-use crate::state_transition::state_transitions::identity::identity_update_transition::fields::property_names::ADD_PUBLIC_KEYS_SIGNATURE;
-use crate::state_transition::state_transitions::identity::identity_update_transition::v0::IdentityUpdateTransitionV0;
-use crate::state_transition::state_transitions::identity::identity_update_transition::v0::IdentityUpdateTransitionV0Signable;
+use crate::state_transition::identity_update_transition::fields::property_names::ADD_PUBLIC_KEYS_SIGNATURE;
+use crate::state_transition::identity_update_transition::v0::IdentityUpdateTransitionV0;
+use crate::state_transition::identity_update_transition::v0::IdentityUpdateTransitionV0Signable;
 use crate::state_transition::StateTransitionFieldTypes;
 use fields::*;
 

@@ -11,14 +11,14 @@ mod version;
 use bincode::{Decode, Encode};
 use platform_serialization_derive::PlatformSignable;
 
-use platform_value::{BinaryData, Identifier};
+use platform_value::BinaryData;
 
 #[cfg(feature = "state-transition-serde-conversion")]
 use serde::{Deserialize, Serialize};
 
 use crate::identity::state_transition::asset_lock_proof::AssetLockProof;
 
-use crate::prelude::UserFeeIncrease;
+use crate::prelude::{Identifier, UserFeeIncrease};
 
 use crate::ProtocolError;
 
