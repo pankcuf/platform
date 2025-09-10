@@ -32,6 +32,3 @@ json = ["serde_json"]
 
 std = ["serde/std"]
 apple = ["ferment-macro"]
-
-#[lib]
-#name = "platform_value"

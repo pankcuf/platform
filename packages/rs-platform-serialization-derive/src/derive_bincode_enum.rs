@@ -10,7 +10,7 @@ pub(crate) struct DeriveEnum {
 }
 
 impl DeriveEnum {
-    fn iter_fields(&self) -> EnumVariantIterator<'_> {
+    fn iter_fields(&self) -> EnumVariantIterator {
         EnumVariantIterator {
             idx: 0,
             variants: &self.variants,

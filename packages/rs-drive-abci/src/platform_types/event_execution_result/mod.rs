@@ -1,4 +1,4 @@
-use dpp::errors::consensus::ConsensusError;
+use dpp::consensus::ConsensusError;
 
 use dpp::fee::fee_result::FeeResult;
 

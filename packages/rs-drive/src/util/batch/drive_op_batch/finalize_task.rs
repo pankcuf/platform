@@ -1,7 +1,7 @@
 use crate::drive::Drive;
 use crate::error::Error;
-use platform_value::Identifier;
-use platform_version::version::PlatformVersion;
+use dpp::prelude::Identifier;
+use dpp::version::PlatformVersion;
 
 pub enum DriveOperationFinalizeTask {
     RemoveDataContractFromCache { contract_id: Identifier },

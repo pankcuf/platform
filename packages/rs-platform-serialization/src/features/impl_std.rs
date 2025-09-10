@@ -4,7 +4,7 @@ use crate::{
 };
 use bincode::{
     config::Config,
-    de::{read::Reader, BorrowDecoder, Decode, Decoder},
+    de::{read::Reader, BorrowDecoder, Decode, Decoder, DecoderImpl},
     enc::{write::Writer, Encode, Encoder, EncoderImpl},
     error::{DecodeError, EncodeError},
 };

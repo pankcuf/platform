@@ -1,11 +1,11 @@
 use dpp::data_contract::accessors::v0::DataContractV0Getters;
 use dpp::platform_value::Identifier;
 use dpp::prelude::UserFeeIncrease;
-use dpp::state_transition::state_transitions::contract::data_contract_update_transition::DataContractUpdateTransitionV0;
-use dpp::state_transition::state_transitions::document::batch_transition::document_base_transition::DocumentBaseTransition;
-use dpp::state_transition::state_transitions::document::batch_transition::document_base_transition::v0::v0_methods::DocumentBaseTransitionV0Methods;
-use dpp::state_transition::state_transitions::document::batch_transition::token_base_transition::TokenBaseTransition;
-use dpp::state_transition::state_transitions::document::batch_transition::token_base_transition::v0::v0_methods::TokenBaseTransitionV0Methods;
+use dpp::state_transition::batch_transition::document_base_transition::DocumentBaseTransition;
+use dpp::state_transition::data_contract_update_transition::DataContractUpdateTransitionV0;
+use dpp::state_transition::batch_transition::document_base_transition::v0::v0_methods::DocumentBaseTransitionV0Methods;
+use dpp::state_transition::batch_transition::token_base_transition::TokenBaseTransition;
+use dpp::state_transition::batch_transition::token_base_transition::v0::v0_methods::TokenBaseTransitionV0Methods;
 use crate::state_transition_action::contract::data_contract_update::v0::DataContractUpdateTransitionActionV0;
 use crate::state_transition_action::batch::batched_transition::document_transition::document_base_transition_action::{DocumentBaseTransitionAction, DocumentBaseTransitionActionAccessorsV0};
 use crate::state_transition_action::batch::batched_transition::token_transition::token_base_transition_action::{TokenBaseTransitionAction, TokenBaseTransitionActionAccessorsV0};

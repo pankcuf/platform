@@ -7,8 +7,8 @@ use rand::rngs::StdRng;
 use rand::Rng;
 use serde::de::Visitor;
 use serde::{Deserialize, Serialize};
-//#[cfg(feature = "json")]
-//use serde_json::Value as JsonValue;
+#[cfg(feature = "json")]
+use serde_json::Value as JsonValue;
 use std::convert::{TryFrom, TryInto};
 use std::fmt;
 
@@ -236,10 +236,10 @@ impl Identifier {
     }
 
     #[cfg(feature = "json")]
-    pub fn to_json_value_vec(&self) -> Vec<serde_json::Value> {
+    pub fn to_json_value_vec(&self) -> Vec<JsonValue> {
         self.to_buffer()
             .iter()
-            .map(|v| serde_json::Value::from(*v))
+            .map(|v| JsonValue::from(*v))
             .collect()
     }
 

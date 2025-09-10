@@ -95,7 +95,7 @@ mod tests {
     use dpp::data_contract::DataContract;
     use dpp::platform_value::{platform_value, ValueMapHelper};
     use dpp::tests::fixtures::get_data_contract_fixture;
-    use platform_version::version::PlatformVersion;
+    use dpp::version::PlatformVersion;
 
     struct TestData {
         data_contract: DataContract,

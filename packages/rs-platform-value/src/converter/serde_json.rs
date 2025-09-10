@@ -2,13 +2,13 @@ use crate::value_map::ValueMap;
 use crate::{Error, Value};
 use base64::prelude::BASE64_STANDARD;
 use base64::Engine;
-use serde_json::{Map, Number};
+use serde_json::{Map, Number, Value as JsonValue};
 use std::collections::BTreeMap;
 
 impl Value {
     pub fn convert_from_serde_json_map<I, R>(map: I) -> R
     where
-        I: IntoIterator<Item = (String, serde_json::Value)>,
+        I: IntoIterator<Item = (String, JsonValue)>,
         R: FromIterator<(String, Value)>,
     {
         map.into_iter()
@@ -16,13 +16,13 @@ impl Value {
             .collect()
     }
 
-    pub fn try_into_validating_json(self) -> Result<serde_json::Value, Error> {
+    pub fn try_into_validating_json(self) -> Result<JsonValue, Error> {
         Ok(match self {
             Value::U128(i) => {
                 if i > u64::MAX as u128 {
                     return Err(Error::IntegerSizeError);
                 }
-                serde_json::Value::Number((i as u64).into())
+                JsonValue::Number((i as u64).into())
             }
             Value::I128(i) => {
                 if i > i64::MAX as i128 {
@@ -31,67 +31,65 @@ impl Value {
                 if i < i64::MIN as i128 {
                     return Err(Error::IntegerSizeError);
                 }
-                serde_json::Value::Number((i as i64).into())
+                JsonValue::Number((i as i64).into())
             }
-            Value::U64(i) => serde_json::Value::Number(i.into()),
-            Value::I64(i) => serde_json::Value::Number(i.into()),
-            Value::U32(i) => serde_json::Value::Number(i.into()),
-            Value::I32(i) => serde_json::Value::Number(i.into()),
-            Value::U16(i) => serde_json::Value::Number(i.into()),
-            Value::I16(i) => serde_json::Value::Number(i.into()),
-            Value::U8(i) => serde_json::Value::Number(i.into()),
-            Value::I8(i) => serde_json::Value::Number(i.into()),
-            Value::Float(float) => {
-                serde_json::Value::Number(Number::from_f64(float).unwrap_or(0.into()))
-            }
-            Value::Text(string) => serde_json::Value::String(string),
-            Value::Bool(value) => serde_json::Value::Bool(value),
-            Value::Null => serde_json::Value::Null,
-            Value::Array(array) => serde_json::Value::Array(
+            Value::U64(i) => JsonValue::Number(i.into()),
+            Value::I64(i) => JsonValue::Number(i.into()),
+            Value::U32(i) => JsonValue::Number(i.into()),
+            Value::I32(i) => JsonValue::Number(i.into()),
+            Value::U16(i) => JsonValue::Number(i.into()),
+            Value::I16(i) => JsonValue::Number(i.into()),
+            Value::U8(i) => JsonValue::Number(i.into()),
+            Value::I8(i) => JsonValue::Number(i.into()),
+            Value::Float(float) => JsonValue::Number(Number::from_f64(float).unwrap_or(0.into())),
+            Value::Text(string) => JsonValue::String(string),
+            Value::Bool(value) => JsonValue::Bool(value),
+            Value::Null => JsonValue::Null,
+            Value::Array(array) => JsonValue::Array(
                 array
                     .into_iter()
                     .map(|value| value.try_into_validating_json())
-                    .collect::<Result<Vec<serde_json::Value>, Error>>()?,
+                    .collect::<Result<Vec<JsonValue>, Error>>()?,
             ),
-            Value::Map(map) => serde_json::Value::Object(
+            Value::Map(map) => JsonValue::Object(
                 map.into_iter()
                     .map(|(k, v)| {
                         let string = k.into_text()?;
                         Ok((string, v.try_into_validating_json()?))
                     })
-                    .collect::<Result<Map<String, serde_json::Value>, Error>>()?,
+                    .collect::<Result<Map<String, JsonValue>, Error>>()?,
             ),
             Value::Identifier(bytes) => {
                 // In order to be able to validate using JSON schema it needs to be in byte form
-                serde_json::Value::Array(
+                JsonValue::Array(
                     bytes
                         .into_iter()
-                        .map(|a| serde_json::Value::Number(a.into()))
+                        .map(|a| JsonValue::Number(a.into()))
                         .collect(),
                 )
             }
-            Value::Bytes(bytes) => serde_json::Value::Array(
+            Value::Bytes(bytes) => JsonValue::Array(
                 bytes
                     .into_iter()
-                    .map(|byte| serde_json::Value::Number(byte.into()))
+                    .map(|byte| JsonValue::Number(byte.into()))
                     .collect(),
             ),
-            Value::Bytes20(bytes) => serde_json::Value::Array(
+            Value::Bytes20(bytes) => JsonValue::Array(
                 bytes
                     .into_iter()
-                    .map(|byte| serde_json::Value::Number(byte.into()))
+                    .map(|byte| JsonValue::Number(byte.into()))
                     .collect(),
             ),
-            Value::Bytes32(bytes) => serde_json::Value::Array(
+            Value::Bytes32(bytes) => JsonValue::Array(
                 bytes
                     .into_iter()
-                    .map(|byte| serde_json::Value::Number(byte.into()))
+                    .map(|byte| JsonValue::Number(byte.into()))
                     .collect(),
             ),
-            Value::Bytes36(bytes) => serde_json::Value::Array(
+            Value::Bytes36(bytes) => JsonValue::Array(
                 bytes
                     .into_iter()
-                    .map(|byte| serde_json::Value::Number(byte.into()))
+                    .map(|byte| JsonValue::Number(byte.into()))
                     .collect(),
             ),
             Value::EnumU8(_) => {
@@ -107,22 +105,20 @@ impl Value {
         })
     }
 
-    pub fn try_into_validating_btree_map_json(
-        self,
-    ) -> Result<BTreeMap<String, serde_json::Value>, Error> {
+    pub fn try_into_validating_btree_map_json(self) -> Result<BTreeMap<String, JsonValue>, Error> {
         self.into_btree_string_map()?
             .into_iter()
             .map(|(key, value)| Ok((key, value.try_into_validating_json()?)))
             .collect()
     }
 
-    pub fn try_to_validating_json(&self) -> Result<serde_json::Value, Error> {
+    pub fn try_to_validating_json(&self) -> Result<JsonValue, Error> {
         Ok(match self {
             Value::U128(i) => {
                 if *i > u64::MAX as u128 {
                     return Err(Error::IntegerSizeError);
                 }
-                serde_json::Value::Number((*i as u64).into())
+                JsonValue::Number((*i as u64).into())
             }
             Value::I128(i) => {
                 if *i > i64::MAX as i128 {
@@ -131,67 +127,65 @@ impl Value {
                 if *i < i64::MIN as i128 {
                     return Err(Error::IntegerSizeError);
                 }
-                serde_json::Value::Number((*i as i64).into())
+                JsonValue::Number((*i as i64).into())
             }
-            Value::U64(i) => serde_json::Value::Number((*i).into()),
-            Value::I64(i) => serde_json::Value::Number((*i).into()),
-            Value::U32(i) => serde_json::Value::Number((*i).into()),
-            Value::I32(i) => serde_json::Value::Number((*i).into()),
-            Value::U16(i) => serde_json::Value::Number((*i).into()),
-            Value::I16(i) => serde_json::Value::Number((*i).into()),
-            Value::U8(i) => serde_json::Value::Number((*i).into()),
-            Value::I8(i) => serde_json::Value::Number((*i).into()),
-            Value::Float(float) => {
-                serde_json::Value::Number(Number::from_f64(*float).unwrap_or(0.into()))
-            }
-            Value::Text(string) => serde_json::Value::String(string.clone()),
-            Value::Bool(value) => serde_json::Value::Bool(*value),
-            Value::Null => serde_json::Value::Null,
-            Value::Array(array) => serde_json::Value::Array(
+            Value::U64(i) => JsonValue::Number((*i).into()),
+            Value::I64(i) => JsonValue::Number((*i).into()),
+            Value::U32(i) => JsonValue::Number((*i).into()),
+            Value::I32(i) => JsonValue::Number((*i).into()),
+            Value::U16(i) => JsonValue::Number((*i).into()),
+            Value::I16(i) => JsonValue::Number((*i).into()),
+            Value::U8(i) => JsonValue::Number((*i).into()),
+            Value::I8(i) => JsonValue::Number((*i).into()),
+            Value::Float(float) => JsonValue::Number(Number::from_f64(*float).unwrap_or(0.into())),
+            Value::Text(string) => JsonValue::String(string.clone()),
+            Value::Bool(value) => JsonValue::Bool(*value),
+            Value::Null => JsonValue::Null,
+            Value::Array(array) => JsonValue::Array(
                 array
                     .iter()
                     .map(|value| value.try_to_validating_json())
-                    .collect::<Result<Vec<serde_json::Value>, Error>>()?,
+                    .collect::<Result<Vec<JsonValue>, Error>>()?,
             ),
-            Value::Map(map) => serde_json::Value::Object(
+            Value::Map(map) => JsonValue::Object(
                 map.iter()
                     .map(|(k, v)| {
                         let string = k.to_text()?;
                         Ok((string, v.try_to_validating_json()?))
                     })
-                    .collect::<Result<Map<String, serde_json::Value>, Error>>()?,
+                    .collect::<Result<Map<String, JsonValue>, Error>>()?,
             ),
             Value::Identifier(bytes) => {
                 // In order to be able to validate using JSON schema it needs to be in byte form
-                serde_json::Value::Array(
+                JsonValue::Array(
                     bytes
                         .iter()
-                        .map(|a| serde_json::Value::Number((*a).into()))
+                        .map(|a| JsonValue::Number((*a).into()))
                         .collect(),
                 )
             }
-            Value::Bytes(bytes) => serde_json::Value::Array(
+            Value::Bytes(bytes) => JsonValue::Array(
                 bytes
                     .iter()
-                    .map(|byte| serde_json::Value::Number((*byte).into()))
+                    .map(|byte| JsonValue::Number((*byte).into()))
                     .collect(),
             ),
-            Value::Bytes20(bytes) => serde_json::Value::Array(
+            Value::Bytes20(bytes) => JsonValue::Array(
                 bytes
                     .iter()
-                    .map(|byte| serde_json::Value::Number((*byte).into()))
+                    .map(|byte| JsonValue::Number((*byte).into()))
                     .collect(),
             ),
-            Value::Bytes32(bytes) => serde_json::Value::Array(
+            Value::Bytes32(bytes) => JsonValue::Array(
                 bytes
                     .iter()
-                    .map(|byte| serde_json::Value::Number((*byte).into()))
+                    .map(|byte| JsonValue::Number((*byte).into()))
                     .collect(),
             ),
-            Value::Bytes36(bytes) => serde_json::Value::Array(
+            Value::Bytes36(bytes) => JsonValue::Array(
                 bytes
                     .iter()
-                    .map(|byte| serde_json::Value::Number((*byte).into()))
+                    .map(|byte| JsonValue::Number((*byte).into()))
                     .collect(),
             ),
             Value::EnumU8(_) => {
@@ -208,12 +202,12 @@ impl Value {
     }
 }
 
-impl From<serde_json::Value> for Value {
-    fn from(value: serde_json::Value) -> Self {
+impl From<JsonValue> for Value {
+    fn from(value: JsonValue) -> Self {
         match value {
-            serde_json::Value::Null => Self::Null,
-            serde_json::Value::Bool(value) => Self::Bool(value),
-            serde_json::Value::Number(number) => {
+            JsonValue::Null => Self::Null,
+            JsonValue::Bool(value) => Self::Bool(value),
+            JsonValue::Number(number) => {
                 if let Some(value) = number.as_u64() {
                     return Self::U64(value);
                 } else if let Some(value) = number.as_i64() {
@@ -223,8 +217,8 @@ impl From<serde_json::Value> for Value {
                 }
                 unreachable!("this shouldn't be reachable")
             }
-            serde_json::Value::String(string) => Self::Text(string),
-            serde_json::Value::Array(array) => {
+            JsonValue::String(string) => Self::Text(string),
+            JsonValue::Array(array) => {
                 let u8_max = u8::MAX as u64;
                 //todo: hacky solution, to fix
                 let len = array.len();
@@ -247,19 +241,19 @@ impl From<serde_json::Value> for Value {
                     Self::Array(array.into_iter().map(|v| v.into()).collect())
                 }
             }
-            serde_json::Value::Object(map) => {
+            JsonValue::Object(map) => {
                 Self::Map(map.into_iter().map(|(k, v)| (k.into(), v.into())).collect())
             }
         }
     }
 }
 
-impl From<&serde_json::Value> for Value {
-    fn from(value: &serde_json::Value) -> Self {
+impl From<&JsonValue> for Value {
+    fn from(value: &JsonValue) -> Self {
         match value {
-            serde_json::Value::Null => Self::Null,
-            serde_json::Value::Bool(value) => Self::Bool(*value),
-            serde_json::Value::Number(number) => {
+            JsonValue::Null => Self::Null,
+            JsonValue::Bool(value) => Self::Bool(*value),
+            JsonValue::Number(number) => {
                 if let Some(value) = number.as_u64() {
                     return Self::U64(value);
                 } else if let Some(value) = number.as_i64() {
@@ -269,8 +263,8 @@ impl From<&serde_json::Value> for Value {
                 }
                 unreachable!("this shouldn't be reachable")
             }
-            serde_json::Value::String(string) => Self::Text(string.clone()),
-            serde_json::Value::Array(array) => {
+            JsonValue::String(string) => Self::Text(string.clone()),
+            JsonValue::Array(array) => {
                 let u8_max = u8::MAX as u64;
                 //todo: hacky solution, to fix
                 let len = array.len();
@@ -288,7 +282,7 @@ impl From<&serde_json::Value> for Value {
                     Self::Array(array.iter().map(|v| v.into()).collect())
                 }
             }
-            serde_json::Value::Object(map) => Self::Map(
+            JsonValue::Object(map) => Self::Map(
                 map.into_iter()
                     .map(|(k, v)| (k.clone().into(), v.into()))
                     .collect(),
@@ -297,55 +291,45 @@ impl From<&serde_json::Value> for Value {
     }
 }
 
-impl TryInto<serde_json::Value> for Value {
+impl TryInto<JsonValue> for Value {
     type Error = Error;
 
-    fn try_into(self) -> Result<serde_json::Value, Self::Error> {
+    fn try_into(self) -> Result<JsonValue, Self::Error> {
         Ok(match self {
-            Value::U128(i) => serde_json::Value::Number((i as u64).into()),
-            Value::I128(i) => serde_json::Value::Number((i as i64).into()),
-            Value::U64(i) => serde_json::Value::Number(i.into()),
-            Value::I64(i) => serde_json::Value::Number(i.into()),
-            Value::U32(i) => serde_json::Value::Number(i.into()),
-            Value::I32(i) => serde_json::Value::Number(i.into()),
-            Value::U16(i) => serde_json::Value::Number(i.into()),
-            Value::I16(i) => serde_json::Value::Number(i.into()),
-            Value::U8(i) => serde_json::Value::Number(i.into()),
-            Value::I8(i) => serde_json::Value::Number(i.into()),
-            Value::Bytes(bytes) => {
-                serde_json::Value::String(BASE64_STANDARD.encode(bytes.as_slice()))
-            }
-            Value::Bytes20(bytes) => {
-                serde_json::Value::String(BASE64_STANDARD.encode(bytes.as_slice()))
-            }
-            Value::Bytes32(bytes) => {
-                serde_json::Value::String(BASE64_STANDARD.encode(bytes.as_slice()))
-            }
-            Value::Bytes36(bytes) => {
-                serde_json::Value::String(BASE64_STANDARD.encode(bytes.as_slice()))
-            }
-            Value::Float(float) => {
-                serde_json::Value::Number(Number::from_f64(float).unwrap_or(0.into()))
-            }
-            Value::Text(string) => serde_json::Value::String(string),
-            Value::Bool(value) => serde_json::Value::Bool(value),
-            Value::Null => serde_json::Value::Null,
-            Value::Array(array) => serde_json::Value::Array(
+            Value::U128(i) => JsonValue::Number((i as u64).into()),
+            Value::I128(i) => JsonValue::Number((i as i64).into()),
+            Value::U64(i) => JsonValue::Number(i.into()),
+            Value::I64(i) => JsonValue::Number(i.into()),
+            Value::U32(i) => JsonValue::Number(i.into()),
+            Value::I32(i) => JsonValue::Number(i.into()),
+            Value::U16(i) => JsonValue::Number(i.into()),
+            Value::I16(i) => JsonValue::Number(i.into()),
+            Value::U8(i) => JsonValue::Number(i.into()),
+            Value::I8(i) => JsonValue::Number(i.into()),
+            Value::Bytes(bytes) => JsonValue::String(BASE64_STANDARD.encode(bytes.as_slice())),
+            Value::Bytes20(bytes) => JsonValue::String(BASE64_STANDARD.encode(bytes.as_slice())),
+            Value::Bytes32(bytes) => JsonValue::String(BASE64_STANDARD.encode(bytes.as_slice())),
+            Value::Bytes36(bytes) => JsonValue::String(BASE64_STANDARD.encode(bytes.as_slice())),
+            Value::Float(float) => JsonValue::Number(Number::from_f64(float).unwrap_or(0.into())),
+            Value::Text(string) => JsonValue::String(string),
+            Value::Bool(value) => JsonValue::Bool(value),
+            Value::Null => JsonValue::Null,
+            Value::Array(array) => JsonValue::Array(
                 array
                     .into_iter()
                     .map(|value| value.try_into())
-                    .collect::<Result<Vec<serde_json::Value>, Error>>()?,
+                    .collect::<Result<Vec<JsonValue>, Error>>()?,
             ),
-            Value::Map(map) => serde_json::Value::Object(
+            Value::Map(map) => JsonValue::Object(
                 map.into_iter()
                     .map(|(k, v)| {
                         let string = k.into_text()?;
                         Ok((string, v.try_into()?))
                     })
-                    .collect::<Result<Map<String, serde_json::Value>, Error>>()?,
+                    .collect::<Result<Map<String, JsonValue>, Error>>()?,
             ),
             Value::Identifier(bytes) => {
-                serde_json::Value::String(bs58::encode(bytes.as_slice()).into_string())
+                JsonValue::String(bs58::encode(bytes.as_slice()).into_string())
             }
             Value::EnumU8(_) => {
                 return Err(Error::Unsupported(
@@ -362,56 +346,56 @@ impl TryInto<serde_json::Value> for Value {
 }
 
 pub trait BTreeValueJsonConverter {
-    fn into_json_value(self) -> Result<serde_json::Value, Error>;
-    fn into_validating_json_value(self) -> Result<serde_json::Value, Error>;
-    fn to_json_value(&self) -> Result<serde_json::Value, Error>;
-    fn to_validating_json_value(&self) -> Result<serde_json::Value, Error>;
-    fn from_json_value(value: serde_json::Value) -> Result<Self, Error>
+    fn into_json_value(self) -> Result<JsonValue, Error>;
+    fn into_validating_json_value(self) -> Result<JsonValue, Error>;
+    fn to_json_value(&self) -> Result<JsonValue, Error>;
+    fn to_validating_json_value(&self) -> Result<JsonValue, Error>;
+    fn from_json_value(value: JsonValue) -> Result<Self, Error>
     where
         Self: Sized;
 }
 
 impl BTreeValueJsonConverter for BTreeMap<String, Value> {
-    fn into_json_value(self) -> Result<serde_json::Value, Error> {
-        Ok(serde_json::Value::Object(
+    fn into_json_value(self) -> Result<JsonValue, Error> {
+        Ok(JsonValue::Object(
             self.into_iter()
                 .map(|(key, value)| Ok((key, value.try_into()?)))
-                .collect::<Result<Map<String, serde_json::Value>, Error>>()?,
+                .collect::<Result<Map<String, JsonValue>, Error>>()?,
         ))
     }
 
-    fn into_validating_json_value(self) -> Result<serde_json::Value, Error> {
-        Ok(serde_json::Value::Object(
+    fn into_validating_json_value(self) -> Result<JsonValue, Error> {
+        Ok(JsonValue::Object(
             self.into_iter()
                 .map(|(key, value)| Ok((key, value.try_into_validating_json()?)))
-                .collect::<Result<Map<String, serde_json::Value>, Error>>()?,
+                .collect::<Result<Map<String, JsonValue>, Error>>()?,
         ))
     }
 
-    fn to_json_value(&self) -> Result<serde_json::Value, Error> {
-        Ok(serde_json::Value::Object(
+    fn to_json_value(&self) -> Result<JsonValue, Error> {
+        Ok(JsonValue::Object(
             self.iter()
                 .map(|(key, value)| Ok((key.clone(), value.clone().try_into()?)))
-                .collect::<Result<Map<String, serde_json::Value>, Error>>()?,
+                .collect::<Result<Map<String, JsonValue>, Error>>()?,
         ))
     }
 
-    fn to_validating_json_value(&self) -> Result<serde_json::Value, Error> {
-        Ok(serde_json::Value::Object(
+    fn to_validating_json_value(&self) -> Result<JsonValue, Error> {
+        Ok(JsonValue::Object(
             self.iter()
                 .map(|(key, value)| Ok((key.to_owned(), value.try_to_validating_json()?)))
-                .collect::<Result<Map<String, serde_json::Value>, Error>>()?,
+                .collect::<Result<Map<String, JsonValue>, Error>>()?,
         ))
     }
 
-    fn from_json_value(value: serde_json::Value) -> Result<Self, Error> {
+    fn from_json_value(value: JsonValue) -> Result<Self, Error> {
         let platform_value: Value = value.into();
         platform_value.into_btree_string_map()
     }
 }
 
-impl From<BTreeMap<String, serde_json::Value>> for Value {
-    fn from(value: BTreeMap<String, serde_json::Value>) -> Self {
+impl From<BTreeMap<String, JsonValue>> for Value {
+    fn from(value: BTreeMap<String, JsonValue>) -> Self {
         let map: ValueMap = value
             .into_iter()
             .map(|(key, json_value)| {
@@ -423,8 +407,8 @@ impl From<BTreeMap<String, serde_json::Value>> for Value {
     }
 }
 
-impl From<&BTreeMap<String, serde_json::Value>> for Value {
-    fn from(value: &BTreeMap<String, serde_json::Value>) -> Self {
+impl From<&BTreeMap<String, JsonValue>> for Value {
+    fn from(value: &BTreeMap<String, JsonValue>) -> Self {
         let map: ValueMap = value
             .iter()
             .map(|(key, json_value)| {

@@ -2,7 +2,7 @@ use crate::state_transition_action::contract::data_contract_update::v0::DataCont
 use dpp::block::block_info::BlockInfo;
 use dpp::data_contract::accessors::v1::DataContractV1Setters;
 use dpp::data_contract::DataContract;
-use dpp::state_transition::state_transitions::contract::data_contract_update_transition::DataContractUpdateTransitionV0;
+use dpp::state_transition::data_contract_update_transition::DataContractUpdateTransitionV0;
 use dpp::validation::operations::ProtocolValidationOperation;
 use dpp::ProtocolError;
 use platform_version::version::PlatformVersion;

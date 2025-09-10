@@ -8,7 +8,7 @@ use crate::util::storage_flags::StorageFlags;
 use dpp::block::epoch::Epoch;
 
 use dpp::document::Document;
-use platform_value::Identifier;
+use dpp::prelude::Identifier;
 use std::borrow::Cow;
 use dpp::data_contract::accessors::v0::DataContractV0Getters;
 use dpp::tokens::token_amount_on_contract_token::DocumentActionTokenEffect;

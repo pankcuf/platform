@@ -9,15 +9,15 @@ use dpp::data_contract::associated_token::token_keeps_history_rules::accessors::
 use dpp::data_contracts::SystemDataContract;
 use dpp::group::GroupStateTransitionInfo;
 use dpp::identifier::Identifier;
-use dpp::data_contract::DataContract;
-use dpp::state_transition::state_transitions::document::batch_transition::batched_transition::token_transition::{
+use dpp::prelude::DataContract;
+use dpp::state_transition::batch_transition::batched_transition::token_transition::{
     TokenTransition, TokenTransitionV0Methods,
 };
-use dpp::state_transition::state_transitions::document::batch_transition::token_base_transition::v0::v0_methods::TokenBaseTransitionV0Methods;
-use dpp::state_transition::state_transitions::document::batch_transition::token_freeze_transition::v0::v0_methods::TokenFreezeTransitionV0Methods;
-use dpp::state_transition::state_transitions::document::batch_transition::token_mint_transition::v0::v0_methods::TokenMintTransitionV0Methods;
-use dpp::state_transition::state_transitions::document::batch_transition::token_transfer_transition::v0::v0_methods::TokenTransferTransitionV0Methods;
-use dpp::state_transition::state_transitions::document::batch_transition::token_unfreeze_transition::v0::v0_methods::TokenUnfreezeTransitionV0Methods;
+use dpp::state_transition::batch_transition::token_base_transition::v0::v0_methods::TokenBaseTransitionV0Methods;
+use dpp::state_transition::batch_transition::token_freeze_transition::v0::v0_methods::TokenFreezeTransitionV0Methods;
+use dpp::state_transition::batch_transition::token_mint_transition::v0::v0_methods::TokenMintTransitionV0Methods;
+use dpp::state_transition::batch_transition::token_transfer_transition::v0::v0_methods::TokenTransferTransitionV0Methods;
+use dpp::state_transition::batch_transition::token_unfreeze_transition::v0::v0_methods::TokenUnfreezeTransitionV0Methods;
 use dpp::system_data_contracts::load_system_data_contract;
 use grovedb::PathQuery;
 use platform_version::version::PlatformVersion;

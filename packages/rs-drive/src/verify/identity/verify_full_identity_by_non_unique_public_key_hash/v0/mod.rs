@@ -4,7 +4,7 @@ use crate::error::Error;
 
 use crate::verify::RootHash;
 
-pub use dpp::identity::Identity;
+pub use dpp::prelude::Identity;
 
 use crate::drive::identity::identity_and_non_unique_public_key_hash_double_proof::IdentityAndNonUniquePublicKeyHashDoubleProof;
 use crate::error::proof::ProofError;

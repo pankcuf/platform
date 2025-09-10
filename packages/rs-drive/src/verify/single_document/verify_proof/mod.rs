@@ -9,7 +9,7 @@ use dpp::document::Document;
 
 use crate::error::drive::DriveError;
 
-use platform_version::version::PlatformVersion;
+use dpp::version::PlatformVersion;
 
 impl SingleDocumentDriveQuery {
     /// Verifies the proof of a single document query.

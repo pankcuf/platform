@@ -5,7 +5,7 @@ use crate::query::DriveDocumentQuery;
 use dpp::document::serialization_traits::DocumentPlatformConversionMethodsV0;
 use dpp::document::Document;
 
-use platform_version::version::PlatformVersion;
+use dpp::version::PlatformVersion;
 
 impl DriveDocumentQuery<'_> {
     /// Verifies a proof for a collection of documents.

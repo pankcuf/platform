@@ -3,7 +3,7 @@ use dapi_grpc::platform::v0::StateTransitionBroadcastError as StateTransitionBro
 use dapi_grpc::tonic::Code;
 pub use dash_context_provider::ContextProviderError;
 use dpp::block::block_info::BlockInfo;
-use dpp::errors::consensus::ConsensusError;
+use dpp::consensus::ConsensusError;
 use dpp::serialization::PlatformDeserializable;
 use dpp::version::PlatformVersionError;
 use dpp::ProtocolError;
@@ -223,10 +223,10 @@ mod tests {
         use assert_matches::assert_matches;
         use base64::Engine;
         use dapi_grpc::tonic::metadata::{MetadataMap, MetadataValue};
+        use dpp::consensus::basic::identity::IdentityAssetLockProofLockedTransactionMismatchError;
+        use dpp::consensus::basic::BasicError;
         use dpp::dashcore::hashes::Hash;
         use dpp::dashcore::Txid;
-        use dpp::errors::consensus::basic::identity::IdentityAssetLockProofLockedTransactionMismatchError;
-        use dpp::errors::consensus::basic::BasicError;
         use dpp::serialization::PlatformSerializableWithPlatformVersion;
         use dpp::version::PlatformVersion;
 

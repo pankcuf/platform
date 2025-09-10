@@ -6,7 +6,7 @@ use crate::util::batch::{DriveOperation, GroveDbOpBatch};
 
 use dpp::block::block_info::BlockInfo;
 
-use platform_version::version::PlatformVersion;
+use dpp::version::PlatformVersion;
 
 use grovedb::TransactionArg;
 

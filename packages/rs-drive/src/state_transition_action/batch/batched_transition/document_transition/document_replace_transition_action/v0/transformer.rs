@@ -7,7 +7,7 @@ use dpp::fee::fee_result::FeeResult;
 use dpp::identity::TimestampMillis;
 use dpp::prelude::{BlockHeight, ConsensusValidationResult, CoreBlockHeight, UserFeeIncrease};
 use dpp::ProtocolError;
-use dpp::state_transition::state_transitions::document::batch_transition::batched_transition::document_replace_transition::DocumentReplaceTransitionV0;
+use dpp::state_transition::batch_transition::batched_transition::document_replace_transition::DocumentReplaceTransitionV0;
 use crate::drive::contract::DataContractFetchInfo;
 use crate::error::Error;
 use crate::state_transition_action::batch::batched_transition::BatchedTransitionAction;

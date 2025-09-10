@@ -5,8 +5,8 @@ use crate::error::Error;
 use dpp::fee::Credits;
 use dpp::prefunded_specialized_balance::PrefundedSpecializedBalanceIdentifier;
 use dpp::prelude::ConsensusValidationResult;
-use dpp::state_transition::state_transitions::identity::masternode_vote_transition::accessors::MasternodeVoteTransitionAccessorsV0;
-use dpp::state_transition::state_transitions::identity::masternode_vote_transition::MasternodeVoteTransition;
+use dpp::state_transition::masternode_vote_transition::accessors::MasternodeVoteTransitionAccessorsV0;
+use dpp::state_transition::masternode_vote_transition::MasternodeVoteTransition;
 
 use crate::error::execution::ExecutionError;
 use crate::execution::types::execution_operation::ValidationOperation;

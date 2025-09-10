@@ -1,6 +1,6 @@
 pub mod v1;
 
-use versioned_feature_core::FeatureVersion;
+use crate::version::FeatureVersion;
 
 #[derive(Clone, Debug, Default)]
 #[cfg_attr(feature = "apple", ferment_macro::export)]

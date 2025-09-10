@@ -3,7 +3,7 @@ use std::sync::Arc;
 use dpp::data_contract::document_type::DocumentType;
 use dpp::prelude::ConsensusValidationResult;
 use dpp::ProtocolError;
-use dpp::state_transitions::document::state_transition::batch_transition::document_base_transition::DocumentBaseTransition;
+use dpp::state_transition::batch_transition::document_base_transition::DocumentBaseTransition;
 use dpp::tokens::token_amount_on_contract_token::DocumentActionTokenCost;
 use crate::drive::contract::DataContractFetchInfo;
 use crate::error::Error;

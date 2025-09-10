@@ -7,7 +7,7 @@ use dpp::data_contract::document_type::accessors::DocumentTypeV1Getters;
 use dpp::fee::fee_result::FeeResult;
 use dpp::prelude::{ConsensusValidationResult, UserFeeIncrease};
 use dpp::ProtocolError;
-use dpp::state_transition::state_transitions::document::batch_transition::batched_transition::document_transfer_transition::DocumentTransferTransitionV0;
+use dpp::state_transition::batch_transition::batched_transition::document_transfer_transition::DocumentTransferTransitionV0;
 use crate::drive::contract::DataContractFetchInfo;
 use crate::error::Error;
 use crate::state_transition_action::batch::batched_transition::BatchedTransitionAction;

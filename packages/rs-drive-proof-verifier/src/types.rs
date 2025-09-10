@@ -16,12 +16,14 @@ pub mod token_info;
 /// Token status
 pub mod token_status;
 
-use dpp::balances::credits::Credits;
 use dpp::block::block_info::BlockInfo;
 use dpp::core_types::validator_set::ValidatorSet;
-use dpp::data_contract::{document_type::DocumentType, DataContract};
+use dpp::data_contract::document_type::DocumentType;
+use dpp::fee::Credits;
+use dpp::platform_value::Value;
 use dpp::prelude::{IdentityNonce, TimestampMillis};
 use dpp::tokens::token_pricing_schedule::TokenPricingSchedule;
+use dpp::version::PlatformVersion;
 pub use dpp::version::ProtocolVersionVoteCount;
 use dpp::voting::contender_structs::{Contender, ContenderWithSerializedDocument};
 use dpp::voting::vote_choices::resource_vote_choice::ResourceVoteChoice;
@@ -37,7 +39,7 @@ use dpp::{
     dashcore::ProTxHash,
     document::Document,
     identity::KeyID,
-    prelude::Revision,
+    prelude::{DataContract, Identifier, IdentityPublicKey, Revision},
     util::deserializer::ProtocolVersion,
     ProtocolError,
 };
@@ -45,15 +47,13 @@ use drive::grovedb::query_result_type::Path;
 use drive::grovedb::Element;
 // IndexMap is exposed to the public API
 pub use indexmap::IndexMap;
-use platform_value::{Identifier, Value};
 use std::collections::{BTreeMap, BTreeSet};
 
 use dpp::dashcore::hashes::Hash;
-use dpp::identity::IdentityPublicKey;
-use platform_version::version::PlatformVersion;
 #[cfg(feature = "mocks")]
 use {
     bincode::{Decode, Encode},
+    dpp::version as platform_version,
     platform_serialization::{PlatformVersionEncode, PlatformVersionedDecode},
     platform_serialization_derive::{PlatformDeserialize, PlatformSerialize},
 };
@@ -144,7 +144,7 @@ impl Contenders {
                 let contender = v.try_to_contender(document_type.as_ref(), platform_version)?;
                 Ok((*id, contender))
             })
-            .collect::<Result<BTreeMap<Identifier, Contender>, ProtocolError>>()
+            .collect::<Result<BTreeMap<Identifier, Contender>, dpp::ProtocolError>>()
             .map_err(Into::into)
     }
 }
@@ -277,7 +277,7 @@ impl PlatformVersionEncode for ContestedResource {
     fn platform_encode<E: bincode::enc::Encoder>(
         &self,
         encoder: &mut E,
-        _platform_version: &PlatformVersion,
+        _platform_version: &platform_version::PlatformVersion,
     ) -> Result<(), bincode::error::EncodeError> {
         self.0.encode(encoder)
     }
@@ -287,7 +287,7 @@ impl PlatformVersionEncode for ContestedResource {
 impl PlatformVersionedDecode for ContestedResource {
     fn platform_versioned_decode<D: bincode::de::Decoder>(
         decoder: &mut D,
-        _platform_version: &PlatformVersion,
+        _platform_version: &platform_version::PlatformVersion,
     ) -> Result<Self, bincode::error::DecodeError> {
         Ok(ContestedResource(Value::decode(decoder)?))
     }
@@ -302,7 +302,7 @@ impl PlatformVersionEncode for ContestedResources {
     fn platform_encode<E: bincode::enc::Encoder>(
         &self,
         encoder: &mut E,
-        platform_version: &PlatformVersion,
+        platform_version: &platform_version::PlatformVersion,
     ) -> Result<(), bincode::error::EncodeError> {
         self.0.platform_encode(encoder, platform_version)
     }
@@ -312,7 +312,7 @@ impl PlatformVersionEncode for ContestedResources {
 impl PlatformVersionedDecode for ContestedResources {
     fn platform_versioned_decode<D: bincode::de::Decoder>(
         decoder: &mut D,
-        platform_version: &PlatformVersion,
+        platform_version: &platform_version::PlatformVersion,
     ) -> Result<Self, bincode::error::DecodeError> {
         let inner = <Vec<ContestedResource>>::platform_versioned_decode(decoder, platform_version)?;
         Ok(Self(inner))
@@ -552,7 +552,7 @@ impl PlatformVersionEncode for MasternodeProtocolVote {
     fn platform_encode<E: bincode::enc::Encoder>(
         &self,
         encoder: &mut E,
-        platform_version: &PlatformVersion,
+        platform_version: &platform_version::PlatformVersion,
     ) -> Result<(), bincode::error::EncodeError> {
         let protx_bytes: [u8; 32] = self.pro_tx_hash.to_raw_hash().to_byte_array();
         protx_bytes.platform_encode(encoder, platform_version)?;

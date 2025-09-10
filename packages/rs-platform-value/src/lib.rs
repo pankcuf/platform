@@ -122,7 +122,7 @@ pub enum Value {
     /// An array
     Array(Vec<Value>),
 
-    ///// A map
+    /// A map
     Map(ValueMap),
 }
 
@@ -1535,8 +1535,8 @@ implfrom! {
     Array(&[Value]),
     Array(Vec<Value>),
 
-    // Map(&[(Value, Value)]),
-    // Map(Vec<(Value, Value)>),
+    Map(&[(Value, Value)]),
+    Map(Vec<(Value, Value)>),
 }
 
 impl<const N: usize> From<[(Value, Value); N]> for Value {

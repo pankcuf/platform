@@ -1,5 +1,5 @@
 use dpp::identifier::Identifier;
-use dpp::data_contract::DataContract;
+use dpp::prelude::DataContract;
 use grovedb::PathQuery;
 use platform_version::version::PlatformVersion;
 

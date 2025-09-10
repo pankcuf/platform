@@ -6,7 +6,7 @@ use crate::verify::RootHash;
 use crate::error::Error;
 use crate::query::DriveDocumentQuery;
 
-use platform_version::version::PlatformVersion;
+use dpp::version::PlatformVersion;
 
 impl DriveDocumentQuery<'_> {
     /// Verifies the given proof and returns the root hash of the GroveDB tree and a vector

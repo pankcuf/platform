@@ -8,7 +8,7 @@ use crate::error::Error;
 
 use crate::verify::RootHash;
 
-use platform_version::version::PlatformVersion;
+use dpp::version::PlatformVersion;
 
 impl Drive {
     /// Verifies the identity ID of a user by their public key hash.
