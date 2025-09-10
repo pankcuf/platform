@@ -13,7 +13,7 @@ pub enum OrderBy {
 
 use crate::data_contract::errors::DataContractError;
 
-use crate::errors::ProtocolError;
+use crate::ProtocolError;
 use anyhow::anyhow;
 
 use crate::data_contract::document_type::index::ContestedIndexResolution::MasternodeVote;

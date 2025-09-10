@@ -7,12 +7,12 @@ use crate::data_contract::config::v1::{
     DataContractConfigGettersV1, DataContractConfigSettersV1, DataContractConfigV1,
 };
 use crate::data_contract::storage_requirements::keys_for_document_type::StorageKeyRequirements;
-use crate::errors::ProtocolError;
+use crate::version::PlatformVersion;
+use crate::ProtocolError;
 use bincode::{Decode, Encode};
 use derive_more::From;
 pub use fields::*;
 use platform_value::Value;
-use platform_version::version::PlatformVersion;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 use v0::{DataContractConfigGettersV0, DataContractConfigSettersV0, DataContractConfigV0};
