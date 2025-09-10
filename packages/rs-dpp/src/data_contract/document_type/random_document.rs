@@ -13,7 +13,7 @@ use crate::identity::accessors::IdentityGettersV0;
 use crate::identity::Identity;
 use crate::prelude::{BlockHeight, CoreBlockHeight, TimestampMillis};
 use crate::version::PlatformVersion;
-use crate::errors::ProtocolError;
+use crate::ProtocolError;
 use platform_value::{Bytes32, Identifier};
 use rand::prelude::StdRng;
 use rand::SeedableRng;

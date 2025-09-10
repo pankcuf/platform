@@ -1,8 +1,8 @@
-use crate::errors::consensus::basic::data_contract::{
+use crate::consensus::basic::data_contract::{
     DecimalsOverLimitError, InvalidTokenLanguageCodeError, InvalidTokenNameCharacterError,
     InvalidTokenNameLengthError,
 };
-use crate::errors::consensus::basic::token::MissingDefaultLocalizationError;
+use crate::consensus::basic::token::MissingDefaultLocalizationError;
 use crate::data_contract::associated_token::token_configuration_convention::accessors::v0::TokenConfigurationConventionV0Getters;
 use crate::data_contract::associated_token::token_configuration_convention::TokenConfigurationConvention;
 use crate::data_contract::associated_token::token_configuration_localization::accessors::v0::TokenConfigurationLocalizationV0Getters;

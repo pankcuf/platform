@@ -4,10 +4,10 @@ mod v1;
 use crate::data_contract::config::DataContractConfig;
 use crate::data_contract::document_type::DocumentType;
 use crate::data_contract::{DocumentName, TokenConfiguration, TokenContractPosition};
-use crate::errors::ProtocolError;
 use crate::validation::operations::ProtocolValidationOperation;
+use crate::version::PlatformVersion;
+use crate::ProtocolError;
 use platform_value::{Identifier, Value};
-use platform_version::version::PlatformVersion;
 use std::collections::BTreeMap;
 
 impl DocumentType {

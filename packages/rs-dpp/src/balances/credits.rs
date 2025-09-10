@@ -8,7 +8,7 @@
 //! and unlocking dash on the payment chain.
 //!
 
-use crate::errors::ProtocolError;
+use crate::ProtocolError;
 use integer_encoding::VarInt;
 use std::convert::TryFrom;
 

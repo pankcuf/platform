@@ -1,11 +1,11 @@
-use crate::errors::consensus::basic::data_contract::DocumentTypesAreMissingError;
+use crate::consensus::basic::data_contract::DocumentTypesAreMissingError;
 use crate::data_contract::config::DataContractConfig;
 use crate::data_contract::document_type::class_methods::consensus_or_protocol_data_contract_error;
 use crate::data_contract::document_type::DocumentType;
 use crate::data_contract::{DocumentName, TokenConfiguration, TokenContractPosition};
 use crate::validation::operations::ProtocolValidationOperation;
-use platform_version::version::PlatformVersion;
-use crate::errors::ProtocolError;
+use crate::version::PlatformVersion;
+use crate::ProtocolError;
 use platform_value::{Identifier, Value};
 use std::collections::BTreeMap;
 
@@ -67,10 +67,10 @@ impl DocumentType {
 mod tests {
     use super::*;
 
+    use crate::consensus::basic::data_contract::DocumentTypesAreMissingError;
+    use crate::consensus::basic::BasicError;
+    use crate::consensus::ConsensusError;
     use crate::data_contract::errors::DataContractError;
-    use crate::errors::consensus::basic::data_contract::DocumentTypesAreMissingError;
-    use crate::errors::consensus::basic::BasicError;
-    use crate::errors::consensus::ConsensusError;
     use assert_matches::assert_matches;
     use platform_value::Identifier;
     use std::ops::Deref;

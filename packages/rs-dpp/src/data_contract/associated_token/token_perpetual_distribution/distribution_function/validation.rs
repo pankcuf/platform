@@ -1,10 +1,10 @@
-use crate::errors::consensus::basic::data_contract::{
+use crate::consensus::basic::data_contract::{
     InvalidTokenDistributionFunctionDivideByZeroError,
     InvalidTokenDistributionFunctionIncoherenceError,
     InvalidTokenDistributionFunctionInvalidParameterError,
     InvalidTokenDistributionFunctionInvalidParameterTupleError,
 };
-use crate::errors::consensus::basic::UnsupportedFeatureError;
+use crate::consensus::basic::UnsupportedFeatureError;
 use crate::data_contract::associated_token::token_perpetual_distribution::distribution_function::{
     DistributionFunction, MAX_DISTRIBUTION_PARAM, MAX_EXP_A_PARAM, MAX_EXP_M_PARAM,
     MAX_EXP_N_PARAM, MAX_LINEAR_SLOPE_A_PARAM, MAX_LOG_A_PARAM, MAX_POL_M_PARAM, MAX_POL_N_PARAM,

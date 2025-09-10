@@ -51,10 +51,9 @@ use crate::data_contract::serialized_version::{
 };
 use crate::util::hash::hash_double_to_vec;
 
-use crate::errors::ProtocolError;
-use crate::errors::ProtocolError::{PlatformDeserializationError, PlatformSerializationError};
-use platform_version::version::PlatformVersion;
-use versioned_feature_core::FeatureVersion;
+use crate::version::{FeatureVersion, PlatformVersion};
+use crate::ProtocolError;
+use crate::ProtocolError::{PlatformDeserializationError, PlatformSerializationError};
 
 pub use crate::data_contract::associated_token::token_configuration::TokenConfiguration;
 use crate::data_contract::group::Group;
@@ -62,6 +61,7 @@ use crate::data_contract::v0::DataContractV0;
 use crate::data_contract::v1::DataContractV1;
 use platform_version::TryIntoPlatformVersioned;
 use platform_versioning::PlatformVersioned;
+pub use serde_json::Value as JsonValue;
 
 #[cfg_attr(feature = "apple", ferment_macro::export)]
 pub type JsonSchema = serde_json::Value;
@@ -336,8 +336,8 @@ mod tests {
     use crate::tests::fixtures::{
         get_dashpay_contract_fixture, get_dashpay_contract_with_generalized_encryption_key_fixture,
     };
+    use crate::version::PlatformVersion;
     use data_contracts::SystemDataContract::Dashpay;
-    use platform_version::version::PlatformVersion;
 
     #[test]
     fn test_contract_serialization() {

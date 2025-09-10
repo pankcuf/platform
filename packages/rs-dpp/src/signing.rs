@@ -1,14 +1,14 @@
-use crate::identity::identity_public_key::KeyType;
+use crate::identity::KeyType;
 use crate::serialization::PlatformMessageSignable;
 #[cfg(feature = "message-signature-verification")]
 use crate::{
-    errors::consensus::signature::{
+    consensus::signature::{
         BasicBLSError, BasicECDSAError, SignatureError, SignatureShouldNotBePresentError,
     },
     validation::SimpleConsensusValidationResult,
 };
 #[cfg(feature = "message-signing")]
-use crate::{errors::ProtocolError, BlsModule};
+use crate::{BlsModule, ProtocolError};
 use dashcore::signer;
 #[cfg(feature = "bls-signatures")]
 use {

@@ -66,6 +66,10 @@ pub use async_trait;
 pub use bls::*;
 
 pub mod prelude {
+    pub use crate::data_contract::DataContract;
+    #[cfg(feature = "extended-document")]
+    pub use crate::document::ExtendedDocument;
+    pub use crate::errors::ProtocolError;
     pub use crate::identifier::Identifier;
     pub use crate::identity::state_transition::asset_lock_proof::AssetLockProof;
     pub use crate::identity::Identity;

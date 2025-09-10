@@ -1504,7 +1504,6 @@ dependencies = [
  "serde_json",
  "thiserror 2.0.12",
  "token-history-contract",
- "versioned-feature-core 1.0.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "wallet-utils-contract",
  "withdrawals-contract",
 ]

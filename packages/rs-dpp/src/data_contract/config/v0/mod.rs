@@ -6,7 +6,7 @@ use crate::data_contract::config::{
     DEFAULT_CONTRACT_KEEPS_HISTORY, DEFAULT_CONTRACT_MUTABILITY,
 };
 use crate::data_contract::storage_requirements::keys_for_document_type::StorageKeyRequirements;
-use crate::errors::ProtocolError;
+use crate::ProtocolError;
 use bincode::{Decode, Encode};
 use platform_value::btreemap_extensions::BTreeValueMapHelper;
 use platform_value::Value;

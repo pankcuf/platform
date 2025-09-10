@@ -1,12 +1,12 @@
-use crate::data_contract::{DataContract, DataContractFactory};
-use crate::errors::ProtocolError;
+use crate::data_contract::DataContractFactory;
+use crate::prelude::*;
+use crate::ProtocolError;
 use std::collections::{BTreeMap, BTreeSet};
 
 use crate::data_contract::accessors::v0::DataContractV0Setters;
 use crate::data_contract::config::v1::DataContractConfigSettersV1;
 use crate::data_contract::config::DataContractConfig;
 pub use data_contracts::*;
-use platform_value::Identifier;
 use platform_version::version::PlatformVersion;
 
 pub trait ConfigurationForSystemContract {

@@ -1,11 +1,11 @@
 #[cfg(feature = "validation")]
-use crate::errors::consensus::basic::data_contract::{
+use crate::consensus::basic::data_contract::{
     DuplicateIndexNameError, InvalidIndexPropertyTypeError, InvalidIndexedPropertyConstraintError,
     SystemPropertyIndexAlreadyPresentError, UndefinedIndexPropertyError,
     UniqueIndicesLimitReachedError,
 };
 #[cfg(feature = "validation")]
-use crate::errors::consensus::ConsensusError;
+use crate::consensus::ConsensusError;
 use crate::data_contract::document_type::index::Index;
 use crate::data_contract::document_type::index_level::IndexLevel;
 use crate::data_contract::document_type::property::DocumentProperty;
@@ -23,9 +23,9 @@ use std::convert::TryInto;
 
 use crate::balances::credits::TokenAmount;
 #[cfg(feature = "validation")]
-use crate::errors::consensus::basic::data_contract::ContestedUniqueIndexOnMutableDocumentTypeError;
+use crate::consensus::basic::data_contract::ContestedUniqueIndexOnMutableDocumentTypeError;
 #[cfg(feature = "validation")]
-use crate::errors::consensus::basic::data_contract::ContestedUniqueIndexWithUniqueIndexError;
+use crate::consensus::basic::data_contract::ContestedUniqueIndexWithUniqueIndexError;
 #[cfg(any(test, feature = "validation"))]
 use crate::consensus::basic::data_contract::InvalidDocumentTypeNameError;
 #[cfg(feature = "validation")]
@@ -69,9 +69,9 @@ use crate::tokens::token_amount_on_contract_token::{
 #[cfg(feature = "validation")]
 use crate::validation::meta_validators::DOCUMENT_META_SCHEMA_V0;
 use crate::validation::operations::ProtocolValidationOperation;
+use crate::version::PlatformVersion;
 use crate::ProtocolError;
 use platform_value::{Identifier, Value};
-use platform_version::version::PlatformVersion;
 
 impl DocumentTypeV1 {
     // TODO: Split into multiple functions

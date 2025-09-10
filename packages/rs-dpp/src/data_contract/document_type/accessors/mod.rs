@@ -14,7 +14,7 @@ use crate::data_contract::document_type::validator::StatelessJsonSchemaLazyValid
 use crate::data_contract::storage_requirements::keys_for_document_type::StorageKeyRequirements;
 use crate::data_contract::TokenContractPosition;
 use crate::document::transfer::Transferable;
-use crate::identity::identity_public_key::SecurityLevel;
+use crate::identity::SecurityLevel;
 use crate::nft::TradeMode;
 use crate::tokens::token_amount_on_contract_token::DocumentActionTokenCost;
 use indexmap::IndexMap;

@@ -1,12 +1,11 @@
 pub mod accessors;
-pub mod property;
-// pub use property::*;
-pub use property::{array::ArrayItemType, DocumentProperty, DocumentPropertyType};
+mod property;
+pub use property::*;
 pub mod class_methods;
-pub mod index;
+mod index;
 pub mod methods;
-pub use index::{Index, IndexProperty, OrderBy};
-pub mod index_level;
+pub use index::*;
+mod index_level;
 pub use index_level::IndexLevel;
 pub use index_level::IndexLevelTypeInfo;
 pub use index_level::IndexType;
@@ -16,11 +15,11 @@ pub mod random_document;
 pub mod restricted_creation;
 pub mod schema;
 
-pub mod token_costs;
+mod token_costs;
 pub mod v0;
 pub mod v1;
 #[cfg(feature = "validation")]
-pub mod validator;
+pub(crate) mod validator;
 
 use crate::data_contract::document_type::methods::{
     DocumentTypeBasicMethods, DocumentTypeV0Methods,
@@ -28,9 +27,9 @@ use crate::data_contract::document_type::methods::{
 use crate::data_contract::document_type::v0::DocumentTypeV0;
 use crate::data_contract::document_type::v1::DocumentTypeV1;
 use crate::document::Document;
-use crate::balances::credits::Credits;
-use platform_version::version::PlatformVersion;
-use crate::errors::ProtocolError;
+use crate::fee::Credits;
+use crate::version::PlatformVersion;
+use crate::ProtocolError;
 use derive_more::From;
 
 pub const DEFAULT_HASH_SIZE: usize = 32;

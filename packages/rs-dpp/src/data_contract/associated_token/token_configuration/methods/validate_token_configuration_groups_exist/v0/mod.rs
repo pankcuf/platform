@@ -1,4 +1,4 @@
-use crate::errors::consensus::basic::data_contract::{
+use crate::consensus::basic::data_contract::{
     GroupPositionDoesNotExistError, MainGroupIsNotDefinedError,
 };
 use crate::data_contract::associated_token::token_configuration::accessors::v0::TokenConfigurationV0Getters;

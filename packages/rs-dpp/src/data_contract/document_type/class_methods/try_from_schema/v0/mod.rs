@@ -1,11 +1,11 @@
 #[cfg(feature = "validation")]
-use crate::errors::consensus::basic::data_contract::{
+use crate::consensus::basic::data_contract::{
     DuplicateIndexNameError, InvalidIndexPropertyTypeError, InvalidIndexedPropertyConstraintError,
     SystemPropertyIndexAlreadyPresentError, UndefinedIndexPropertyError,
     UniqueIndicesLimitReachedError,
 };
 #[cfg(feature = "validation")]
-use crate::errors::consensus::ConsensusError;
+use crate::consensus::ConsensusError;
 use crate::data_contract::document_type::index::Index;
 use crate::data_contract::document_type::index_level::IndexLevel;
 use crate::data_contract::document_type::property::DocumentProperty;
@@ -23,15 +23,15 @@ use std::collections::HashSet;
 use std::convert::TryInto;
 
 #[cfg(feature = "validation")]
-use crate::errors::consensus::basic::data_contract::ContestedUniqueIndexOnMutableDocumentTypeError;
+use crate::consensus::basic::data_contract::ContestedUniqueIndexOnMutableDocumentTypeError;
 #[cfg(feature = "validation")]
-use crate::errors::consensus::basic::data_contract::ContestedUniqueIndexWithUniqueIndexError;
+use crate::consensus::basic::data_contract::ContestedUniqueIndexWithUniqueIndexError;
 #[cfg(any(test, feature = "validation"))]
-use crate::errors::consensus::basic::data_contract::InvalidDocumentTypeNameError;
+use crate::consensus::basic::data_contract::InvalidDocumentTypeNameError;
 #[cfg(feature = "validation")]
-use crate::errors::consensus::basic::document::MissingPositionsInDocumentTypePropertiesError;
+use crate::consensus::basic::document::MissingPositionsInDocumentTypePropertiesError;
 #[cfg(feature = "validation")]
-use crate::errors::consensus::basic::BasicError;
+use crate::consensus::basic::BasicError;
 use crate::data_contract::config::v0::DataContractConfigGettersV0;
 use crate::data_contract::config::DataContractConfig;
 #[cfg(feature = "validation")]
@@ -47,14 +47,14 @@ use crate::data_contract::document_type::property_names::{
     TRADE_MODE, TRANSFERABLE,
 };
 use crate::data_contract::document_type::{property_names, DocumentType};
-use crate::data_contract::errors::contract::DataContractError;
+use crate::data_contract::errors::DataContractError;
 use crate::data_contract::storage_requirements::keys_for_document_type::StorageKeyRequirements;
-use crate::identity::identity_public_key::SecurityLevel;
+use crate::identity::SecurityLevel;
 #[cfg(feature = "validation")]
 use crate::validation::meta_validators::DOCUMENT_META_SCHEMA_V0;
 use crate::validation::operations::ProtocolValidationOperation;
-use platform_version::version::PlatformVersion;
-use crate::errors::ProtocolError;
+use crate::version::PlatformVersion;
+use crate::ProtocolError;
 use platform_value::{Identifier, Value};
 
 impl DocumentTypeV0 {
