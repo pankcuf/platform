@@ -1,7 +1,7 @@
 use platform_value::Identifier;
 use thiserror::Error;
 
-use crate::errors::ProtocolError;
+use crate::ProtocolError;
 
 // @append_only
 #[derive(Error, Debug, Clone, PartialEq, Eq)]

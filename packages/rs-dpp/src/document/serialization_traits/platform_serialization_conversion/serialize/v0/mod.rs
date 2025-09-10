@@ -1,5 +1,5 @@
 use crate::data_contract::document_type::DocumentTypeRef;
-use crate::errors::ProtocolError;
+use crate::ProtocolError;
 #[cfg(feature = "extended-document")]
 use platform_version::version::PlatformVersion;
 

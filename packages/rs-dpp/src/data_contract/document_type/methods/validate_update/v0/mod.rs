@@ -1,9 +1,9 @@
+use crate::consensus::basic::data_contract::IncompatibleDocumentTypeSchemaError;
+use crate::consensus::state::data_contract::document_type_update_error::DocumentTypeUpdateError;
 use crate::data_contract::document_type::accessors::DocumentTypeV0Getters;
 use crate::data_contract::document_type::schema::validate_schema_compatibility;
 use crate::data_contract::document_type::DocumentTypeRef;
-use crate::data_contract::errors::contract::DataContractError;
-use crate::errors::consensus::basic::data_contract::IncompatibleDocumentTypeSchemaError;
-use crate::errors::consensus::state::data_contract::document_type_update_error::DocumentTypeUpdateError;
+use crate::data_contract::errors::DataContractError;
 use crate::validation::SimpleConsensusValidationResult;
 use crate::ProtocolError;
 use platform_version::version::PlatformVersion;
@@ -245,8 +245,8 @@ impl DocumentTypeRef<'_> {
 mod tests {
     use super::*;
 
-    use crate::errors::consensus::state::state_error::StateError;
-    use crate::errors::consensus::ConsensusError;
+    use crate::consensus::state::state_error::StateError;
+    use crate::consensus::ConsensusError;
     use crate::data_contract::config::DataContractConfig;
     use crate::data_contract::document_type::DocumentType;
     use assert_matches::assert_matches;
@@ -917,7 +917,7 @@ mod tests {
 
     mod validate_schema {
         use super::*;
-        use crate::errors::consensus::basic::BasicError;
+        use crate::consensus::basic::BasicError;
         use std::collections::BTreeMap;
 
         #[test]

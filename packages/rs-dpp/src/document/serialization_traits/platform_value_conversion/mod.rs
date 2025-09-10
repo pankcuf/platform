@@ -3,9 +3,9 @@ mod v0;
 pub use v0::*;
 
 use crate::document::{Document, DocumentV0};
-use crate::errors::ProtocolError;
+use crate::version::PlatformVersion;
+use crate::ProtocolError;
 use platform_value::Value;
-use platform_version::version::PlatformVersion;
 use std::collections::BTreeMap;
 
 impl DocumentPlatformValueMethodsV0<'_> for Document {

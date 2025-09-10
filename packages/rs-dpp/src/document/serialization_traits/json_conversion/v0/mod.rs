@@ -1,22 +1,19 @@
 use crate::document::serialization_traits::DocumentPlatformValueMethodsV0;
-use crate::errors::ProtocolError;
+use crate::ProtocolError;
 use platform_value::Identifier;
 use platform_version::version::PlatformVersion;
 use serde::Deserialize;
-// use serde_json::Value as JsonValue;
+use serde_json::Value as JsonValue;
 use std::convert::TryInto;
 
 pub trait DocumentJsonMethodsV0<'a>: DocumentPlatformValueMethodsV0<'a> {
     fn to_json_with_identifiers_using_bytes(
         &self,
         platform_version: &PlatformVersion,
-    ) -> Result<serde_json::Value, ProtocolError>;
-    fn to_json(
-        &self,
-        platform_version: &PlatformVersion,
-    ) -> Result<serde_json::Value, ProtocolError>;
+    ) -> Result<JsonValue, ProtocolError>;
+    fn to_json(&self, platform_version: &PlatformVersion) -> Result<JsonValue, ProtocolError>;
     fn from_json_value<S>(
-        document_value: serde_json::Value,
+        document_value: JsonValue,
         platform_version: &PlatformVersion,
     ) -> Result<Self, ProtocolError>
     where

@@ -1,17 +1,17 @@
+use crate::consensus::basic::document::InvalidDocumentTypeError;
 use crate::data_contract::accessors::v0::DataContractV0Getters;
 use crate::data_contract::document_type::accessors::DocumentTypeV0Getters;
 use crate::data_contract::document_type::DocumentTypeRef;
-use crate::data_contract::errors::contract::DataContractError;
+use crate::data_contract::errors::DataContractError;
 use crate::data_contract::DataContract;
 use crate::document::errors::DocumentError;
 use crate::document::{Document, DocumentV0Getters, DocumentV0Setters, INITIAL_REVISION};
-use crate::errors::consensus::basic::document::InvalidDocumentTypeError;
 use chrono::Utc;
 use std::collections::BTreeMap;
 
-use crate::errors::ProtocolError;
 use crate::util::entropy_generator::{DefaultEntropyGenerator, EntropyGenerator};
-use platform_version::version::PlatformVersion;
+use crate::version::PlatformVersion;
+use crate::ProtocolError;
 
 use platform_value::{Bytes32, Identifier, Value};
 
@@ -24,7 +24,7 @@ use crate::document::{
 };
 use crate::prelude::{BlockHeight, CoreBlockHeight, TimestampMillis};
 #[cfg(feature = "state-transitions")]
-use crate::state_transition::state_transitions::document::batch_transition::{
+use crate::state_transition::batch_transition::{
     batched_transition::{
         document_transition_action_type::DocumentTransitionActionType, DocumentCreateTransition,
         DocumentDeleteTransition, DocumentReplaceTransition,
@@ -581,7 +581,7 @@ mod test {
     use crate::data_contract::accessors::v0::DataContractV0Getters;
     use crate::document::document_factory::DocumentFactoryV0;
     use crate::document::{Document, DocumentV0};
-    use platform_value::Identifier;
+    use crate::identifier::Identifier;
     use crate::system_data_contracts::load_system_data_contract;
 
     #[test]

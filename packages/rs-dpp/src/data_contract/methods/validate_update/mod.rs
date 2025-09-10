@@ -1,5 +1,5 @@
 use crate::block::block_info::BlockInfo;
-use crate::data_contract::DataContract;
+use crate::prelude::DataContract;
 use platform_version::version::PlatformVersion;
 
 mod v0;

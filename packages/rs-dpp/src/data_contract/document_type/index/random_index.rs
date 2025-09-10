@@ -1,5 +1,5 @@
 use crate::data_contract::document_type::index::{Index, IndexProperty};
-use crate::errors::ProtocolError;
+use crate::ProtocolError;
 use rand::prelude::StdRng;
 use rand::seq::SliceRandom;
 use rand::Rng;

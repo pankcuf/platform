@@ -8,13 +8,13 @@ use crate::data_contract::document_type::index::{Index, IndexProperty};
 use crate::data_contract::document_type::index_level::IndexLevel;
 use crate::document::Document;
 use crate::document::INITIAL_REVISION;
-use crate::errors::ProtocolError;
 use crate::prelude::{BlockHeight, CoreBlockHeight, Revision};
-use platform_version::version::PlatformVersion;
+use crate::version::PlatformVersion;
+use crate::ProtocolError;
 
 use crate::data_contract::document_type::accessors::DocumentTypeV0Getters;
 use crate::data_contract::document_type::methods::versioned_methods::DocumentTypeV0MethodsVersioned;
-use crate::balances::credits::Credits;
+use crate::fee::Credits;
 use crate::voting::vote_polls::VotePoll;
 use platform_value::{Identifier, Value};
 

@@ -13,7 +13,7 @@ use crate::data_contract::document_type::restricted_creation::CreationRestrictio
 #[cfg(feature = "validation")]
 use crate::data_contract::document_type::validator::StatelessJsonSchemaLazyValidator;
 use crate::document::transfer::Transferable;
-use crate::identity::identity_public_key::SecurityLevel;
+use crate::identity::SecurityLevel;
 use crate::nft::TradeMode;
 use platform_value::{Identifier, Value};
 

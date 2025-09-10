@@ -1,20 +1,23 @@
-use crate::data_contract::errors::{
-    contract::DataContractError, DataContractNotPresentError, IdentityNotPresentError,
-    InvalidDocumentTypeError,
-};
-use crate::document::errors::DocumentError;
-use crate::errors::consensus::basic::state_transition::InvalidStateTransitionTypeError;
-use crate::errors::consensus::signature::{
+use thiserror::Error;
+
+use crate::consensus::basic::state_transition::InvalidStateTransitionTypeError;
+use crate::consensus::signature::{
     InvalidSignaturePublicKeySecurityLevelError, PublicKeyIsDisabledError,
 };
+use crate::consensus::ConsensusError;
+use crate::data_contract::errors::*;
+use crate::document::errors::*;
+
 #[cfg(any(
     feature = "state-transition-validation",
     feature = "state-transition-signing"
 ))]
 use crate::state_transition::errors::InvalidIdentityPublicKeyTypeError;
-use thiserror::Error as ThisError;
 
-#[cfg(all(feature = "state-transitions", feature = "validation"))]
+#[cfg(any(
+    all(feature = "state-transitions", feature = "validation"),
+    feature = "state-transition-validation"
+))]
 use crate::state_transition::errors::StateTransitionError;
 
 #[cfg(any(

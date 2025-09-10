@@ -5,18 +5,18 @@ use crate::document::serialization_traits::{
     DocumentJsonMethodsV0, DocumentPlatformValueMethodsV0,
 };
 
-use crate::errors::ProtocolError;
+use crate::ProtocolError;
 use platform_value::Identifier;
 use platform_version::version::PlatformVersion;
 use serde::Deserialize;
-// use serde_json::Value as JsonValue;
+use serde_json::Value as JsonValue;
 use std::convert::TryInto;
 
 impl DocumentJsonMethodsV0<'_> for ExtendedDocumentV0 {
     fn to_json_with_identifiers_using_bytes(
         &self,
         platform_version: &PlatformVersion,
-    ) -> Result<serde_json::Value, ProtocolError> {
+    ) -> Result<JsonValue, ProtocolError> {
         let mut json = self
             .document
             .to_json_with_identifiers_using_bytes(platform_version)?;
@@ -30,10 +30,7 @@ impl DocumentJsonMethodsV0<'_> for ExtendedDocumentV0 {
         Ok(json)
     }
 
-    fn to_json(
-        &self,
-        platform_version: &PlatformVersion,
-    ) -> Result<serde_json::Value, ProtocolError> {
+    fn to_json(&self, platform_version: &PlatformVersion) -> Result<JsonValue, ProtocolError> {
         let mut json = self.document.to_json(platform_version)?;
         let value_mut = json.as_object_mut().unwrap();
         let contract = self.data_contract.to_json(platform_version)?;
@@ -46,7 +43,7 @@ impl DocumentJsonMethodsV0<'_> for ExtendedDocumentV0 {
     }
 
     fn from_json_value<S>(
-        document_value: serde_json::Value,
+        document_value: JsonValue,
         platform_version: &PlatformVersion,
     ) -> Result<Self, ProtocolError>
     where

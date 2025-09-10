@@ -1,6 +1,6 @@
-use crate::errors::consensus::basic::data_contract::UnknownDocumentCreationRestrictionModeError;
-use crate::errors::consensus::basic::BasicError;
-use crate::errors::consensus::ConsensusError;
+use crate::consensus::basic::data_contract::UnknownDocumentCreationRestrictionModeError;
+use crate::consensus::basic::BasicError;
+use crate::consensus::ConsensusError;
 use crate::ProtocolError;
 use bincode::{Decode, Encode};
 use std::fmt;

@@ -1,18 +1,17 @@
-// use platform_value::Error as ValueError;
-use crate::errors::compatible_protocol_version_is_not_defined_error::CompatibleProtocolVersionIsNotDefinedError;
-use crate::errors::dpp_error::DPPError;
-use crate::errors::invalid_vector_size_error::InvalidVectorSizeError;
-use crate::errors::serde_parsing_error::SerdeParsingError;
-use platform_value::Error;
-use thiserror::Error as ThisError;
-use versioned_feature_core::FeatureVersion;
+use platform_value::Error as ValueError;
+use thiserror::Error;
 
-#[derive(Debug, ThisError)]
+use crate::version::FeatureVersion;
+use crate::{
+    CompatibleProtocolVersionIsNotDefinedError, DPPError, InvalidVectorSizeError, SerdeParsingError,
+};
+
+#[derive(Debug, Error)]
 #[cfg_attr(feature = "apple", ferment_macro::export)]
 pub enum NonConsensusError {
     /// Value error
     #[error("value error: {0}")]
-    ValueError(#[from] Error),
+    ValueError(#[from] ValueError),
     /// Platform expected some specific versions
     #[error("non consensus unknown version on {method}, received: {received}")]
     UnknownVersionMismatch {

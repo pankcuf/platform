@@ -3,14 +3,14 @@ use std::convert::TryInto;
 
 use std::io::{BufReader, Cursor, Read};
 
-use crate::data_contract::errors::contract::DataContractError;
+use crate::data_contract::errors::DataContractError;
 
-use crate::errors::consensus::basic::decode::DecodingError;
-use crate::errors::ProtocolError;
+use crate::consensus::basic::decode::DecodingError;
 use crate::data_contract::config::v1::DataContractConfigGettersV1;
 use crate::data_contract::config::DataContractConfig;
 use crate::data_contract::document_type::property_names;
 use crate::prelude::TimestampMillis;
+use crate::ProtocolError;
 use array::ArrayItemType;
 use byteorder::{BigEndian, ReadBytesExt, WriteBytesExt};
 use indexmap::IndexMap;

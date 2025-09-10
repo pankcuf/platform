@@ -1,7 +1,7 @@
 use thiserror::Error;
 
 use crate::data_contract::DataContract;
-use crate::errors::ProtocolError;
+use crate::ProtocolError;
 
 // @append_only
 #[derive(Error, Debug, Clone, PartialEq)]
@@ -30,6 +30,6 @@ impl InvalidDocumentTypeError {
 
 impl From<InvalidDocumentTypeError> for ProtocolError {
     fn from(err: InvalidDocumentTypeError) -> Self {
-        ProtocolError::InvalidDocumentTypeError(err)
+        Self::InvalidDocumentTypeError(err)
     }
 }

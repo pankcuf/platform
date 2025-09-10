@@ -12,7 +12,7 @@ pub use fields::{property_names, IDENTIFIER_FIELDS};
     feature = "document-value-conversion"
 ))]
 use crate::data_contract::DataContract;
-use crate::errors::ProtocolError;
+use crate::ProtocolError;
 
 use crate::document::extended_document::v0::ExtendedDocumentV0;
 
@@ -24,6 +24,8 @@ use derive_more::From;
 use platform_value::Value;
 use platform_version::version::PlatformVersion;
 use platform_versioning::PlatformVersioned;
+#[cfg(feature = "document-json-conversion")]
+use serde_json::Value as JsonValue;
 #[cfg(feature = "document-value-conversion")]
 use std::collections::BTreeMap;
 
@@ -39,7 +41,7 @@ impl ExtendedDocument {
     /// # Errors
     ///
     /// Returns a `ProtocolError` if there's an error in converting the properties to JSON.
-    pub fn properties_as_json_data(&self) -> Result<serde_json::Value, ProtocolError> {
+    pub fn properties_as_json_data(&self) -> Result<JsonValue, ProtocolError> {
         match self {
             ExtendedDocument::V0(v0) => v0.properties_as_json_data(),
         }
@@ -99,7 +101,7 @@ impl ExtendedDocument {
     /// This function is a passthrough to the `from_raw_json_document` method.
     #[cfg(feature = "document-json-conversion")]
     pub fn from_raw_json_document(
-        raw_document: serde_json::Value,
+        raw_document: JsonValue,
         data_contract: DataContract,
         platform_version: &PlatformVersion,
     ) -> Result<Self, ProtocolError> {
@@ -190,10 +192,7 @@ impl ExtendedDocument {
     ///
     /// This function is a passthrough to the `to_json` method.
     #[cfg(feature = "document-json-conversion")]
-    pub fn to_json(
-        &self,
-        platform_version: &PlatformVersion,
-    ) -> Result<serde_json::Value, ProtocolError> {
+    pub fn to_json(&self, platform_version: &PlatformVersion) -> Result<JsonValue, ProtocolError> {
         match self {
             ExtendedDocument::V0(v0) => v0.to_json(platform_version),
         }
@@ -206,7 +205,7 @@ impl ExtendedDocument {
     pub fn to_pretty_json(
         &self,
         platform_version: &PlatformVersion,
-    ) -> Result<serde_json::Value, ProtocolError> {
+    ) -> Result<JsonValue, ProtocolError> {
         match self {
             ExtendedDocument::V0(v0) => v0.to_pretty_json(platform_version),
         }
@@ -256,7 +255,7 @@ impl ExtendedDocument {
     ///
     /// This function is a passthrough to the `to_json_object_for_validation` method.
     #[cfg(feature = "document-json-conversion")]
-    pub fn to_json_object_for_validation(&self) -> Result<serde_json::Value, ProtocolError> {
+    pub fn to_json_object_for_validation(&self) -> Result<JsonValue, ProtocolError> {
         match self {
             ExtendedDocument::V0(v0) => v0.to_json_object_for_validation(),
         }
@@ -316,7 +315,7 @@ impl ExtendedDocument {
 #[cfg(test)]
 mod test {
     use anyhow::Result;
-    use serde_json::json;
+    use serde_json::{json, Value as JsonValue};
     use std::convert::TryInto;
 
     use crate::document::extended_document::{ExtendedDocument, IDENTIFIER_FIELDS};
@@ -325,7 +324,7 @@ mod test {
     use crate::data_contract::DataContract;
     use crate::document::extended_document::v0::ExtendedDocumentV0;
 
-    use platform_value::Identifier;
+    use crate::prelude::Identifier;
     use crate::system_data_contracts::load_system_data_contract;
     use crate::tests::utils::*;
     use data_contracts::SystemDataContract;
@@ -342,7 +341,6 @@ mod test {
     use crate::tests::fixtures::get_dashpay_contract_fixture;
     use base64::prelude::BASE64_STANDARD;
     use base64::Engine;
-    use serde_json::Value as JsonValue;
 
     fn init() {
         let _ = env_logger::builder()
@@ -602,15 +600,15 @@ mod test {
 
         assert_eq!(
             json_document["$id"],
-            serde_json::Value::String(bs58::encode(&id).into_string())
+            JsonValue::String(bs58::encode(&id).into_string())
         );
         assert_eq!(
             json_document["$ownerId"],
-            serde_json::Value::String(bs58::encode(&owner_id).into_string())
+            JsonValue::String(bs58::encode(&owner_id).into_string())
         );
         assert_eq!(
             json_document["$dataContractId"],
-            serde_json::Value::String(bs58::encode(&data_contract_id).into_string())
+            JsonValue::String(bs58::encode(&data_contract_id).into_string())
         );
         assert_eq!(
             json_document["alphaBinary"],
