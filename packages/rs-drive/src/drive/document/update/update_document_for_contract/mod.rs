@@ -12,7 +12,7 @@ use dpp::data_contract::DataContract;
 use dpp::document::Document;
 use dpp::fee::fee_result::FeeResult;
 
-use platform_version::version::PlatformVersion;
+use dpp::version::PlatformVersion;
 
 use dpp::fee::default_costs::CachedEpochIndexFeeVersions;
 use grovedb::TransactionArg;

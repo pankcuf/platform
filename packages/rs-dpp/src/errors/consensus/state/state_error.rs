@@ -6,7 +6,6 @@ use thiserror::Error;
 use crate::errors::consensus::state::data_contract::data_contract_already_present_error::DataContractAlreadyPresentError;
 use crate::errors::consensus::state::data_contract::data_contract_config_update_error::DataContractConfigUpdateError;
 use crate::errors::consensus::state::data_contract::data_contract_is_readonly_error::DataContractIsReadonlyError;
-#[cfg(feature = "state-transition-validation")]
 use crate::errors::consensus::state::data_trigger::DataTriggerError;
 use crate::errors::consensus::state::document::document_already_present_error::DocumentAlreadyPresentError;
 use crate::errors::consensus::state::document::document_not_found_error::DocumentNotFoundError;

@@ -7,7 +7,7 @@ use crate::fees::op::LowLevelDriveOperation;
 use crate::util::object_size_info::{DocumentAndContractInfo, PathInfo};
 use crate::util::storage_flags::StorageFlags;
 
-use platform_version::version::PlatformVersion;
+use dpp::version::PlatformVersion;
 
 use grovedb::batch::KeyInfoPath;
 

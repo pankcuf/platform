@@ -9,6 +9,7 @@ license = "MIT"
 [features]
 default = ["all-contracts"]
 # Include all contracts
+apple = ["ferment-macro"]
 all-contracts = ["withdrawals", "masternode-rewards", "dpns", "dashpay", "feature-flags", "wallet-utils", "token-history", "keyword-search"]
 
 # Individual contract features
@@ -36,7 +37,3 @@ wallet-utils-contract = { path = "../wallet-utils-contract", optional = true }
 token-history-contract = { path = "../token-history-contract", optional = true }
 keyword-search-contract = { path = "../keyword-search-contract", optional = true }
 ferment-macro = { version = "0.2", package = "ferment-macro", optional = true }
-
-[features]
-default = []
-apple = ["ferment-macro"]

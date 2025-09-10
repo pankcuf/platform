@@ -4,7 +4,6 @@ use crate::drive::Drive;
 use crate::fees::get_overflow_error;
 
 use crate::error::Error;
-use dpp::balances::credits::Credits;
 use dpp::block::epoch::Epoch;
 use dpp::block::pool_credits::StorageAndProcessingPoolCredits;
 
@@ -48,8 +47,8 @@ mod tests {
     use crate::util::batch::grovedb_op_batch::GroveDbOpBatchV0Methods;
     use crate::util::batch::GroveDbOpBatch;
     use crate::util::test_helpers::setup::setup_drive_with_initial_state_structure;
-    use dpp::balances::credits::Credits;
     use dpp::block::epoch::Epoch;
+    use dpp::fee::Credits;
 
     use dpp::version::PlatformVersion;
 

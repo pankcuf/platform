@@ -6,7 +6,7 @@ use crate::error::Error;
 use std::collections::BTreeMap;
 
 use dpp::identifier::Identifier;
-use dpp::identity::identity_public_key::Purpose;
+use dpp::identity::Purpose;
 use grovedb::TransactionArg;
 use platform_version::version::PlatformVersion;
 

@@ -14,7 +14,7 @@ use crate::fees::op::LowLevelDriveOperation;
 
 use dpp::fee::fee_result::FeeResult;
 use dpp::identifier::Identifier;
-use platform_version::version::PlatformVersion;
+use dpp::version::PlatformVersion;
 
 impl Drive {
     /// Deletes a document and returns the associated fee.

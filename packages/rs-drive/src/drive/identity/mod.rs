@@ -10,18 +10,18 @@ use crate::util::object_size_info::DriveKeyInfo;
 use std::fmt;
 
 #[cfg(feature = "server")]
-use dpp::identity::identity_public_key::KeyID;
+use dpp::identity::KeyID;
 #[cfg(any(feature = "server", feature = "verify"))]
-use dpp::identity::identity_public_key::Purpose;
+use dpp::identity::Purpose;
 #[cfg(any(feature = "server", feature = "verify"))]
-use dpp::identity::identity_public_key::SecurityLevel;
+use dpp::identity::SecurityLevel;
 
 #[cfg(feature = "server")]
 /// Everything related to withdrawals
 pub mod withdrawals;
 
 #[cfg(any(feature = "server", feature = "verify"))]
-use dpp::identity::identity_public_key::Purpose::AUTHENTICATION;
+use dpp::identity::Purpose::AUTHENTICATION;
 #[cfg(feature = "server")]
 use integer_encoding::VarInt;
 

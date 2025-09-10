@@ -53,7 +53,7 @@ use crate::util::hash::hash_double_to_vec;
 
 use crate::errors::ProtocolError;
 use crate::errors::ProtocolError::{PlatformDeserializationError, PlatformSerializationError};
-use platform_version::version::protocol_version::PlatformVersion;
+use platform_version::version::PlatformVersion;
 use versioned_feature_core::FeatureVersion;
 
 pub use crate::data_contract::associated_token::token_configuration::TokenConfiguration;

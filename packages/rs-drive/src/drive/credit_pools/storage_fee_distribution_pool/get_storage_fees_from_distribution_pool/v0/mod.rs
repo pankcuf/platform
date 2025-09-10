@@ -3,7 +3,7 @@ use crate::drive::Drive;
 use crate::error::drive::DriveError;
 use crate::error::Error;
 use dpp::balances::credits::Creditable;
-use dpp::balances::credits::Credits;
+use dpp::fee::Credits;
 use grovedb::{Element, TransactionArg};
 use platform_version::version::PlatformVersion;
 

@@ -7,7 +7,7 @@ use crate::error::drive::DriveError;
 use crate::error::Error;
 use crate::fees::op::LowLevelDriveOperation;
 use dpp::platform_value::Bytes36;
-use platform_version::version::drive_versions::DriveVersion;
+use dpp::version::drive_versions::DriveVersion;
 
 use dpp::asset_lock::StoredAssetLockInfo;
 use grovedb::TransactionArg;

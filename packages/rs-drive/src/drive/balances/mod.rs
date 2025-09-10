@@ -133,7 +133,7 @@ mod tests {
     use crate::drive::Drive;
 
     use crate::util::test_helpers::setup::setup_drive_with_initial_state_structure;
-    use platform_version::version::PlatformVersion;
+    use dpp::version::PlatformVersion;
 
     #[test]
     fn verify_total_credits_structure() {

@@ -5,8 +5,8 @@ use crate::query::DriveDocumentQuery;
 use dpp::block::epoch::Epoch;
 use dpp::document::serialization_traits::DocumentPlatformConversionMethodsV0;
 use dpp::document::Document;
+use dpp::version::PlatformVersion;
 use grovedb::TransactionArg;
-use platform_version::version::PlatformVersion;
 
 /// The outcome of a query
 #[derive(Debug, Default)]

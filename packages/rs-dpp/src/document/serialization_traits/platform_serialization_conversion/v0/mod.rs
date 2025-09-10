@@ -3,7 +3,7 @@ use crate::data_contract::DataContract;
 use crate::errors::ProtocolError;
 #[cfg(feature = "validation")]
 use crate::validation::ConsensusValidationResult;
-use platform_version::version::protocol_version::PlatformVersion;
+use platform_version::version::PlatformVersion;
 use versioned_feature_core::FeatureVersion;
 
 pub trait DocumentPlatformConversionMethodsV0: Clone {

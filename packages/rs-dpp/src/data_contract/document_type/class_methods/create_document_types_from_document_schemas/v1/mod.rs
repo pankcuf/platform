@@ -4,9 +4,9 @@ use crate::data_contract::document_type::class_methods::consensus_or_protocol_da
 use crate::data_contract::document_type::DocumentType;
 use crate::data_contract::{DocumentName, TokenConfiguration, TokenContractPosition};
 use crate::validation::operations::ProtocolValidationOperation;
-use crate::version::PlatformVersion;
 use crate::errors::ProtocolError;
 use platform_value::{Identifier, Value};
+use platform_version::version::PlatformVersion;
 use std::collections::BTreeMap;
 
 impl DocumentType {

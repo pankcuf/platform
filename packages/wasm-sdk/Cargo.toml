@@ -58,7 +58,7 @@ drive = { path = "../rs-drive", default-features = false, features = [
 ] }
 console_error_panic_hook = { version = "0.1.6" }
 thiserror = { version = "2.0.12" }
-dashcore = { git = "https://github.com/dashpay/rust-dashcore", branch = "v0.40-dev", features = [
+dashcore = { git = "https://github.com/panckuf/rust-dashcore", branch = "feat/ferment", features = [
     "std",
     "secp-recovery",
 ] }

@@ -69,9 +69,9 @@ use crate::tokens::token_amount_on_contract_token::{
 #[cfg(feature = "validation")]
 use crate::validation::meta_validators::DOCUMENT_META_SCHEMA_V0;
 use crate::validation::operations::ProtocolValidationOperation;
-use crate::version::PlatformVersion;
 use crate::ProtocolError;
 use platform_value::{Identifier, Value};
+use platform_version::version::PlatformVersion;
 
 impl DocumentTypeV1 {
     // TODO: Split into multiple functions
