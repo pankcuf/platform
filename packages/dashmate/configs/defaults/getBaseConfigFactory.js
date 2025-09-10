@@ -105,6 +105,10 @@ export default function getBaseConfigFactory() {
           },
           allowIps: ['127.0.0.1', '172.16.0.0/12', '192.168.0.0/16'],
         },
+        zmq: {
+          host: '127.0.0.1',
+          port: 29998,
+        },
         spork: {
           address: null,
           privateKey: null,
@@ -240,6 +244,21 @@ export default function getBaseConfigFactory() {
               },
             },
             waitForStResultTimeout: 120000,
+          },
+          // TODO: rs-dapi parallel deployment configuration for first phase testing
+          rsDapi: {
+            docker: {
+              image: `dashpay/rs-dapi:${dockerImageVersion}`,
+              deploy: {
+                replicas: 1,
+              },
+              build: {
+                enabled: false,
+                context: path.join(PACKAGE_ROOT_DIR, '..', '..'),
+                dockerFile: path.join(PACKAGE_ROOT_DIR, '..', '..', 'Dockerfile'),
+                target: 'rs-dapi',
+              },
+            },
           },
         },
         drive: {

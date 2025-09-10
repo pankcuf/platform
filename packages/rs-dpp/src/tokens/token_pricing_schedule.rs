@@ -2,6 +2,7 @@ use crate::balances::credits::{Credits, TokenAmount};
 use crate::errors::ProtocolError;
 use bincode_derive::{Decode, Encode};
 use platform_serialization_derive::{PlatformDeserialize, PlatformSerialize};
+#[cfg(feature = "state-transition-serde-conversion")]
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 use std::fmt::{self, Display, Formatter};

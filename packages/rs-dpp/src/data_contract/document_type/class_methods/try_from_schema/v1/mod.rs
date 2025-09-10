@@ -27,17 +27,17 @@ use crate::errors::consensus::basic::data_contract::ContestedUniqueIndexOnMutabl
 #[cfg(feature = "validation")]
 use crate::errors::consensus::basic::data_contract::ContestedUniqueIndexWithUniqueIndexError;
 #[cfg(any(test, feature = "validation"))]
-use crate::errors::consensus::basic::data_contract::InvalidDocumentTypeNameError;
+use crate::consensus::basic::data_contract::InvalidDocumentTypeNameError;
 #[cfg(feature = "validation")]
-use crate::errors::consensus::basic::data_contract::RedundantDocumentPaidForByTokenWithContractId;
+use crate::consensus::basic::data_contract::RedundantDocumentPaidForByTokenWithContractId;
 #[cfg(feature = "validation")]
-use crate::errors::consensus::basic::data_contract::TokenPaymentByBurningOnlyAllowedOnInternalTokenError;
+use crate::consensus::basic::data_contract::TokenPaymentByBurningOnlyAllowedOnInternalTokenError;
 #[cfg(feature = "validation")]
-use crate::errors::consensus::basic::document::MissingPositionsInDocumentTypePropertiesError;
+use crate::consensus::basic::document::MissingPositionsInDocumentTypePropertiesError;
 #[cfg(feature = "validation")]
-use crate::errors::consensus::basic::token::InvalidTokenPositionError;
+use crate::consensus::basic::token::InvalidTokenPositionError;
 #[cfg(feature = "validation")]
-use crate::errors::consensus::basic::BasicError;
+use crate::consensus::basic::BasicError;
 use crate::data_contract::config::v0::DataContractConfigGettersV0;
 use crate::data_contract::config::DataContractConfig;
 use crate::data_contract::document_type::class_methods::try_from_schema::{

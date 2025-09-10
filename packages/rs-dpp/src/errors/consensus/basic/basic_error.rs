@@ -9,12 +9,13 @@ use crate::errors::consensus::basic::data_contract::{
     DataContractHaveNewUniqueIndexError, DataContractImmutablePropertiesUpdateError,
     DataContractInvalidIndexDefinitionUpdateError, DataContractTokenConfigurationUpdateError,
     DataContractUniqueIndicesChangedError, DecimalsOverLimitError, DuplicateIndexError,
-    DuplicateIndexNameError, GroupExceedsMaxMembersError, GroupMemberHasPowerOfZeroError,
-    GroupMemberHasPowerOverLimitError, GroupNonUnilateralMemberPowerHasLessThanRequiredPowerError,
-    GroupPositionDoesNotExistError, GroupRequiredPowerIsInvalidError,
-    GroupTotalPowerLessThanRequiredError, IncompatibleDataContractSchemaError,
-    IncompatibleDocumentTypeSchemaError, IncompatibleRe2PatternError, InvalidCompoundIndexError,
-    InvalidDataContractIdError, InvalidDataContractVersionError, InvalidDocumentTypeNameError,
+    DuplicateIndexNameError, GroupExceedsMaxMembersError, GroupHasTooFewMembersError,
+    GroupMemberHasPowerOfZeroError, GroupMemberHasPowerOverLimitError,
+    GroupNonUnilateralMemberPowerHasLessThanRequiredPowerError, GroupPositionDoesNotExistError,
+    GroupRequiredPowerIsInvalidError, GroupTotalPowerLessThanRequiredError,
+    IncompatibleDataContractSchemaError, IncompatibleDocumentTypeSchemaError,
+    IncompatibleRe2PatternError, InvalidCompoundIndexError, InvalidDataContractIdError,
+    InvalidDataContractVersionError, InvalidDocumentTypeNameError,
     InvalidDocumentTypeRequiredSecurityLevelError, InvalidIndexPropertyTypeError,
     InvalidIndexedPropertyConstraintError, InvalidKeywordCharacterError,
     InvalidTokenBaseSupplyError, InvalidTokenDistributionFunctionDivideByZeroError,
@@ -65,8 +66,9 @@ use crate::errors::consensus::basic::identity::{
     InvalidIdentityPublicKeyDataError, InvalidIdentityPublicKeySecurityLevelError,
     InvalidIdentityUpdateTransitionDisableKeysError, InvalidIdentityUpdateTransitionEmptyError,
     InvalidInstantAssetLockProofError, InvalidInstantAssetLockProofSignatureError,
-    MissingMasterPublicKeyError, NotImplementedIdentityCreditWithdrawalTransitionPoolingError,
-    TooManyMasterPublicKeyError, WithdrawalOutputScriptNotAllowedWhenSigningWithOwnerKeyError,
+    InvalidKeyPurposeForContractBoundsError, MissingMasterPublicKeyError,
+    NotImplementedIdentityCreditWithdrawalTransitionPoolingError, TooManyMasterPublicKeyError,
+    WithdrawalOutputScriptNotAllowedWhenSigningWithOwnerKeyError,
 };
 use crate::errors::consensus::basic::identity::disabling_key_id_also_being_added_in_same_transition_error::DisablingKeyIdAlsoBeingAddedInSameTransitionError;
 use crate::errors::consensus::basic::invalid_identifier_error::InvalidIdentifierError;
@@ -88,8 +90,10 @@ use crate::errors::consensus::basic::overflow_error::OverflowError;
 use crate::errors::consensus::basic::token::{
     ChoosingTokenMintRecipientNotAllowedError, ContractHasNoTokensError,
     DestinationIdentityForTokenMintingNotSetError, InvalidActionIdError, InvalidTokenAmountError,
-    InvalidTokenConfigUpdateNoChangeError, InvalidTokenIdError, InvalidTokenNoteTooBigError,
-    InvalidTokenPositionError, MissingDefaultLocalizationError,
+    InvalidTokenConfigUpdateNoChangeError, InvalidTokenDistributionBlockIntervalTooShortError,
+    InvalidTokenDistributionTimeIntervalNotMinuteAlignedError,
+    InvalidTokenDistributionTimeIntervalTooShortError, InvalidTokenIdError,
+    InvalidTokenNoteTooBigError, InvalidTokenPositionError, MissingDefaultLocalizationError,
     TokenNoteOnlyAllowedWhenProposerError, TokenTransferToOurselfError,
 };
 use crate::errors::consensus::basic::unsupported_version_error::UnsupportedVersionError;
@@ -567,7 +571,27 @@ pub enum BasicError {
     TokenNoteOnlyAllowedWhenProposerError(TokenNoteOnlyAllowedWhenProposerError),
 
     #[error(transparent)]
+    InvalidTokenDistributionBlockIntervalTooShortError(
+        InvalidTokenDistributionBlockIntervalTooShortError,
+    ),
+
+    #[error(transparent)]
+    InvalidTokenDistributionTimeIntervalTooShortError(
+        InvalidTokenDistributionTimeIntervalTooShortError,
+    ),
+
+    #[error(transparent)]
+    InvalidTokenDistributionTimeIntervalNotMinuteAlignedError(
+        InvalidTokenDistributionTimeIntervalNotMinuteAlignedError,
+    ),
+    #[error(transparent)]
     RedundantDocumentPaidForByTokenWithContractId(RedundantDocumentPaidForByTokenWithContractId),
+
+    #[error(transparent)]
+    GroupHasTooFewMembersError(GroupHasTooFewMembersError),
+
+    #[error(transparent)]
+    InvalidKeyPurposeForContractBoundsError(InvalidKeyPurposeForContractBoundsError),
 }
 
 impl From<BasicError> for ConsensusError {

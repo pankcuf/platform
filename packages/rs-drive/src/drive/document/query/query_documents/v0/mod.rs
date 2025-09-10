@@ -5,7 +5,6 @@ use crate::query::DriveDocumentQuery;
 use dpp::block::epoch::Epoch;
 use dpp::document::serialization_traits::DocumentPlatformConversionMethodsV0;
 use dpp::document::Document;
-use dpp::ProtocolError;
 use grovedb::TransactionArg;
 use platform_version::version::PlatformVersion;
 
@@ -93,8 +92,18 @@ impl Drive {
             .into_iter()
             .map(|serialized| {
                 Document::from_bytes(serialized.as_slice(), query.document_type, platform_version)
+                    .map_err(|e| {
+                        Error::ProtocolWithInfoString(
+                            e,
+                            format!(
+                                "document bytes are {}, query is using contract {:?}",
+                                hex::encode(serialized),
+                                query.contract
+                            ),
+                        )
+                    })
             })
-            .collect::<Result<Vec<Document>, ProtocolError>>()?;
+            .collect::<Result<Vec<Document>, Error>>()?;
         let cost = if let Some(epoch) = epoch {
             let fee_result = Drive::calculate_fee(
                 None,

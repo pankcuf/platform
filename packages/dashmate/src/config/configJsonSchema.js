@@ -307,6 +307,19 @@ export default {
           required: ['host', 'port', 'users', 'allowIps'],
           additionalProperties: false,
         },
+        zmq: {
+          type: 'object',
+          properties: {
+            host: {
+              $ref: '#/definitions/host',
+            },
+            port: {
+              $ref: '#/definitions/port',
+            },
+          },
+          required: ['host', 'port'],
+          additionalProperties: false,
+        },
         spork: {
           type: 'object',
           properties: {
@@ -475,7 +488,7 @@ export default {
             + ' `core.masternode.enable`, and `core.insight.enabled` add indexes dynamically',
         },
       },
-      required: ['docker', 'p2p', 'rpc', 'spork', 'masternode', 'miner', 'devnet', 'log',
+      required: ['docker', 'p2p', 'rpc', 'zmq', 'spork', 'masternode', 'miner', 'devnet', 'log',
         'indexes', 'insight'],
       additionalProperties: false,
     },
@@ -828,8 +841,40 @@ export default {
               required: ['docker', 'waitForStResultTimeout'],
               additionalProperties: false,
             },
+            rsDapi: {
+              type: 'object',
+              properties: {
+                docker: {
+                  type: 'object',
+                  properties: {
+                    image: {
+                      type: 'string',
+                      minLength: 1,
+                    },
+                    deploy: {
+                      type: 'object',
+                      properties: {
+                        replicas: {
+                          type: 'integer',
+                          minimum: 0,
+                        },
+                      },
+                      additionalProperties: false,
+                      required: ['replicas'],
+                    },
+                    build: {
+                      $ref: '#/definitions/dockerBuild',
+                    },
+                  },
+                  required: ['image', 'build', 'deploy'],
+                  additionalProperties: false,
+                },
+              },
+              required: ['docker'],
+              additionalProperties: false,
+            },
           },
-          required: ['api'],
+          required: ['api', 'rsDapi'],
           additionalProperties: false,
         },
         drive: {

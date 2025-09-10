@@ -1,0 +1,94 @@
+[package]
+name = "rs-dapi"
+version = "2.0.1-1"
+edition = "2021"
+
+[[bin]]
+name = "rs-dapi"
+path = "src/main.rs"
+
+[[example]]
+name = "transaction_monitor"
+path = "examples/transaction_monitor.rs"
+
+[[example]]
+name = "state_transition_monitor"
+path = "examples/state_transition_monitor.rs"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1.47.0", features = ["full"] }
+tokio-stream = "0.1"
+futures = "0.3.31"
+tokio-util = "0.7.15"
+
+# gRPC framework
+tonic = "0.13.0"
+
+
+# HTTP framework for REST/JSON-RPC
+axum = "0.8.4"
+tower = "0.5.2"
+tower-http = { version = "0.6.6", features = ["cors", "trace"] }
+
+# Serialization
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.141"
+
+# Configuration
+envy = "0.4.2"
+
+clap = { version = "4.4.10", features = ["derive"] }
+dotenvy = { version = "0.15.7" }
+# Logging
+tracing = "0.1.41"
+tracing-subscriber = { version = "0.3.19", features = ["env-filter", "json"] }
+
+# Error handling
+thiserror = "2.0.12"
+
+# Time handling
+chrono = { version = "0.4.41", features = ["serde"] }
+
+# HTTP client for external API calls
+reqwest = { version = "0.12", features = ["json"] }
+reqwest-middleware = "0.4"
+
+# Hex encoding/decoding
+hex = "0.4"
+
+# Base64 encoding/decoding
+base64 = "0.22"
+
+# Cryptographic hashing
+sha2 = "0.10"
+
+# Async traits
+async-trait = "0.1"
+
+# WebSocket support for Tenderdash events
+tokio-tungstenite = { version = "0.21", features = ["native-tls"] }
+url = "2.5"
+
+# ZMQ for real-time blockchain events
+# zeromq = { version = "0.4.1", default-features = false, features = [
+#     "tokio-runtime",
+#     "tcp-transport",
+# ] }
+# Use fork of zmq.rs to receive Disconnect events, see https://github.com/zeromq/zmq.rs/pull/209
+zeromq = { git = "https://github.com/gvz/zmq.rs", rev = "b0787de310befaedd1f762e3b9bc711612d8137f", features = [
+    "tokio-runtime",
+    "tcp-transport",
+], default-features = false }
+
+# Dash Platform dependencies (using workspace versions)
+dapi-grpc = { path = "../dapi-grpc", features = ["server", "client", "serde"] }
+
+[build-dependencies]
+tonic-build = "0.14.0"
+
+[dev-dependencies]
+# Additional dependencies for integration tests
+tokio-test = "0.4.4"
+tempfile = "3.13.0"
+serial_test = "3.1.1"

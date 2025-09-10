@@ -5,7 +5,8 @@ mod state;
 mod structure;
 
 use dpp::block::block_info::BlockInfo;
-use dpp::state_transition::state_transitions::identity::identity_credit_withdrawal_transition::IdentityCreditWithdrawalTransition;
+use dpp::dashcore::Network;
+use dpp::state_transition::identity_credit_withdrawal_transition::IdentityCreditWithdrawalTransition;
 use dpp::validation::{ConsensusValidationResult, SimpleConsensusValidationResult};
 use dpp::version::PlatformVersion;
 use drive::state_transition_action::StateTransitionAction;
@@ -65,6 +66,7 @@ impl StateTransitionActionTransformerV0 for IdentityCreditWithdrawalTransition {
 impl StateTransitionBasicStructureValidationV0 for IdentityCreditWithdrawalTransition {
     fn validate_basic_structure(
         &self,
+        _network_type: Network,
         platform_version: &PlatformVersion,
     ) -> Result<SimpleConsensusValidationResult, Error> {
         match platform_version
