@@ -2,7 +2,7 @@ use crate::data_contract::document_type::accessors::DocumentTypeV0Getters;
 use crate::data_contract::document_type::DocumentTypeRef;
 use crate::document::{Document, DocumentV0Getters};
 use crate::prelude::IdentityNonce;
-use crate::state_transition::state_transitions::document::batch_transition::document_base_transition::v1::DocumentBaseTransitionV1;
+use crate::state_transition::batch_transition::document_base_transition::v1::DocumentBaseTransitionV1;
 use crate::tokens::token_payment_info::TokenPaymentInfo;
 
 impl DocumentBaseTransitionV1 {

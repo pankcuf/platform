@@ -1,4 +1,4 @@
-use crate::identity::identity_public_key::Purpose::{
+use crate::identity::Purpose::{
     AUTHENTICATION, DECRYPTION, ENCRYPTION, OWNER, SYSTEM, TRANSFER, VOTING,
 };
 use anyhow::bail;

@@ -1,8 +1,8 @@
 use thiserror::Error;
 
-use crate::errors::consensus::signature::signature_error::SignatureError;
-use crate::errors::consensus::ConsensusError;
-use crate::identity::identity_public_key::KeyType;
+use crate::consensus::signature::signature_error::SignatureError;
+use crate::consensus::ConsensusError;
+use crate::identity::KeyType;
 
 use crate::errors::ProtocolError;
 use platform_serialization_derive::{PlatformDeserialize, PlatformSerialize};

@@ -1,10 +1,10 @@
+use crate::prelude::Identifier;
 use crate::data_contract::associated_token::token_perpetual_distribution::reward_distribution_moment::RewardDistributionMoment;
-use crate::errors::consensus::state::state_error::StateError;
-use crate::errors::consensus::ConsensusError;
+use crate::consensus::state::state_error::StateError;
+use crate::consensus::ConsensusError;
 use crate::ProtocolError;
 use bincode::{Decode, Encode};
 use platform_serialization_derive::{PlatformDeserialize, PlatformSerialize};
-use platform_value::Identifier;
 use thiserror::Error;
 
 #[derive(

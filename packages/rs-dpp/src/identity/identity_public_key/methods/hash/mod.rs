@@ -1,7 +1,7 @@
 mod v0;
 
-use crate::errors::ProtocolError;
-use crate::identity::identity_public_key::IdentityPublicKey;
+use crate::identity::IdentityPublicKey;
+use crate::ProtocolError;
 use dashcore::Network;
 pub use v0::*;
 

@@ -1,14 +1,14 @@
-use crate::errors::consensus::signature::{
+use crate::consensus::signature::{
     BasicBLSError, BasicECDSAError, IdentityNotFoundError, InvalidIdentityPublicKeyTypeError,
     InvalidSignaturePublicKeySecurityLevelError, InvalidStateTransitionSignatureError,
     MissingPublicKeyError, PublicKeyIsDisabledError, PublicKeySecurityLevelNotMetError,
     SignatureShouldNotBePresentError, WrongPublicKeyPurposeError,
 };
-use crate::errors::consensus::ConsensusError;
+use crate::consensus::ConsensusError;
 use bincode::{Decode, Encode};
 use thiserror::Error;
 
-use crate::errors::consensus::signature::invalid_signature_public_key_purpose_error::InvalidSignaturePublicKeyPurposeError;
+use crate::consensus::signature::invalid_signature_public_key_purpose_error::InvalidSignaturePublicKeyPurposeError;
 use crate::errors::ProtocolError;
 use platform_serialization_derive::{PlatformDeserialize, PlatformSerialize};
 

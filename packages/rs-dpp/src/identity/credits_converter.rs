@@ -1,6 +1,6 @@
 use crate::balances::credits::CREDITS_PER_DUFF;
-use crate::balances::credits::Credits;
-use crate::errors::ProtocolError;
+use crate::fee::Credits;
+use crate::ProtocolError;
 
 pub fn convert_duffs_to_credits(amount: u64) -> Result<Credits, ProtocolError> {
     amount

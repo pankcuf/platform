@@ -1,5 +1,5 @@
-use crate::errors::consensus::state::state_error::StateError;
-use crate::errors::consensus::ConsensusError;
+use crate::consensus::state::state_error::StateError;
+use crate::consensus::ConsensusError;
 use crate::data_contract::TokenContractPosition;
 use crate::ProtocolError;
 use bincode::{Decode, Encode};

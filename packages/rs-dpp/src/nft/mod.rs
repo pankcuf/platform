@@ -1,6 +1,6 @@
-use crate::errors::consensus::basic::data_contract::UnknownTradeModeError;
-use crate::errors::consensus::basic::BasicError;
-use crate::errors::consensus::ConsensusError;
+use crate::consensus::basic::data_contract::UnknownTradeModeError;
+use crate::consensus::basic::BasicError;
+use crate::consensus::ConsensusError;
 use crate::ProtocolError;
 use std::fmt;
 use std::fmt::{Display, Formatter};

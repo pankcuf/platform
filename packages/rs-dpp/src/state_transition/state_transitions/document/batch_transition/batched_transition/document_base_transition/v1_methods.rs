@@ -1,5 +1,5 @@
-use crate::state_transition::state_transitions::document::batch_transition::document_base_transition::v1::v1_methods::DocumentBaseTransitionV1Methods;
-use crate::state_transition::state_transitions::document::batch_transition::document_base_transition::DocumentBaseTransition;
+use crate::state_transition::batch_transition::document_base_transition::v1::v1_methods::DocumentBaseTransitionV1Methods;
+use crate::state_transition::batch_transition::document_base_transition::DocumentBaseTransition;
 use crate::tokens::token_payment_info::TokenPaymentInfo;
 
 impl DocumentBaseTransitionV1Methods for DocumentBaseTransition {

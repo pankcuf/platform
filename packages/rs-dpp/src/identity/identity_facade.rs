@@ -4,16 +4,12 @@ use std::collections::BTreeMap;
 
 use crate::identity::state_transition::asset_lock_proof::chain::ChainAssetLockProof;
 use crate::identity::state_transition::asset_lock_proof::{AssetLockProof, InstantAssetLockProof};
-use crate::identity::{
-    identity_public_key::{IdentityPublicKey, KeyID},
-    Identity,
-};
-use crate::prelude::IdentityNonce;
-use platform_value::Identifier;
+use crate::identity::{Identity, IdentityPublicKey, KeyID};
+use crate::prelude::{Identifier, IdentityNonce};
 
 use crate::identity::identity_factory::IdentityFactory;
 #[cfg(feature = "state-transitions")]
-use crate::state_transition::state_transitions::identity::{
+use crate::state_transition::{
     identity_create_transition::IdentityCreateTransition,
     identity_credit_transfer_transition::IdentityCreditTransferTransition,
     identity_credit_withdrawal_transition::IdentityCreditWithdrawalTransition,
@@ -22,9 +18,9 @@ use crate::state_transition::state_transitions::identity::{
     public_key_in_creation::IdentityPublicKeyInCreation,
 };
 
-use crate::errors::ProtocolError;
 use crate::identity::core_script::CoreScript;
 use crate::withdrawal::Pooling;
+use crate::ProtocolError;
 
 #[derive(Clone)]
 pub struct IdentityFacade {

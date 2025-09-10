@@ -1,12 +1,15 @@
-use crate::prelude::UserFeeIncrease;
-use crate::state_transition::{StateTransitionLike, StateTransitionType};
+use platform_value::BinaryData;
 
-use crate::state_transition::state_transitions::contract::data_contract_create_transition::DataContractCreateTransitionV0;
+use crate::prelude::UserFeeIncrease;
+use crate::{
+    prelude::Identifier,
+    state_transition::{StateTransitionLike, StateTransitionType},
+};
+
+use crate::state_transition::data_contract_create_transition::DataContractCreateTransitionV0;
 
 use crate::state_transition::StateTransitionType::DataContractCreate;
-
-use platform_value::{BinaryData, Identifier};
-use versioned_feature_core::FeatureVersion;
+use crate::version::FeatureVersion;
 
 impl StateTransitionLike for DataContractCreateTransitionV0 {
     /// Returns ID of the created contract

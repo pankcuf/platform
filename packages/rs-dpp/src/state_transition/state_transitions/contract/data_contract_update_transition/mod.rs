@@ -1,5 +1,5 @@
-use crate::errors::ProtocolError;
 use crate::state_transition::StateTransitionFieldTypes;
+use crate::ProtocolError;
 use bincode::{Decode, Encode};
 use derive_more::From;
 use platform_serialization_derive::{PlatformDeserialize, PlatformSerialize, PlatformSignable};
@@ -30,7 +30,7 @@ use crate::data_contract::DataContract;
 
 use crate::identity::state_transition::OptionallyAssetLockProved;
 use crate::prelude::IdentityNonce;
-pub use v0::{DataContractUpdateTransitionV0, DataContractUpdateTransitionV0Signable};
+pub use v0::*;
 
 pub type DataContractUpdateTransitionLatest = DataContractUpdateTransitionV0;
 
@@ -108,7 +108,7 @@ impl OptionallyAssetLockProved for DataContractUpdateTransition {}
 #[cfg(test)]
 mod test {
     use crate::data_contract::DataContract;
-    use crate::state_transition::state_transitions::contract::data_contract_update_transition::accessors::DataContractUpdateTransitionAccessorsV0;
+    use crate::state_transition::data_contract_update_transition::accessors::DataContractUpdateTransitionAccessorsV0;
     use crate::tests::fixtures::get_data_contract_fixture;
 
     use crate::version::LATEST_PLATFORM_VERSION;

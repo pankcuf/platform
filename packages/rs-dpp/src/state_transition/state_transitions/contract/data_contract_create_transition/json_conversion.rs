@@ -1,24 +1,24 @@
-use crate::state_transition::state_transitions::contract::data_contract_create_transition::fields::*;
-use crate::state_transition::state_transitions::contract::data_contract_create_transition::DataContractCreateTransition;
+use crate::state_transition::data_contract_create_transition::DataContractCreateTransition;
+use crate::state_transition::state_transitions::data_contract_create_transition::fields::*;
 use crate::state_transition::{
     JsonStateTransitionSerializationOptions, StateTransitionJsonConvert,
 };
 use crate::ProtocolError;
 use serde_json::Number;
-// use serde_json::Value as JsonValue;
+use serde_json::Value as JsonValue;
 
 impl StateTransitionJsonConvert<'_> for DataContractCreateTransition {
     fn to_json(
         &self,
         options: JsonStateTransitionSerializationOptions,
-    ) -> Result<serde_json::Value, ProtocolError> {
+    ) -> Result<JsonValue, ProtocolError> {
         match self {
             DataContractCreateTransition::V0(transition) => {
                 let mut value = transition.to_json(options)?;
                 let map_value = value.as_object_mut().expect("expected an object");
                 map_value.insert(
                     STATE_TRANSITION_PROTOCOL_VERSION.to_string(),
-                    serde_json::Value::Number(Number::from(0)),
+                    JsonValue::Number(Number::from(0)),
                 );
                 Ok(value)
             }
@@ -28,20 +28,17 @@ impl StateTransitionJsonConvert<'_> for DataContractCreateTransition {
 
 #[cfg(test)]
 mod test {
-    use crate::state_transition::state_transitions::contract::data_contract_create_transition::fields::*;
+    use crate::state_transition::state_transitions::data_contract_create_transition::fields::*;
     use crate::state_transition::{
         JsonStateTransitionSerializationOptions, StateTransitionJsonConvert,
     };
 
     use crate::prelude::IdentityNonce;
-    use dpp::state_transition::state_transitions::identity::identity_update_transition::fields::{
-        IDENTITY_NONCE, SIGNATURE, SIGNATURE_PUBLIC_KEY_ID, STATE_TRANSITION_PROTOCOL_VERSION,
-    };
     use dpp::util::json_value::JsonValueExt;
 
     #[test]
     fn should_return_state_transition_in_json_format() {
-        let data = crate::state_transition::state_transitions::contract::data_contract_create_transition::test::get_test_data();
+        let data = crate::state_transition::data_contract_create_transition::test::get_test_data();
         let mut json_object = data
             .state_transition
             .to_json(JsonStateTransitionSerializationOptions {
@@ -62,6 +59,7 @@ mod test {
                 .get_u64(SIGNATURE_PUBLIC_KEY_ID)
                 .expect("default public key id should be defined"),
         );
+
         assert_eq!(
             "",
             json_object

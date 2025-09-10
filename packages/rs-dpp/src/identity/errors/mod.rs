@@ -1,6 +1,6 @@
-pub use asset_lock_output_not_found_error::AssetLockOutputNotFoundError;
-pub use asset_lock_transaction_is_not_found_error::AssetLockTransactionIsNotFoundError;
-pub use unknown_asset_lock_proof_type_error::UnknownAssetLockProofTypeError;
+pub use asset_lock_output_not_found_error::*;
+pub use asset_lock_transaction_is_not_found_error::*;
+pub use unknown_asset_lock_proof_type_error::*;
 
 pub mod asset_lock_output_not_found_error;
 pub mod asset_lock_transaction_is_not_found_error;

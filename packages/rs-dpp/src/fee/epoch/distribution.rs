@@ -43,7 +43,7 @@ use rust_decimal_macros::dec;
 use std::cmp::Ordering;
 
 use crate::balances::credits::Credits;
-use crate::errors::ProtocolError;
+use crate::ProtocolError;
 use std::ops::Mul;
 
 // TODO: Should be updated from the doc

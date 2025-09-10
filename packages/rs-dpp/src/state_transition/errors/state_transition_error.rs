@@ -1,4 +1,4 @@
-use crate::errors::consensus::ConsensusError;
+use crate::consensus::ConsensusError;
 use platform_value::Value;
 use platform_version::version::ProtocolVersion;
 use std::ops::RangeInclusive;

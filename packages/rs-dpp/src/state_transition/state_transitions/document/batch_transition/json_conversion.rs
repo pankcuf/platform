@@ -1,5 +1,5 @@
-use crate::state_transition::state_transitions::document::batch_transition::fields::*;
-use crate::state_transition::state_transitions::document::batch_transition::BatchTransition;
+use crate::state_transition::batch_transition::BatchTransition;
+use crate::state_transition::state_transitions::batch_transition::fields::*;
 use crate::state_transition::{
     JsonStateTransitionSerializationOptions, StateTransitionJsonConvert,
 };
@@ -11,14 +11,14 @@ impl StateTransitionJsonConvert<'_> for BatchTransition {
     fn to_json(
         &self,
         options: JsonStateTransitionSerializationOptions,
-    ) -> Result<serde_json::Value, ProtocolError> {
+    ) -> Result<JsonValue, ProtocolError> {
         match self {
             BatchTransition::V0(transition) => {
                 let mut value = transition.to_json(options)?;
                 let map_value = value.as_object_mut().expect("expected an object");
                 map_value.insert(
                     STATE_TRANSITION_PROTOCOL_VERSION.to_string(),
-                    serde_json::Value::Number(Number::from(0)),
+                    JsonValue::Number(Number::from(0)),
                 );
                 Ok(value)
             }

@@ -1,4 +1,4 @@
-pub use instant_asset_lock_proof::{InstantAssetLockProof, RawInstantLockProof};
+pub use instant_asset_lock_proof::*;
 
 pub mod instant_asset_lock_proof;
 mod methods;

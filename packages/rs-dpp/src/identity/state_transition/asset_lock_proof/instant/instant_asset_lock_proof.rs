@@ -1,8 +1,8 @@
 use std::convert::{TryFrom, TryInto};
 
-use dashcore::blockdata::transaction::{OutPoint, Transaction, special_transaction::TransactionPayload, txin::TxIn, txout::TxOut};
 use dashcore::consensus::{deserialize, Encodable};
-use dashcore::ephemerealdata::instant_lock::InstantLock;
+use dashcore::transaction::special_transaction::TransactionPayload;
+use dashcore::{InstantLock, OutPoint, Transaction, TxIn, TxOut};
 use platform_value::{BinaryData, Value};
 
 #[cfg(feature = "validation")]
@@ -13,13 +13,13 @@ use serde::de::Error as DeError;
 use serde::ser::Error as SerError;
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 
-use crate::errors::ProtocolError;
+use crate::prelude::Identifier;
 #[cfg(feature = "cbor")]
 use crate::util::cbor_value::CborCanonicalMap;
 use crate::util::hash::hash_double;
 #[cfg(feature = "validation")]
 use crate::validation::SimpleConsensusValidationResult;
-use platform_value::Identifier;
+use crate::ProtocolError;
 
 /// Instant Asset Lock Proof is a part of Identity Create and Identity Topup
 /// transitions. It is a proof that specific output of dash is locked in credits

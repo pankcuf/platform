@@ -1,4 +1,4 @@
-use dashcore::hash_types::Txid;
+use dashcore::Txid;
 use thiserror::Error;
 
 use crate::DPPError;

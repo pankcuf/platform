@@ -1,11 +1,11 @@
-use crate::errors::consensus::state::state_error::StateError;
-use crate::errors::consensus::ConsensusError;
+use crate::consensus::state::state_error::StateError;
+use crate::consensus::ConsensusError;
 use crate::errors::ProtocolError;
 use platform_serialization_derive::{PlatformDeserialize, PlatformSerialize};
 use platform_value::Identifier;
 use thiserror::Error;
 
-use crate::errors::consensus::state::data_trigger::DataTriggerError;
+use crate::consensus::state::data_trigger::DataTriggerError;
 use bincode::{Decode, Encode};
 
 #[derive(

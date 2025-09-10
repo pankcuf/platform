@@ -14,18 +14,17 @@ use platform_value::BinaryData;
 #[cfg(feature = "state-transition-serde-conversion")]
 use serde::{Deserialize, Serialize};
 
-use crate::identity::identity_public_key::KeyID;
-use crate::{data_contract::DataContract, errors::protocol_error::ProtocolError};
+use crate::{data_contract::DataContract, identity::KeyID, ProtocolError};
 
 use crate::data_contract::created_data_contract::CreatedDataContract;
 use crate::data_contract::serialized_version::DataContractInSerializationFormat;
 use crate::prelude::{IdentityNonce, UserFeeIncrease};
-use crate::state_transition::state_transitions::contract::data_contract_create_transition::DataContractCreateTransition;
+use crate::state_transition::data_contract_create_transition::DataContractCreateTransition;
 use bincode::{Decode, Encode};
 use platform_version::{TryFromPlatformVersioned, TryIntoPlatformVersioned};
 
 use crate::state_transition::StateTransition;
-use platform_version::version::PlatformVersion;
+use crate::version::PlatformVersion;
 
 ///DataContractCreateTransitionV0 has the same encoding structure
 

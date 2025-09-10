@@ -23,20 +23,20 @@ use crate::data_contract::document_type::accessors::DocumentTypeV0Getters;
 use crate::data_contract::document_type::methods::DocumentTypeBasicMethods;
 use crate::data_contract::document_type::DocumentTypeRef;
 use crate::document::{Document, DocumentV0};
-use crate::balances::credits::Credits;
+use crate::fee::Credits;
 #[cfg(feature = "state-transition-value-conversion")]
-use crate::state_transition::state_transitions::document::batch_transition::document_base_transition::v0::DocumentBaseTransitionV0;
+use crate::state_transition::batch_transition::document_base_transition::v0::DocumentBaseTransitionV0;
 #[cfg(feature = "state-transition-value-conversion")]
-use crate::state_transition::state_transitions::document::batch_transition::document_base_transition::v0::DocumentTransitionObjectLike;
-use crate::state_transition::state_transitions::document::batch_transition::batched_transition::document_base_transition::DocumentBaseTransition;
+use crate::state_transition::batch_transition::document_base_transition::v0::DocumentTransitionObjectLike;
+use crate::state_transition::batch_transition::document_base_transition::DocumentBaseTransition;
 use derive_more::Display;
 #[cfg(feature = "state-transition-value-conversion")]
 use platform_value::btreemap_extensions::BTreeValueRemoveTupleFromMapHelper;
 use platform_version::version::PlatformVersion;
 
 #[cfg(feature = "state-transition-value-conversion")]
-use crate::state_transition::state_transitions::document::batch_transition;
-use crate::state_transition::state_transitions::document::batch_transition::document_base_transition::v0::v0_methods::DocumentBaseTransitionV0Methods;
+use crate::state_transition::batch_transition;
+use crate::state_transition::batch_transition::document_base_transition::v0::v0_methods::DocumentBaseTransitionV0Methods;
 
 mod property_names {
     pub const ENTROPY: &str = "$entropy";
@@ -380,7 +380,7 @@ impl DocumentFromCreateTransitionV0 for Document {
 #[cfg(test)]
 mod test {
     use crate::data_contract::v0::DataContractV0;
-    use crate::state_transition::state_transitions::document::batch_transition::document_create_transition::DocumentCreateTransition;
+    use crate::state_transition::batch_transition::document_create_transition::DocumentCreateTransition;
     use platform_value::btreemap_extensions::BTreeValueMapHelper;
     use platform_value::{platform_value, BinaryData, Bytes32, Identifier};
     use platform_version::version::LATEST_PLATFORM_VERSION;
@@ -388,7 +388,7 @@ mod test {
 
     use super::*;
     use crate::data_contract::conversion::value::v0::DataContractValueConversionMethodsV0;
-    // use serde_json::Value as JsonValue;
+    use serde_json::Value as JsonValue;
 
     fn init() {
         let _ = env_logger::builder()
@@ -493,25 +493,22 @@ mod test {
             DocumentCreateTransition::from_object(raw_document, data_contract).unwrap();
 
         let json_transition = transition.to_json().expect("no errors");
-        assert_eq!(
-            json_transition["V0"]["$id"],
-            serde_json::Value::String(id.into())
-        );
+        assert_eq!(json_transition["V0"]["$id"], JsonValue::String(id.into()));
         assert_eq!(
             json_transition["V0"]["$dataContractId"],
-            serde_json::Value::String(data_contract_id.into())
+            JsonValue::String(data_contract_id.into())
         );
         assert_eq!(
             json_transition["alphaBinary"],
-            serde_json::Value::String(alpha_binary.into())
+            JsonValue::String(alpha_binary.into())
         );
         assert_eq!(
             json_transition["alphaIdentifier"],
-            serde_json::Value::String(alpha_identifier.into())
+            JsonValue::String(alpha_identifier.into())
         );
         assert_eq!(
             json_transition["$entropy"],
-            serde_json::Value::String(entropy.into())
+            JsonValue::String(entropy.into())
         );
     }
 

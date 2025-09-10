@@ -9,10 +9,10 @@ use derive_more::Display;
 
 #[cfg(feature = "state-transition-value-conversion")]
 use crate::data_contract::accessors::v0::DataContractV0Getters;
-use platform_value::Identifier;
+use crate::identifier::Identifier;
 use crate::prelude::IdentityNonce;
 #[cfg(feature = "state-transition-value-conversion")]
-use crate::state_transition::state_transitions::document::batch_transition::document_base_transition::property_names;
+use crate::state_transition::batch_transition::document_base_transition::property_names;
 use crate::tokens::token_payment_info::TokenPaymentInfo;
 #[cfg(any(
     feature = "state-transition-json-conversion",

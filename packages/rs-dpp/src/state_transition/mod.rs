@@ -21,12 +21,12 @@ use platform_serialization_derive::{PlatformDeserialize, PlatformSerialize, Plat
 use platform_version::version::{PlatformVersion, ProtocolVersion, ALL_VERSIONS, LATEST_VERSION};
 
 mod abstract_state_transition;
-use crate::errors::ProtocolError;
 #[cfg(any(
     feature = "state-transition-signing",
     feature = "state-transition-validation"
 ))]
 use crate::BlsModule;
+use crate::ProtocolError;
 
 pub mod state_transition_types;
 
@@ -45,45 +45,46 @@ mod traits;
 // pub mod state_transition_fee;
 
 #[cfg(feature = "state-transition-signing")]
-use crate::errors::consensus::signature::InvalidSignaturePublicKeySecurityLevelError;
+use crate::consensus::signature::InvalidSignaturePublicKeySecurityLevelError;
 #[cfg(feature = "state-transition-validation")]
-use crate::errors::consensus::signature::{
+use crate::consensus::signature::{
     InvalidStateTransitionSignatureError, PublicKeyIsDisabledError, SignatureError,
 };
 #[cfg(feature = "state-transition-validation")]
-use crate::errors::consensus::ConsensusError;
+use crate::consensus::ConsensusError;
 pub use traits::*;
 
-use crate::balances::credits::Credits;
 use crate::balances::credits::CREDITS_PER_DUFF;
 use crate::data_contract::serialized_version::DataContractInSerializationFormat;
+use crate::fee::Credits;
 #[cfg(any(
     feature = "state-transition-signing",
     feature = "state-transition-validation"
 ))]
 use crate::identity::identity_public_key::accessors::v0::IdentityPublicKeyGettersV0;
-use crate::identity::identity_public_key::{KeyID, Purpose, SecurityLevel};
 #[cfg(feature = "state-transition-signing")]
 use crate::identity::signer::Signer;
-use crate::identity::state_transition::asset_lock_proof::AssetLockProof;
 use crate::identity::state_transition::OptionallyAssetLockProved;
+use crate::identity::Purpose;
 #[cfg(any(
     feature = "state-transition-signing",
     feature = "state-transition-validation"
 ))]
 use crate::identity::{IdentityPublicKey, KeyType};
+use crate::identity::{KeyID, SecurityLevel};
+use crate::prelude::{AssetLockProof, UserFeeIncrease};
 use crate::serialization::{PlatformDeserializable, Signable};
-use crate::state_transition::state_transitions::document::batch_transition::accessors::DocumentsBatchTransitionAccessorsV0;
-use crate::state_transition::state_transitions::document::batch_transition::batched_transition::BatchedTransitionRef;
+use crate::state_transition::batch_transition::accessors::DocumentsBatchTransitionAccessorsV0;
+use crate::state_transition::batch_transition::batched_transition::BatchedTransitionRef;
 #[cfg(feature = "state-transition-signing")]
-use crate::state_transition::state_transitions::document::batch_transition::resolvers::v0::BatchTransitionResolversV0;
-use crate::state_transition::state_transitions::document::batch_transition::{BatchTransition, BatchTransitionSignable};
-use crate::state_transition::state_transitions::contract::data_contract_create_transition::accessors::DataContractCreateTransitionAccessorsV0;
-use crate::state_transition::state_transitions::contract::data_contract_create_transition::{
+use crate::state_transition::batch_transition::resolvers::v0::BatchTransitionResolversV0;
+use crate::state_transition::batch_transition::{BatchTransition, BatchTransitionSignable};
+use crate::state_transition::data_contract_create_transition::accessors::DataContractCreateTransitionAccessorsV0;
+use crate::state_transition::data_contract_create_transition::{
     DataContractCreateTransition, DataContractCreateTransitionSignable,
 };
-use crate::state_transition::state_transitions::contract::data_contract_update_transition::accessors::DataContractUpdateTransitionAccessorsV0;
-use crate::state_transition::state_transitions::contract::data_contract_update_transition::{
+use crate::state_transition::data_contract_update_transition::accessors::DataContractUpdateTransitionAccessorsV0;
+use crate::state_transition::data_contract_update_transition::{
     DataContractUpdateTransition, DataContractUpdateTransitionSignable,
 };
 #[cfg(feature = "state-transition-signing")]
@@ -96,27 +97,28 @@ use crate::state_transition::errors::WrongPublicKeyPurposeError;
 use crate::state_transition::errors::{
     InvalidIdentityPublicKeyTypeError, PublicKeyMismatchError, StateTransitionIsNotSignedError,
 };
-use crate::state_transition::state_transitions::identity::identity_create_transition::{
+use crate::state_transition::identity_create_transition::{
     IdentityCreateTransition, IdentityCreateTransitionSignable,
 };
-use crate::state_transition::state_transitions::identity::identity_credit_transfer_transition::{
+use crate::state_transition::identity_credit_transfer_transition::{
     IdentityCreditTransferTransition, IdentityCreditTransferTransitionSignable,
 };
-use crate::state_transition::state_transitions::identity::identity_credit_withdrawal_transition::{
+use crate::state_transition::identity_credit_withdrawal_transition::{
     IdentityCreditWithdrawalTransition, IdentityCreditWithdrawalTransitionSignable,
 };
-use crate::state_transition::state_transitions::identity::identity_topup_transition::{
+use crate::state_transition::identity_topup_transition::{
     IdentityTopUpTransition, IdentityTopUpTransitionSignable,
 };
-use crate::state_transition::state_transitions::identity::identity_update_transition::{
+use crate::state_transition::identity_update_transition::{
     IdentityUpdateTransition, IdentityUpdateTransitionSignable,
 };
-use crate::state_transition::state_transitions::identity::masternode_vote_transition::MasternodeVoteTransition;
-use crate::state_transition::state_transitions::identity::masternode_vote_transition::MasternodeVoteTransitionSignable;
+use crate::state_transition::masternode_vote_transition::MasternodeVoteTransition;
+use crate::state_transition::masternode_vote_transition::MasternodeVoteTransitionSignable;
 #[cfg(feature = "state-transition-signing")]
 use crate::state_transition::state_transitions::document::batch_transition::methods::v0::DocumentsBatchTransitionMethodsV0;
 use state_transitions::document::batch_transition::batched_transition::token_transition::TokenTransition;
-use crate::prelude::UserFeeIncrease;
+pub use state_transitions::*;
+
 pub type GetDataContractSecurityLevelRequirementFn =
     fn(Identifier, String) -> Result<SecurityLevel, ProtocolError>;
 

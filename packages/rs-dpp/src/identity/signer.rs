@@ -1,5 +1,5 @@
-use crate::errors::ProtocolError;
-use crate::identity::identity_public_key::IdentityPublicKey;
+use crate::prelude::IdentityPublicKey;
+use crate::ProtocolError;
 use platform_value::BinaryData;
 use std::fmt::Debug;
 

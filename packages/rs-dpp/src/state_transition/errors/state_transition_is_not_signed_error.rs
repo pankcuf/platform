@@ -1,7 +1,7 @@
 use thiserror::Error;
 
-use crate::errors::ProtocolError;
 use crate::state_transition::StateTransition;
+use crate::ProtocolError;
 
 #[derive(Error, Debug, Clone)]
 #[error("State Transition is not signed")]

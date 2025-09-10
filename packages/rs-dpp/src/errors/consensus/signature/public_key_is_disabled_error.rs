@@ -1,9 +1,9 @@
 use thiserror::Error;
 
-use crate::errors::consensus::signature::signature_error::SignatureError;
-use crate::errors::consensus::ConsensusError;
+use crate::consensus::signature::signature_error::SignatureError;
+use crate::consensus::ConsensusError;
 use crate::errors::ProtocolError;
-use crate::identity::identity_public_key::KeyID;
+use crate::identity::KeyID;
 use platform_serialization_derive::{PlatformDeserialize, PlatformSerialize};
 
 use bincode::{Decode, Encode};

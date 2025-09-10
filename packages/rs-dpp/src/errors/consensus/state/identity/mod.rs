@@ -1,5 +1,5 @@
-pub use identity_already_exists_error::IdentityAlreadyExistsError;
-pub use identity_insufficient_balance_error::IdentityInsufficientBalanceError;
+pub use identity_already_exists_error::*;
+pub use identity_insufficient_balance_error::*;
 
 pub mod duplicated_identity_public_key_id_state_error;
 pub mod duplicated_identity_public_key_state_error;
@@ -21,4 +21,4 @@ pub mod identity_for_token_configuration_not_found_error;
 pub mod identity_to_freeze_does_not_exist_error;
 pub mod recipient_identity_does_not_exist_error;
 
-pub use recipient_identity_does_not_exist_error::RecipientIdentityDoesNotExistError;
+pub use recipient_identity_does_not_exist_error::*;

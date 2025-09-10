@@ -1,9 +1,9 @@
-use crate::errors::ProtocolError;
+use crate::identifier::Identifier;
 use crate::identity::identity_public_key::contract_bounds::ContractBounds::{
     SingleContract, SingleContractDocumentType,
 };
+use crate::ProtocolError;
 use bincode::{Decode, Encode};
-use platform_value::Identifier;
 use serde::{Deserialize, Serialize};
 
 pub type ContractBoundsType = u8;

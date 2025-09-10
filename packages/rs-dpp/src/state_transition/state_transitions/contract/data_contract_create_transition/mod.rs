@@ -13,12 +13,12 @@ mod version;
 use fields::*;
 
 use crate::data_contract::DataContract;
-use crate::errors::ProtocolError;
 use crate::state_transition::{StateTransition, StateTransitionFieldTypes};
+use crate::version::PlatformVersion;
+use crate::ProtocolError;
 use bincode::{Decode, Encode};
 use derive_more::From;
 use platform_serialization_derive::{PlatformDeserialize, PlatformSerialize, PlatformSignable};
-use platform_version::version::PlatformVersion;
 
 use platform_version::{TryFromPlatformVersioned, TryIntoPlatformVersioned};
 use platform_versioning::PlatformVersioned;
@@ -28,7 +28,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::data_contract::created_data_contract::CreatedDataContract;
 use crate::identity::state_transition::OptionallyAssetLockProved;
-pub use v0::{DataContractCreateTransitionV0, DataContractCreateTransitionV0Signable};
+pub use v0::*;
 
 pub type DataContractCreateTransitionLatest = DataContractCreateTransitionV0;
 
@@ -158,7 +158,7 @@ mod test {
     use super::*;
     use crate::data_contract::accessors::v0::DataContractV0Getters;
     use crate::data_contract::conversion::value::v0::DataContractValueConversionMethodsV0;
-    use crate::state_transition::state_transitions::contract::data_contract_create_transition::accessors::DataContractCreateTransitionAccessorsV0;
+    use crate::state_transition::data_contract_create_transition::accessors::DataContractCreateTransitionAccessorsV0;
     use crate::state_transition::traits::StateTransitionLike;
     use crate::state_transition::{StateTransitionType, StateTransitionValueConvert};
     use crate::tests::fixtures::get_data_contract_fixture;

@@ -1,4 +1,4 @@
-use crate::errors::ProtocolError;
+use crate::ProtocolError;
 use thiserror::Error;
 
 #[derive(Error, Debug, Clone, PartialEq, Eq)]

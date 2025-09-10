@@ -1,17 +1,16 @@
 use crate::data_contract::DataContract;
-use crate::identity::identity_public_key::KeyID;
 use crate::identity::signer::Signer;
-use crate::identity::PartialIdentity;
+use crate::identity::{KeyID, PartialIdentity};
 use crate::serialization::Signable;
 
 use crate::prelude::{IdentityNonce, UserFeeIncrease};
-use crate::state_transition::state_transitions::contract::data_contract_update_transition::methods::DataContractUpdateTransitionMethodsV0;
-use crate::state_transition::state_transitions::contract::data_contract_update_transition::{
+use crate::state_transition::data_contract_update_transition::methods::DataContractUpdateTransitionMethodsV0;
+use crate::state_transition::data_contract_update_transition::{
     DataContractUpdateTransition, DataContractUpdateTransitionV0,
 };
 use crate::state_transition::StateTransition;
-use versioned_feature_core::FeatureVersion;
-use crate::{errors::NonConsensusError, errors::ProtocolError};
+use crate::version::FeatureVersion;
+use crate::{NonConsensusError, ProtocolError};
 use platform_version::version::PlatformVersion;
 use platform_version::TryIntoPlatformVersioned;
 

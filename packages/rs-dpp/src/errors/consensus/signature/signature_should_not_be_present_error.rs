@@ -1,5 +1,5 @@
-use crate::errors::consensus::signature::signature_error::SignatureError;
-use crate::errors::consensus::ConsensusError;
+use crate::consensus::signature::signature_error::SignatureError;
+use crate::consensus::ConsensusError;
 use crate::errors::ProtocolError;
 use platform_serialization_derive::{PlatformDeserialize, PlatformSerialize};
 use thiserror::Error;

@@ -6,25 +6,25 @@ use crate::data_contract::document_type::accessors::DocumentTypeV0Getters;
     feature = "state-transition-json-conversion",
     feature = "state-transition-value-conversion"
 ))]
-use crate::data_contract::DataContract;
+use crate::prelude::DataContract;
 #[cfg(any(
     feature = "state-transition-json-conversion",
     feature = "state-transition-value-conversion"
 ))]
-use crate::state_transition::state_transitions::document::batch_transition::document_base_transition::v0::DocumentTransitionObjectLike;
+use crate::state_transition::batch_transition::document_base_transition::v0::DocumentTransitionObjectLike;
 #[cfg(feature = "state-transition-json-conversion")]
-use crate::state_transition::state_transitions::document::batch_transition::document_create_transition::v0::BINARY_FIELDS;
+use crate::state_transition::batch_transition::document_create_transition::v0::BINARY_FIELDS;
 #[cfg(any(
     feature = "state-transition-json-conversion",
     feature = "state-transition-value-conversion"
 ))]
-use crate::state_transition::state_transitions::document::batch_transition::document_create_transition::DocumentCreateTransition;
+use crate::state_transition::batch_transition::document_create_transition::DocumentCreateTransition;
 #[cfg(feature = "state-transition-value-conversion")]
-use crate::state_transition::state_transitions::document::batch_transition::document_create_transition::DocumentCreateTransitionV0;
+use crate::state_transition::batch_transition::document_create_transition::DocumentCreateTransitionV0;
 #[cfg(feature = "state-transition-value-conversion")]
-use crate::state_transition::state_transitions::document::batch_transition::fields::property_names::STATE_TRANSITION_PROTOCOL_VERSION;
+use crate::state_transition::batch_transition::fields::property_names::STATE_TRANSITION_PROTOCOL_VERSION;
 #[cfg(feature = "state-transition-json-conversion")]
-use crate::state_transition::state_transitions::contract::data_contract_update_transition::IDENTIFIER_FIELDS;
+use crate::state_transition::data_contract_update_transition::IDENTIFIER_FIELDS;
 #[cfg(any(
     feature = "state-transition-json-conversion",
     feature = "state-transition-value-conversion"
@@ -46,8 +46,8 @@ use platform_value::ReplacementType;
     feature = "state-transition-value-conversion"
 ))]
 use platform_value::Value;
-//#[cfg(feature = "state-transition-json-conversion")]
-//use serde_json::Value as JsonValue;
+#[cfg(feature = "state-transition-json-conversion")]
+use serde_json::Value as JsonValue;
 #[cfg(feature = "state-transition-value-conversion")]
 use std::collections::BTreeMap;
 
@@ -58,7 +58,7 @@ use std::collections::BTreeMap;
 impl DocumentTransitionObjectLike for DocumentCreateTransition {
     #[cfg(feature = "state-transition-json-conversion")]
     fn from_json_object(
-        json_value: serde_json::Value,
+        json_value: JsonValue,
         data_contract: DataContract,
     ) -> Result<Self, ProtocolError> {
         let value: Value = json_value.into();
@@ -134,7 +134,7 @@ impl DocumentTransitionObjectLike for DocumentCreateTransition {
     }
 
     #[cfg(feature = "state-transition-json-conversion")]
-    fn to_json(&self) -> Result<serde_json::Value, ProtocolError> {
+    fn to_json(&self) -> Result<JsonValue, ProtocolError> {
         self.to_cleaned_object()?
             .try_into()
             .map_err(ProtocolError::ValueError)

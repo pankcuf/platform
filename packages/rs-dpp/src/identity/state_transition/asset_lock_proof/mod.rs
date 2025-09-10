@@ -1,19 +1,19 @@
 use std::convert::{TryFrom, TryInto};
 
-use dashcore::blockdata::transaction::{OutPoint, Transaction};
+use dashcore::{OutPoint, Transaction};
 
 use serde::{Deserialize, Deserializer, Serialize};
 
 use bincode::{Decode, Encode};
 
-pub use instant::{InstantAssetLockProof, RawInstantLockProof};
-use platform_value::Identifier;
+pub use instant::*;
 use platform_value::Value;
 #[cfg(feature = "validation")]
 use platform_version::version::PlatformVersion;
 use serde::de::Error;
 
-use crate::identity::state_transition::asset_lock_proof::chain::chain_asset_lock_proof::ChainAssetLockProof;
+use crate::identity::state_transition::asset_lock_proof::chain::ChainAssetLockProof;
+use crate::prelude::Identifier;
 #[cfg(feature = "validation")]
 use crate::validation::SimpleConsensusValidationResult;
 use crate::{ProtocolError, SerdeParsingError};

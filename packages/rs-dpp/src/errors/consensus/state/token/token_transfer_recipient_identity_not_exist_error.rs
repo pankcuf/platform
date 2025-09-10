@@ -1,6 +1,6 @@
-use crate::errors::consensus::state::state_error::StateError;
-use crate::errors::consensus::ConsensusError;
-use crate::errors::ProtocolError;
+use crate::consensus::state::state_error::StateError;
+use crate::consensus::ConsensusError;
+use crate::ProtocolError;
 use bincode::{Decode, Encode};
 use platform_serialization_derive::{PlatformDeserialize, PlatformSerialize};
 use platform_value::Identifier;
