@@ -67,6 +67,9 @@ pub use bls::*;
 
 pub mod prelude {
     pub use crate::identifier::Identifier;
+    pub use crate::identity::state_transition::asset_lock_proof::AssetLockProof;
+    pub use crate::identity::Identity;
+    pub use crate::identity::IdentityPublicKey;
     #[cfg(feature = "validation")]
     pub use crate::validation::ConsensusValidationResult;
 
@@ -98,6 +101,7 @@ pub mod prelude {
     pub type Revision = u64;
     #[cfg_attr(feature = "apple", ferment_macro::export)]
     pub type IdentityNonce = u64;
+
     #[cfg_attr(feature = "apple", ferment_macro::export)]
     pub type SenderKeyIndex = u32;
     #[cfg_attr(feature = "apple", ferment_macro::export)]
