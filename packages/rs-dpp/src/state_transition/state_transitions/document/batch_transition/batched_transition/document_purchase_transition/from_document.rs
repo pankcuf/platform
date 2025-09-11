@@ -1,14 +1,14 @@
+use platform_version::version::PlatformVersion;
 use crate::balances::credits::Credits;
 use crate::data_contract::document_type::DocumentTypeRef;
 use crate::document::Document;
 use crate::prelude::IdentityNonce;
 use crate::ProtocolError;
-use platform_version::version::PlatformVersion;
-use versioned_feature_core::FeatureVersion;
 
 use crate::state_transition::state_transitions::document::batch_transition::batched_transition::document_purchase_transition::DocumentPurchaseTransitionV0;
 use crate::state_transition::state_transitions::document::batch_transition::batched_transition::DocumentPurchaseTransition;
 use crate::tokens::token_payment_info::TokenPaymentInfo;
+use crate::version::FeatureVersion;
 
 impl DocumentPurchaseTransition {
     #[allow(clippy::too_many_arguments)]
