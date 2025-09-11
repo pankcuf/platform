@@ -1,11 +1,11 @@
 pub mod accessors;
-mod property;
+pub mod property;
 pub use property::*;
 pub mod class_methods;
-mod index;
+pub mod index;
 pub mod methods;
 pub use index::*;
-mod index_level;
+pub mod index_level;
 pub use index_level::IndexLevel;
 pub use index_level::IndexLevelTypeInfo;
 pub use index_level::IndexType;
@@ -15,7 +15,7 @@ pub mod random_document;
 pub mod restricted_creation;
 pub mod schema;
 
-mod token_costs;
+pub mod token_costs;
 pub mod v0;
 pub mod v1;
 #[cfg(feature = "validation")]
