@@ -9,6 +9,7 @@ use std::fmt;
 /// Pre Programmed Token Release always require an entry to the ledger
 #[derive(Serialize, Deserialize, Decode, Encode, Debug, Clone, Copy, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
+#[cfg_attr(feature = "apple", ferment_macro::export)]
 pub struct TokenKeepsHistoryRulesV0 {
     /// Whether transfer history is recorded.
     #[serde(default = "default_true")]

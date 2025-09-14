@@ -87,6 +87,7 @@ pub mod prelude {
     #[cfg_attr(feature = "apple", ferment_macro::export)]
     pub type FeeMultiplier = u64;
 
+    #[cfg_attr(feature = "apple", ferment_macro::export)]
     pub type BlockHeightInterval = u64;
 
     #[cfg_attr(feature = "apple", ferment_macro::export)]

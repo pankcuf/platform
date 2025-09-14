@@ -12,6 +12,7 @@ use crate::data_contract::associated_token::token_perpetual_distribution::reward
 use crate::ProtocolError;
 
 #[derive(Serialize, Deserialize, Decode, Encode, Debug, Clone, PartialEq, Eq, PartialOrd)]
+#[cfg_attr(feature = "apple", ferment_macro::export)]
 pub enum RewardDistributionType {
     /// An amount of tokens is emitted every n blocks.
     /// The start and end are included if set.

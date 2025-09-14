@@ -8,6 +8,7 @@ use crate::data_contract::associated_token::token_perpetual_distribution::reward
 
 #[derive(Serialize, Deserialize, Decode, Encode, Debug, Clone, PartialEq, Eq, PartialOrd)]
 #[serde(rename_all = "camelCase")]
+#[cfg_attr(feature = "apple", ferment_macro::export)]
 pub struct TokenPerpetualDistributionV0 {
     /// The distribution type that the token will use
     pub distribution_type: RewardDistributionType,

@@ -29,6 +29,7 @@ pub mod v0;
 )]
 #[serde(tag = "$format_version")]
 #[platform_serialize(unversioned)]
+#[cfg_attr(feature = "apple", ferment_macro::export)]
 pub enum TokenPerpetualDistribution {
     #[serde(rename = "0")]
     V0(TokenPerpetualDistributionV0),

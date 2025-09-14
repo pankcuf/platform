@@ -32,6 +32,7 @@ use std::fmt;
 /// across protocol upgrades and validation environments.
 #[derive(Serialize, Deserialize, Decode, Encode, Debug, Clone, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
+#[cfg_attr(feature = "apple", ferment_macro::export)]
 pub struct TokenConfigurationV0 {
     /// Metadata conventions, including decimals and localizations.
     pub conventions: TokenConfigurationConvention,

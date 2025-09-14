@@ -9,6 +9,7 @@ use std::fmt;
 
 #[derive(Serialize, Deserialize, Decode, Encode, Debug, Clone, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
+#[cfg_attr(feature = "apple", ferment_macro::export)]
 pub struct TokenPreProgrammedDistributionV0 {
     pub distributions: BTreeMap<TimestampMillis, BTreeMap<Identifier, TokenAmount>>,
 }

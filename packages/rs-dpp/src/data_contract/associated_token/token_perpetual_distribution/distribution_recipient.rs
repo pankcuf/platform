@@ -23,6 +23,7 @@ use std::fmt;
     Default,
 )]
 #[platform_serialize(unversioned)]
+#[cfg_attr(feature = "apple", ferment_macro::export)]
 pub enum TokenDistributionRecipient {
     /// Distribute to the contract Owner
     #[default]
