@@ -10,8 +10,9 @@ use std::fmt;
 /// Error indicating that a group contains too few members to be valid.
 #[derive(Debug, Clone, PartialEq, Eq, Encode, Decode, PlatformSerialize, PlatformDeserialize)]
 #[platform_serialize(unversioned)]
+#[cfg_attr(feature = "apple", ferment_macro::export)]
 pub struct GroupHasTooFewMembersError {
-    group_id: Option<GroupContractPosition>,
+    pub group_id: Option<GroupContractPosition>,
 }
 
 impl GroupHasTooFewMembersError {

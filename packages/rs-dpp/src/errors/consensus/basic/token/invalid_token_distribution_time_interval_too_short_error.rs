@@ -11,8 +11,9 @@ use thiserror::Error;
 )]
 #[error("TimeBasedDistribution interval is too short: {interval}. Minimum allowed is 3,600,000 ms (1 hour).")]
 #[platform_serialize(unversioned)]
+#[cfg_attr(feature = "apple", ferment_macro::export)]
 pub struct InvalidTokenDistributionTimeIntervalTooShortError {
-    interval: TimestampMillisInterval,
+    pub interval: TimestampMillisInterval,
 }
 
 impl InvalidTokenDistributionTimeIntervalTooShortError {

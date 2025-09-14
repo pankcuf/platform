@@ -11,8 +11,9 @@ use thiserror::Error;
 )]
 #[error("BlockBasedDistribution interval is too short: {interval}. Minimum allowed is 100.")]
 #[platform_serialize(unversioned)]
+#[cfg_attr(feature = "apple", ferment_macro::export)]
 pub struct InvalidTokenDistributionBlockIntervalTooShortError {
-    interval: BlockHeightInterval,
+    pub interval: BlockHeightInterval,
 }
 
 impl InvalidTokenDistributionBlockIntervalTooShortError {

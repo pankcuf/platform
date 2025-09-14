@@ -11,8 +11,9 @@ use thiserror::Error;
 )]
 #[error("TimeBasedDistribution interval {interval} is not divisible by 60,000 ms (1 minute).")]
 #[platform_serialize(unversioned)]
+#[cfg_attr(feature = "apple", ferment_macro::export)]
 pub struct InvalidTokenDistributionTimeIntervalNotMinuteAlignedError {
-    interval: TimestampMillisInterval,
+    pub interval: TimestampMillisInterval,
 }
 
 impl InvalidTokenDistributionTimeIntervalNotMinuteAlignedError {

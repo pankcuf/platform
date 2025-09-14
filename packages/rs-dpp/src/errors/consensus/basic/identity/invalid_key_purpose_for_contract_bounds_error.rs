@@ -13,14 +13,15 @@ use bincode::{Decode, Encode};
 )]
 #[error("Key purpose {given_key_purpose} is not allowed for contract bounds. Allowed purposes: {allowed_key_purposes:?}")]
 #[platform_serialize(unversioned)]
+#[cfg_attr(feature = "apple", ferment_macro::export)]
 pub struct InvalidKeyPurposeForContractBoundsError {
     /*
 
     DO NOT CHANGE ORDER OF FIELDS WITHOUT INTRODUCING OF NEW VERSION
 
     */
-    given_key_purpose: Purpose,
-    allowed_key_purposes: Vec<Purpose>,
+    pub given_key_purpose: Purpose,
+    pub allowed_key_purposes: Vec<Purpose>,
 }
 
 impl InvalidKeyPurposeForContractBoundsError {
