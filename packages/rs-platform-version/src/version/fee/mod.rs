@@ -24,6 +24,7 @@ pub mod v1;
 pub mod v2;
 pub mod vote_resolution_fund_fees;
 
+#[cfg_attr(feature = "apple", ferment_macro::export)]
 pub type FeeVersionNumber = u32;
 
 pub const FEE_VERSIONS: &[FeeVersion] = &[FEE_VERSION1];
